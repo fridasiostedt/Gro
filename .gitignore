@@ -1,0 +1,27 @@
+# Hemligheter och lokala inställningar – får aldrig hamna på GitHub
+.env
+.env.*
+*.pem
+*.key
+secrets/
+config.local.*
+
+# Egna foton (kan innehålla platsdata/EXIF). Lägg aldrig upp privata bilder.
+privat/
+foton/
+*.heic
+*.HEIC
+
+# Beroenden, byggen och cache
+node_modules/
+dist/
+.cache/
+coverage/
+
+# System- och editorfiler
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.log
