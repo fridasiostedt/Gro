@@ -174,6 +174,7 @@
 
   // ---------- Vyer ----------
   function vyStart() {
+    var harData = store.vaxter().length > 0 || store.uppgifter().length > 0;
     return {
       titel: 'GRO – Grönska. Rutin. Omtanke.',
       utanRam: true,
@@ -191,7 +192,7 @@
           '</div>' +
           '<p class="start-text">Håll koll på allt trädgården behöver – och när. Mindre att komma ihåg, mer tid att njuta.</p>' +
           '<div class="atgarder">' +
-            '<button type="button" class="knapp knapp-primar" data-atgard="kom-igang">Kom igång</button>' +
+            '<button type="button" class="knapp knapp-primar" data-atgard="kom-igang">' + (harData ? 'Fortsätt till översikten' : 'Kom igång') + '</button>' +
             '<button type="button" class="knapp knapp-sekundar" data-atgard="exempel">Prova med exempelväxter</button>' +
           '</div>' +
           '<p class="liten-text">Dina växter och uppgifter sparas på din telefon.</p>' +
@@ -259,7 +260,8 @@
           '<div class="sektionsrubrik"><h2 id="mina-prio">Mina prioriteringar</h2></div>' +
           '<p class="visuellt-dold">Gäller ' + esc(L.MANADER[lage.manad]) + '.</p>' +
           '<ul class="fordelning" role="list">' + raknare + '</ul>' +
-        '</section>'
+        '</section>' +
+        '<a class="lank-startsida" href="#/start">' + ikon('vaxt', 20) + 'Till startsidan</a>'
     };
   }
 
@@ -752,9 +754,18 @@
       store.markeraStartsidaSedd();
       ersatt('#/oversikt');
     } else if (namn === 'exempel') {
-      store.laddaExempel(idag());
-      meddela('Exempelväxter och uppgifter är tillagda.');
-      ersatt('#/oversikt');
+      var laddaExempel = function () {
+        store.laddaExempel(idag());
+        meddela('Exempelväxter och uppgifter är tillagda.');
+        ersatt('#/oversikt');
+      };
+      // Skydda användarens egna växter från att skrivas över
+      if (store.vaxter().length || store.uppgifter().length) {
+        bekrafta('Ersätta dina växter?', 'Dina växter och uppgifter ersätts med exempelväxter. Det går inte att ångra.', 'Ersätt med exempel')
+          .then(function (ok) { if (ok) laddaExempel(); else atg.focus(); });
+      } else {
+        laddaExempel();
+      }
     } else if (namn === 'aviseringar') {
       Notification.requestPermission().then(function () { avisera(); rita(); });
     } else if (namn === 'ta-bort-vaxt') {

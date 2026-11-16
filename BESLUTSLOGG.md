@@ -5,6 +5,15 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
 
 ---
 
+## 2026-11-16 · Tillbaka till startsidan
+- Länken **Till startsidan** finns längst ner på Översikt. Produktägaren önskade att kunna komma tillbaka
+  till startsidan. Länken saknas i Figma och har stil som en diskret textlänk med 44 px tryckyta.
+- När det redan finns data heter startsidans knapp **Fortsätt till översikten**.
+- **AI-fel som upptäcktes i samband med detta:** *Prova med exempelväxter* skrev tidigare över användarens
+  egna växter utan att fråga. Det märktes inte så länge startsidan bara visades första gången.
+  *Upptäckt:* vid granskning av den nya länken. *Åtgärd:* appen ber nu om bekräftelse innan data ersätts.
+  Testat i webbläsaren: Avbryt behåller datan.
+
 ## 2026-11-16 · Tillgänglighetsändringar (godkända av produktägaren)
 
 Tre Figma-värden klarade inte WCAG 2.2 AA. Produktägaren godkände ändringarna:

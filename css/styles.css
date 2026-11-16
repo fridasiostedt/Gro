@@ -269,6 +269,13 @@ body.utan-ram .app { padding-bottom: 24px; }
 .tagg { background: var(--bg-navigation); }
 .tagg-varning { border-color: var(--text); }
 
+/* ---------- Länk till startsidan ---------- */
+.lank-startsida {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; align-self: center;
+  min-height: 44px; padding: 0 12px; font-weight: 500; text-underline-offset: 3px; color: var(--text-dampad);
+}
+.lank-startsida:focus-visible { border-radius: 999px; }
+
 /* ---------- Mina prioriteringar ---------- */
 .fordelning { display: flex; gap: 8px; }
 .raknare {

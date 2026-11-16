@@ -54,6 +54,10 @@ Första gången visas startsidan med Gros blomma. Där kan du välja mellan två
 
 Längst ner finns menyn med tre flikar: **Översikt**, **Årshjul** och **Växter**.
 
+För att komma tillbaka till startsidan trycker du på **Till startsidan** längst ner på Översikt.
+Där står det då **Fortsätt till översikten**. Om du trycker på *Prova med exempelväxter* när du redan har
+egna växter frågar appen först, eftersom dina växter då ersätts.
+
 ### 2. Lägg till en växt
 1. Gå till **Växter** och tryck på **Lägg till växt +**.
 2. Tryck på fotorutan för att ta ett foto eller välja en bild. Platsinformation (GPS) tas bort automatiskt.
