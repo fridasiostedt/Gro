@@ -61,6 +61,8 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
 - **Linje under panelen** provades och togs bort igen på produktägarens begäran.
 - **Fältet "Sort eller information" är borttaget** ur formuläret för växter (produktägarens begäran). Ett tidigare
   sparat värde finns kvar och visas, men det går inte längre att fylla i.
+- **Liten Gro-blomma på varje sida:** en dekorativ, spegelvänd blomma (56 px hög, `alt=""`) sitter till höger
+  om sidrubriken på alla sidor utom Startsida och Översikt, som redan har en större blomma.
 - **Rullningslisten är dold** (`scrollbar-width: none`). Innehållet scrollar fortfarande med mus, pekskärm
   och tangentbord.
 
