@@ -123,7 +123,7 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   pressade blommor som är knuten nertill. Den har tunna olivfärgade stjälkar, platta och lite genomskinliga kronblad
   utan konturlinjer, en pressad pion i rosa, smörblommor i höstorange, nävor i vinterblått med ådror,
   slöjblomster, knoppar, fröholkar och flikiga blad. Allt är en egen illustration (ingen kopia av bilden).
-  Senare ändrat: blommorna står var för sig på en slät grön gräsmatta (utan strån) i stället för att vara knutna i en bukett.
+  Senare ändrat: blommorna står var för sig på en slät gräsmatta i primärfärgen #535D45 (utan strån) i stället för att vara knutna i en bukett.
   Pionen ritades sedan om från sidan efter ännu en referensbild: en sluten, skålformad blomma med
   kronbladslinjer och breda blad med ådror, i samma färger som Gros blomma på startsidan (ljusrosa kronblad,
   mjukt rosa linjer, salviagröna blad). Pionens tre nedersta blad är borttagna, och två smörblommor, två nävor och en
