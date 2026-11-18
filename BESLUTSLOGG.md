@@ -118,7 +118,7 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   Den nedre menyn har en mjukare skugga. Kontrastgranskningen kördes igen efteråt, och all text klarar fortfarande
   WCAG AA, eftersom ljuset bara gör bakgrunden ljusare.
 - **Förklarande text** under rubriken, kortad på produktägarens begäran: Årshjul – "Se vad som väntar kommande månader.
-  Tryck på en månad eller årstid." Mina växter – "Tryck på en växt för att se dess uppgifter."
+  Tryck på en månad eller årstid." Texten på Mina växter togs bort igen.
 - **Rullningslisten är dold** (`scrollbar-width: none`). Innehållet scrollar fortfarande med mus, pekskärm
   och tangentbord.
 

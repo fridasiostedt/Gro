@@ -423,7 +423,6 @@
       titel: 'Mina växter – GRO', flik: 'vaxter',
       html:
         sidhuvud('Mina växter', null, L.plural(alla.length, 'växt', 'växter')) +
-        '<p class="intro-text">Tryck på en växt för att se dess uppgifter.</p>' +
         (typer.length ? '<div class="filter" role="group" aria-label="Visa växttyp">' + chip('alla', 'Alla') +
           typer.map(function (t) { return chip(t, typPlural(t)); }).join('') + '</div>' : '') +
         (alla.length
