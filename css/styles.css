@@ -532,7 +532,7 @@ input[type="date"].falt { padding-right: 8px; }
 body.utan-ram .toast { bottom: 24px; }
 
 /* Större skärmar: appen visas i en telefonram (iPhone 17, 402 × 874) mitt på sidan */
-@media (min-width: 700px) {
+@media (min-width: 480px) { /* från 480 px: telefoner är smalare, så ramen syns i t.ex. sidopaneler och på datorer */
   body { background: radial-gradient(120% 90% at 50% 20%, #f7eee4 0%, var(--bg-muted) 55%, #ddd5c6 100%); }
   .app {
     height: min(var(--iphone-hojd), calc(100vh - 48px)); height: min(var(--iphone-hojd), calc(100dvh - 48px));
@@ -658,10 +658,6 @@ body.med-hero .statusfalt { background-color: var(--tertiar); }
   background: linear-gradient(var(--tertiar), var(--tertiar)) top / 100% calc(env(safe-area-inset-top, 0px) + 1px) no-repeat;
 }
 .hero-bild { display: block; width: 100%; height: auto; }
-.hero-blomma { /* Figma 02 Översikt: 114 × 142, spegelvänd, uppe till vänster */
-  position: absolute; left: 30px; top: 56px; width: auto; height: 150px;
-  transform: scaleX(-1); filter: drop-shadow(0 8px 10px rgba(31, 41, 33, .14));
-}
 .hero-knappar { position: absolute; top: 10px; right: 12px; display: flex; gap: 4px; }
 .hero-logga { /* GRO-logga uppe till vänster */
   position: absolute; left: 22px; top: 14px; display: flex; align-items: center; gap: 6px; margin: 0;
