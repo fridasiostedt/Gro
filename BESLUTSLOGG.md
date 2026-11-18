@@ -107,6 +107,11 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   visar sitt eget. Det är dekorativt och dolt för skärmläsare (`aria-hidden`).
 - **Ifyllnadsfält i #FEFAFA:** alla fält hade redan färgen (`--bg-falt`). Antalsväljaren (− 1 +) var ljusbeige och
   har nu samma färg.
+- **Välkomnande Översikt:** rubriken är en hälsning som följer tiden på dygnet: God morgon, Hej och välkommen,
+  God eftermiddag, God kväll eller God natt. Under den står "Välkommen tillbaka." (eller "Välkommen till GRO." för en
+  ny användare) och en mjuk, inspirerande rad för månaden, en för var och en av årets tolv månader. Ordet "Översikt"
+  står som liten överrad, så att sidan fortfarande heter likadant som i menyn. Hälsningen innehåller inget namn,
+  eftersom appen inte sparar personuppgifter.
 - **Rullningslisten är dold** (`scrollbar-width: none`). Innehållet scrollar fortfarande med mus, pekskärm
   och tangentbord.
 

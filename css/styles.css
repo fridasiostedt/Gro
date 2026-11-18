@@ -170,6 +170,11 @@ body.utan-ram .huvud { padding: max(12px, env(safe-area-inset-top)) 24px max(24p
 .sidhuvud { display: flex; flex-direction: column; gap: 8px; }
 .sidhuvud .overrad { color: var(--text-dampad); }
 .sidhuvud .underrad { color: var(--text-dampad); margin-top: -8px; }
+.valkomnande { gap: 6px; }
+.valkomnande .overrad { font-size: 12px; line-height: 16px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+.valkomst-text { /* mjuk, inspirerande rad som följer årstiden */
+  font-size: 17px; line-height: 26px; color: var(--text-dampad); max-width: 34ch;
+}
 
 /* ---------- Startsida ---------- */
 .start {

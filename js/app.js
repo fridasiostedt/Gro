@@ -206,6 +206,31 @@
     };
   }
 
+  /** Mjuk hälsning överst på Översikt: tid på dygnet + en rad som passar årstiden. */
+  var MANADSRADER = [
+    'Trädgården vilar. Ett fint tillfälle att drömma och planera.',
+    'Ljuset kommer tillbaka – snart är det dags för de första fröna.',
+    'Våren vaknar. Små gröna skott visar vägen.',
+    'Allt börjar spira. Ta det i din egen takt.',
+    'Trädgården slår ut – njut av varje ny knopp.',
+    'Långa ljusa kvällar att vara ute i grönskan.',
+    'Sommarens överflöd. Glöm inte att bara sitta och njuta.',
+    'Skördetid. Det du sått ger nu tillbaka.',
+    'Hösten färgar trädgården. Ett lugnt tempo passar fint.',
+    'Dags att stoppa ner vårlökarna – en present till framtida du.',
+    'Trädgården går till vila. Kanske en kopp te och lite planering?',
+    'Vila, ljus och nya idéer inför nästa säsong.'
+  ];
+  function valkomnande() {
+    var d = new Date(), h = d.getHours();
+    var halsning = h < 5 ? 'God natt' : h < 10 ? 'God morgon' : h < 13 ? 'Hej och välkommen' : h < 18 ? 'God eftermiddag' : 'God kväll';
+    return '<div class="sidhuvud valkomnande">' +
+      '<p class="overrad">Översikt</p>' +
+      '<h1 tabindex="-1">' + esc(halsning) + '</h1>' +
+      '<p class="valkomst-text">' + (store.uppgifter().length || store.vaxter().length ? 'Välkommen tillbaka. ' : 'Välkommen till GRO. ') + esc(MANADSRADER[d.getMonth()]) + '</p>' +
+    '</div>';
+  }
+
   /** Övre panelen på Översikt: grön bakgrund med Gros blomma (dekorativ),
    *  plus knappar för påminnelser och inställningar så att de går att nå. */
   function hero() {
@@ -303,7 +328,7 @@
       titel: 'Översikt – GRO', flik: 'oversikt', hero: true,
       html:
         hero() +
-        sidhuvud('Översikt') +
+        valkomnande() +
         manadskort(lage, 'ov') +
         '<section class="sektion" aria-labelledby="mina-uppg">' +
           '<div class="sektionsrubrik"><h2 id="mina-uppg">Mina uppgifter</h2>' +
