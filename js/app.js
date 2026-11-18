@@ -206,74 +206,22 @@
     };
   }
 
-  function paminnelseRuta() {
-    var t = idag();
-    var lista = L.sorteraUppgifter(store.uppgifter().filter(function (u) { return L.behoverPaminnelse(u, t); }));
-    if (!lista.length) return '';
-    var kanAvisera = 'Notification' in window && Notification.permission === 'default';
-    return '<section class="paminnelse" aria-labelledby="pamin-rubrik">' +
-      '<div class="paminnelse-ikon">' + ikon('notis') + '</div>' +
-      '<div>' +
-        '<h2 id="pamin-rubrik" class="mindre-rubrik">Påminnelse</h2>' +
-        '<ul role="list">' + lista.slice(0, 3).map(function (u) {
-          var forsenad = L.arForsenad(u, t);
-          return '<li><a class="pamin-rad" href="#/uppgift/' + encodeURIComponent(u.id) + '"><strong>' + esc(u.titel) + '</strong> – ' +
-            (forsenad ? 'deadline passerad (' + esc(L.kortDatum(u.deadline)) + ')' : 'deadline ' + esc(L.relativDag(u.deadline, t))) + '</a></li>';
-        }).join('') + (lista.length > 3 ? '<li><a class="pamin-rad" href="#/uppgifter">och ' + (lista.length - 3) + ' till</a></li>' : '') + '</ul>' +
-        (kanAvisera ? '<button type="button" class="textknapp" data-atgard="aviseringar">Få aviseringar på telefonen</button>' : '') +
-      '</div>' +
-    '</section>';
-  }
-
-  /** Dekorativa kvistar och kronblad runt blomman (egen illustration). */
-  function heroKvistar() {
-    var g = '<svg class="hero-kvistar" viewBox="0 0 402 200" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">' +
-      // vänster: hög kvist med blad
-      '<path d="M88 200 C90 160 84 120 96 82"/>' +
-      '<path d="M92 150 c-14 -6 -22 -18 -24 -30 c12 2 22 12 24 30z" fill="currentColor" fill-opacity=".18"/>' +
-      '<path d="M90 118 c12 -8 24 -10 32 -6 c-8 10 -20 12 -32 6z" fill="currentColor" fill-opacity=".18"/>' +
-      '<path d="M95 92 c-10 -8 -14 -18 -12 -28 c9 5 13 15 12 28z" fill="currentColor" fill-opacity=".18"/>' +
-      // vänster: liten blomma
-      '<path d="M60 200 C62 176 58 160 64 140"/>' +
-      '<circle cx="64" cy="134" r="5"/><path d="M64 124v-4M71 127l3-3M74 134h4M57 127l-3-3M54 134h-4"/>' +
-      // höger: gräs och knopp
-      '<path d="M318 200 C316 168 322 140 312 108"/>' +
-      '<path d="M312 108 c-4 -8 -2 -16 4 -20 c4 6 2 14 -4 20z" fill="currentColor" fill-opacity=".18"/>' +
-      '<path d="M316 160 c14 -4 24 -14 28 -26 c-12 2 -24 12 -28 26z" fill="currentColor" fill-opacity=".18"/>' +
-      '<path d="M340 200 C342 178 350 160 362 146"/>' +
-      '<path d="M352 168 c10 2 18 -2 22 -10 c-10 -2 -18 2 -22 10z" fill="currentColor" fill-opacity=".18"/>' +
-      // svävande kronblad och frön
-      '<path d="M140 38 c6 -2 10 2 8 8 c-6 2 -10 -2 -8 -8z" fill="currentColor" fill-opacity=".25"/>' +
-      '<path d="M276 30 c5 -3 10 0 9 6 c-5 3 -10 0 -9 -6z" fill="currentColor" fill-opacity=".25"/>' +
-      '<path d="M48 70 l6 -3"/><path d="M350 58 l-4 -5"/><path d="M362 84 l5 2"/>' +
-      '<circle cx="300" cy="62" r="1.6" fill="currentColor"/><circle cx="110" cy="54" r="1.6" fill="currentColor"/>' +
-      '</svg>';
-    return g;
-  }
-
+  /** Övre panelen på Översikt: tecknad illustration med Gros blomma (dekorativ),
+   *  plus knappar för påminnelser och inställningar så att de går att nå. */
   function hero() {
     var t = idag();
     var antalPamin = store.uppgifter().filter(function (u) { return L.behoverPaminnelse(u, t); }).length;
     var paminText = antalPamin
       ? 'Påminnelser: ' + L.plural(antalPamin, 'uppgift', 'uppgifter') + ' med nära deadline'
       : 'Påminnelser: inga just nu';
-    return '<section class="hero" aria-label="GRO">' +
-      '<div class="hero-bild" aria-hidden="true">' +
-        '<svg class="hero-form" viewBox="0 0 402 200" preserveAspectRatio="none" focusable="false">' +
-          '<path d="M40 200 C30 150 60 112 112 104 C150 98 160 60 205 56 C250 52 262 92 300 100 C352 110 380 150 372 200 Z"/></svg>' +
-        heroKvistar() +
-        '<img class="hero-blomma" src="assets/img/gro-blomma.png" alt="" width="150" height="194">' +
+    return '<div class="hero">' +
+      '<img class="hero-bild" src="assets/img/oversikt-panel.svg" alt="" width="402" height="196">' +
+      '<div class="hero-knappar">' +
+        '<a class="hero-knapp" href="#/uppgifter" aria-label="' + esc(paminText) + '">' + ikon('notis', 22) +
+          (antalPamin ? '<span class="hero-bricka" aria-hidden="true">' + antalPamin + '</span>' : '') + '</a>' +
+        '<a class="hero-knapp" href="#/installningar" aria-label="Inställningar">' + ikon('installningar', 22) + '</a>' +
       '</div>' +
-      '<div class="hero-band">' +
-        '<span class="hero-avatar" aria-hidden="true">' + ikon('tradgardsmastare', 34) + '</span>' +
-        '<div class="hero-knappar">' +
-          '<button type="button" class="hero-knapp" data-atgard="dela" aria-label="Dela appen">' + ikon('dela', 22) + '</button>' +
-          '<a class="hero-knapp" href="#/uppgifter" aria-label="' + esc(paminText) + '">' + ikon('notis', 22) +
-            (antalPamin ? '<span class="hero-bricka" aria-hidden="true">' + antalPamin + '</span>' : '') + '</a>' +
-          '<a class="hero-knapp" href="#/installningar" aria-label="Inställningar">' + ikon('installningar', 22) + '</a>' +
-        '</div>' +
-      '</div>' +
-    '</section>';
+    '</div>';
   }
 
   function vyInstallningar() {
@@ -291,6 +239,15 @@
           '<input type="file" id="f-import" accept="application/json,.json" class="visuellt-dold" aria-describedby="import-info">' +
           '<p class="hjalptext" id="import-info">Inläsning ersätter allt som finns i appen nu. Filen innehåller dina foton – dela den inte med andra.</p>' +
         '</section>' +
+        ('Notification' in window ? '<section class="sektion installningskort" aria-labelledby="inst-pamin">' +
+          '<h2 class="sektion-h2" id="inst-pamin">Påminnelser</h2>' +
+          '<p>GRO påminner 3 dagar före deadline. ' + (Notification.permission === 'granted'
+            ? 'Aviseringar på telefonen är påslagna.</p>'
+            : Notification.permission === 'denied'
+              ? 'Aviseringar är blockerade i webbläsarens inställningar.</p>'
+              : 'Du kan även få dem som aviseringar på telefonen.</p>' +
+                '<button type="button" class="knapp knapp-sekundar" data-atgard="aviseringar">' + ikon('notis', 20) + 'Slå på aviseringar</button>') +
+        '</section>' : '') +
         '<section class="sektion installningskort" aria-labelledby="inst-om">' +
           '<h2 class="sektion-h2" id="inst-om">Om GRO</h2>' +
           '<p>Grönska. Rutin. Omtanke. Allt sparas lokalt i webbläsaren – inget skickas till någon server.</p>' +
@@ -345,8 +302,7 @@
       titel: 'Översikt – GRO', flik: 'oversikt', hero: true,
       html:
         hero() +
-        sidhuvud('Översikt', L.rubrikDatum(nu)) +
-        paminnelseRuta() +
+        sidhuvud('Översikt') +
         manadskort(lage, 'ov') +
         '<section class="sektion" aria-labelledby="mina-uppg">' +
           '<div class="sektionsrubrik"><h2 id="mina-uppg">Mina uppgifter</h2>' +

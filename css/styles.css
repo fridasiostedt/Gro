@@ -131,8 +131,9 @@ body {
 .huvud {
   flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
   display: flex; flex-direction: column; gap: 24px; padding: 11px 24px 32px;
-  scrollbar-width: thin; scrollbar-color: rgba(63, 65, 57, .35) transparent;
+  scrollbar-width: none; /* ingen synlig rullningslist – scrollning fungerar ändå */
 }
+.huvud::-webkit-scrollbar, .filter::-webkit-scrollbar { display: none; }
 body.utan-ram .huvud { padding: max(12px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom)); }
 .huvud:focus { outline: none; }
 
@@ -179,6 +180,7 @@ body.utan-ram .huvud { padding: max(12px, env(safe-area-inset-top)) 24px max(24p
 .ordmarke { /* Stor rubrik */
   font-family: var(--font-serif); font-size: 92px; line-height: 36px; letter-spacing: 7px;
   color: var(--primar); padding-top: 28px; margin-right: -7px;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, .25); /* Figma: Startsida */
 }
 .tagline { /* Rubrik/Kort i accentfärg */
   font-family: var(--font-fraunces); font-weight: 600; font-size: 20px; line-height: 22px;
@@ -315,14 +317,6 @@ a.valchip { text-decoration: none; }
 .raknare-tal { font-family: var(--font-serif); font-size: 30px; line-height: 36px; letter-spacing: -0.5px; }
 
 /* ---------- Påminnelse ---------- */
-.paminnelse {
-  display: flex; gap: 12px; padding: 16px; border-radius: 16px;
-  background: var(--prio-bonus); border: 1px solid var(--text);
-}
-.paminnelse-ikon { flex: none; padding-top: 1px; }
-.paminnelse ul { display: flex; flex-direction: column; margin-top: 2px; }
-.pamin-rad { display: block; min-height: 44px; padding: 11px 0; text-underline-offset: 3px; }
-.pamin-rad strong { font-weight: 600; }
 
 /* ---------- Årshjul ---------- */
 .arshjul { display: flex; justify-content: center; margin: -12px -2px 0; }
@@ -578,38 +572,24 @@ body.utan-ram .toast { bottom: 24px; }
   .prio-val input:focus-visible + .prio { outline: 3px solid Highlight; }
 }
 
-/* ---------- Hero överst på Översikt ---------- */
-.hero { position: relative; flex: none; margin: 0 -24px; }
+/* ---------- Tecknad panel överst på Översikt ---------- */
+.hero { position: relative; flex: none; margin: 0 -24px -8px; }
 body.med-hero .huvud { padding-top: env(safe-area-inset-top, 0px); }
-.hero-bild { position: relative; height: 210px; overflow: hidden; color: var(--primar); }
-.hero-form { position: absolute; left: 0; bottom: 0; width: 100%; height: 170px; fill: var(--brand-soft); }
-.hero-kvistar { position: absolute; left: 0; bottom: 0; width: 100%; height: 200px; opacity: .8; }
-.hero-blomma {
-  position: absolute; left: 50%; bottom: -4px; width: auto; height: 196px;
-  transform: translateX(-50%) scaleX(-1); /* spegelvänd som i Figma */
-  filter: drop-shadow(0 10px 12px rgba(31, 41, 33, .16));
+.hero-bild {
+  display: block; width: 100%; height: auto;
+  -webkit-mask-image: linear-gradient(#000 78%, transparent); mask-image: linear-gradient(#000 78%, transparent);
 }
-.hero-band {
-  position: relative; height: 56px; display: flex; align-items: center; justify-content: flex-end; padding: 0 14px;
-  background: var(--tertiar); box-shadow: var(--hojdljus), 0 6px 14px -8px rgba(31, 41, 33, .25);
-}
-.hero-avatar {
-  position: absolute; left: 14px; bottom: 6px; width: 88px; height: 88px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center; color: var(--primar);
-  background: var(--brand-soft); box-shadow: var(--hojdljus), 0 6px 16px rgba(31, 41, 33, .16);
-}
-.hero-knappar { display: flex; gap: 4px; }
+.hero-knappar { position: absolute; top: 10px; right: 12px; display: flex; gap: 4px; }
 .hero-knapp {
-  position: relative; width: 44px; height: 44px; border-radius: 999px; border: 0; padding: 0; cursor: pointer;
-  display: inline-flex; align-items: center; justify-content: center; background: transparent; color: var(--text);
-  transition: background-color .15s ease, transform .12s ease;
+  position: relative; width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--text-dampad); padding: 0;
+  display: inline-flex; align-items: center; justify-content: center; background: var(--bg-navigation); color: var(--text);
+  box-shadow: var(--hojdljus), var(--skugga-liten); transition: transform .12s ease;
 }
-.hero-knapp:hover { background: rgba(255, 255, 255, .55); }
+.hero-knapp:hover { background: #fff; }
 .hero-knapp:active { transform: scale(.92); }
-.hero-knapp:focus-visible { border-radius: 999px; }
 .hero-bricka { /* antal påminnelser – siffra, inte bara en färgprick */
-  position: absolute; top: 3px; right: 2px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px;
-  background: var(--prio-maste); color: var(--text-pa-mork); border: 2px solid var(--tertiar);
+  position: absolute; top: -4px; right: -4px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px;
+  background: var(--prio-maste); color: var(--text-pa-mork); border: 2px solid var(--bg-navigation);
   font-size: 11px; line-height: 14px; font-weight: 700; text-align: center; box-sizing: border-box;
 }
 

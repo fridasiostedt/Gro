@@ -46,6 +46,20 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
 - Blommans placering i cirkeln är omräknad till procent (samma mått som i Figma), så att samma stil fungerar
   i båda storlekarna.
 
+## 2026-11-18 · Översikt och startsida enligt Figma, tecknad panel
+- **Översikt** följer nu skärmen *02 Översikt* i Figma: datumraden och påminnelserutan är borttagna,
+  och rubriken "Översikt" kommer direkt under den övre panelen.
+- **Övre panelen** är på produktägarens begäran en tecknad SVG-illustration med Gros blomma
+  (`assets/img/oversikt-panel.svg`) i stället för fotot. Den är dekorativ (`alt=""`).
+- **Avvikelse från Figma (funktionalitet):** Figma-skärmen har inga knappar för påminnelser och inställningar.
+  Utan dem går det inte att nå säkerhetskopia, radering eller listan över påminnelser. Två runda knappar
+  (klocka med antal, kugghjul; 44 × 44 px) ligger därför uppe till höger i panelen. Knappen för att slå på
+  aviseringar flyttades från påminnelserutan till Inställningar. Påminnelser syns också som taggar
+  ("Deadline imorgon") på uppgiftskorten.
+- **Startsidan:** ordmärket GRO har fått skuggan från Figma (0 4px 4px, 25 % svart).
+- **Rullningslisten är dold** (`scrollbar-width: none`). Innehållet scrollar fortfarande med mus, pekskärm
+  och tangentbord.
+
 ## 2026-11-18 · Tillgänglighetsfixar, iPhone 17-ram och visuellt djup
 
 ### Åtgärdade fynd från WCAG-granskningen
