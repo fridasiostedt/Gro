@@ -82,6 +82,8 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
 - **Statusfält som på en iPhone:** överst i telefonramen visas klockslag (aktuell tid), Dynamic Island och ikoner
   för signal, wifi och batteri. Statusfältet visas bara på datorer (mus/styrplatta), eftersom en riktig telefon
   visar sitt eget. Det är dekorativt och dolt för skärmläsare (`aria-hidden`).
+- **Ifyllnadsfält i #FEFAFA:** alla fält hade redan färgen (`--bg-falt`). Antalsväljaren (− 1 +) var ljusbeige och
+  har nu samma färg.
 - **Rullningslisten är dold** (`scrollbar-width: none`). Innehållet scrollar fortfarande med mus, pekskärm
   och tangentbord.
 
