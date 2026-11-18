@@ -369,7 +369,7 @@
       titel: 'Årshjul – GRO', flik: 'arshjul',
       html:
         sidhuvud('Årshjul', null, lage.ar !== nu.getFullYear() ? String(lage.ar) : null) +
-        '<p class="intro-text">Här ser du hela trädgårdsåret. Tryck på en månad för att se vad som ska göras då, eller på en årstid för att se hur många uppgifter den har.</p>' +
+        '<p class="intro-text">Se vad som väntar kommande månader. Tryck på en månad eller årstid.</p>' +
         Hjul.rita({ ar: lage.ar, vald: lage.manad, valdAvAnvandare: !!lage.klickad, arstid: lage.arstid || null, nuManad: lage.ar === nu.getFullYear() ? nu.getMonth() : -1, statistik: statistik }) +
         manadskort(lage, 'kal') +
         '<section class="sektion" aria-labelledby="manadens">' +
@@ -423,7 +423,7 @@
       titel: 'Mina växter – GRO', flik: 'vaxter',
       html:
         sidhuvud('Mina växter', null, L.plural(alla.length, 'växt', 'växter')) +
-        '<p class="intro-text">Här samlar du trädgårdens växter med foto, plats och skötselråd. Tryck på en växt för att se och lägga till uppgifter för den.</p>' +
+        '<p class="intro-text">Tryck på en växt för att se dess uppgifter.</p>' +
         (typer.length ? '<div class="filter" role="group" aria-label="Visa växttyp">' + chip('alla', 'Alla') +
           typer.map(function (t) { return chip(t, typPlural(t)); }).join('') + '</div>' : '') +
         (alla.length
