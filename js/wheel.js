@@ -76,7 +76,7 @@
     var v = opts.vald, vs = opts.statistik[v];
     var mittText =
       '<g class="hjul-mitt" aria-hidden="true">' +
-        '<text class="mitt-arstid" x="' + C + '" y="' + (C - 26) + '">' + esc(L.ARSTID_NAMN[L.arstid(v)].toUpperCase()) + '</text>' +
+        '<text class="mitt-arstid" x="' + C + '" y="' + (C - 30) + '">' + esc(L.ARSTID_NAMN[L.arstid(v)].toUpperCase()) + '</text>' +
         '<text class="mitt-manad" x="' + C + '" y="' + (C + 4) + '">' + esc(L.stor(L.MANADER[v])) + '</text>' +
         '<text class="mitt-antal" x="' + C + '" y="' + (C + 28) + '">' + esc(L.plural(vs.totalt, 'uppgift', 'uppgifter')) + '</text>' +
       '</g>';

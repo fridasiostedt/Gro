@@ -327,17 +327,17 @@ a.valchip { text-decoration: none; }
 .arshjul { display: flex; justify-content: center; margin: -12px -2px 0; }
 .arshjul svg { max-width: 100%; height: auto; overflow: visible; }
 .segment { cursor: pointer; outline: none; }
-.seg-kant { fill: none; stroke: var(--text-dampad); stroke-width: 5; stroke-linejoin: round; } /* mörk kant 3:1 (godkänt 2026-11-16) */
-.seg-form { stroke: var(--bg-navigation); stroke-width: 3; stroke-linejoin: round; transition: transform .15s; }
+.seg-kant { fill: none; stroke: none; } /* används bara för fokusmarkering */
+.seg-form { stroke: var(--primar); stroke-width: 2; stroke-linejoin: round; transition: transform .15s; } /* mörkgrön kant runt varje månad */
 .arstid-vinter { fill: var(--sasong-vinter); }
 .arstid-var { fill: var(--sasong-var); }
 .arstid-sommar { fill: var(--sasong-sommar); }
 .arstid-host { fill: var(--sasong-host); }
-.segment.vald .seg-form { stroke: var(--text); stroke-width: 2.5; }
+.segment.vald .seg-form { stroke: var(--primar); stroke-width: 3; }
 .segment:hover .seg-form { filter: brightness(1.06); }
-.segment:focus-visible .seg-form { stroke: var(--text); stroke-width: 4; }
+.segment:focus-visible .seg-form { stroke: var(--primar); stroke-width: 3; }
 /* Fokus syns som en extra tjock mörk ring utanför segmentet – tydligt skild från "vald" */
-.segment:focus-visible .seg-kant { stroke: var(--text); stroke-width: 11; }
+.segment:focus-visible .seg-kant { stroke: var(--primar); stroke-width: 10; } /* tydlig fokusring */
 .segment:focus-visible .manad-etikett:not(.nu) { text-decoration: underline; font-weight: 700; }
 .manad-etikett {
   font-family: var(--font-sans); font-size: 16px; fill: var(--text-dampad);
@@ -346,7 +346,7 @@ a.valchip { text-decoration: none; }
 .manad-etikett.nu { fill: var(--text-pa-mork); font-size: 14px; font-weight: 600; }
 .nu-bricka { fill: var(--text); }
 .hjul-mitt text { text-anchor: middle; dominant-baseline: central; }
-.mitt-arstid { font-family: var(--font-sans); font-size: 12px; font-weight: 500; letter-spacing: 0.2px; fill: var(--text-dampad); }
+.mitt-arstid { font-family: var(--font-sans); font-size: 16px; font-weight: 600; letter-spacing: 0.4px; fill: var(--text-dampad); }
 .mitt-manad { font-family: var(--font-serif); font-size: 24px; fill: var(--text); }
 .mitt-antal { font-family: var(--font-sans); font-size: 12px; fill: var(--text); }
 
