@@ -166,14 +166,7 @@ body.utan-ram .huvud { padding: max(12px, env(safe-area-inset-top)) 24px max(24p
 }
 
 /* ---------- Sidhuvud ---------- */
-.sidhuvud { position: relative; display: flex; flex-direction: column; gap: 8px; padding-right: 56px; }
-.sidblomma { /* liten dekorativ Gro-blomma, spegelvänd som i Figma */
-  position: absolute; right: 0; bottom: -2px; width: auto; height: 56px; pointer-events: none;
-  transform: scaleX(-1) rotate(-6deg); filter: drop-shadow(0 4px 5px rgba(31, 41, 33, .14));
-}
-.detalj-rubrik .sidblomma { top: -6px; bottom: auto; }
-.hero + .sidhuvud { padding-right: 0; }
-.hero + .sidhuvud .sidblomma { display: none; } /* Översikt har redan den stora blomman */
+.sidhuvud { display: flex; flex-direction: column; gap: 8px; }
 .sidhuvud .overrad { color: var(--text-dampad); }
 .sidhuvud .underrad { color: var(--text-dampad); margin-top: -8px; }
 
@@ -341,10 +334,6 @@ a.valchip { text-decoration: none; }
 /* Fokus syns som en extra tjock mörk ring utanför segmentet – tydligt skild från "vald" */
 .segment:focus-visible .seg-kant { stroke: var(--text); stroke-width: 11; }
 .segment:focus-visible .manad-etikett:not(.nu) { text-decoration: underline; font-weight: 700; }
-.seg-antal {
-  font-family: var(--font-sans); font-size: 12px; font-weight: 600; fill: var(--text);
-  text-anchor: middle; dominant-baseline: central; pointer-events: none;
-}
 .manad-etikett {
   font-family: var(--font-sans); font-size: 16px; fill: var(--text-dampad);
   text-anchor: middle; dominant-baseline: central;
@@ -397,7 +386,7 @@ a.valchip { text-decoration: none; }
   display: flex; flex-direction: column; gap: 12px; padding: 24px 16px 21px;
   background: var(--tertiar); border: 1px solid var(--primar); border-radius: 16px;
 }
-.detalj-rubrik { position: relative; display: flex; flex-direction: column; gap: 4px; align-items: flex-start; padding-right: 56px; }
+.detalj-rubrik { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
 .antal-bricka {
   margin-top: 8px; padding: 5px 9px; border-radius: 999px; background: var(--bg-navigation); border: 1px solid var(--text-dampad);
   font-weight: 500; font-size: 12px; line-height: 16px; letter-spacing: 0.2px;

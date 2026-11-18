@@ -159,11 +159,8 @@
     '</section>';
   }
 
-  /** Liten dekorativ Gro-blomma i sidhuvudet på varje sida. */
-  var SIDBLOMMA = '<img class="sidblomma" src="assets/img/gro-blomma.png" alt="" width="43" height="56">';
-
   function sidhuvud(rubrik, overrad, underrad) {
-    return '<div class="sidhuvud">' + SIDBLOMMA +
+    return '<div class="sidhuvud">' +
       (overrad ? '<p class="overrad">' + esc(overrad) + '</p>' : '') +
       '<h1 tabindex="-1">' + esc(rubrik) + '</h1>' +
       (underrad ? '<p class="underrad">' + esc(underrad) + '</p>' : '') +
@@ -413,7 +410,7 @@
       html:
         fotoHtml(v, 'detalj-foto', 'Foto av ' + v.namn) +
         '<section class="detalj-innehall">' +
-          '<div class="detalj-rubrik">' + SIDBLOMMA +
+          '<div class="detalj-rubrik">' +
             '<h1 tabindex="-1">' + esc(v.namn) + '</h1>' +
             (underrad ? '<p class="etikett-text">' + esc(underrad) + '</p>' : '') +
             (v.sort ? '<p>' + esc(v.sort) + '</p>' : '') +
@@ -688,7 +685,7 @@
     return {
       titel: namn + ' – GRO', flik: 'oversikt',
       html:
-        '<div class="sidhuvud">' + SIDBLOMMA +
+        '<div class="sidhuvud">' +
           '<p class="overrad">Prioritering</p>' +
           '<h1 tabindex="-1" class="prio-rubrik">' + prioBricka(prio) + '</h1>' +
           '<p class="underrad">' + (allaManader ? 'Alla månader' : esc(L.stor(manadNamn))) + ' · ' +

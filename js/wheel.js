@@ -8,7 +8,7 @@
   'use strict';
   var L = root.GroLogic;
 
-  var STORLEK = 358, C = 179, R_UT = 132, R_IN = 72, R_ETIKETT = 160, R_ANTAL = 102;
+  var STORLEK = 358, C = 179, R_UT = 132, R_IN = 72, R_ETIKETT = 160;
 
   function punkt(r, grader) {
     var rad = grader * Math.PI / 180;
@@ -30,12 +30,6 @@
     });
   }
 
-  function antalText(st) {
-    if (!st.totalt) return '–';
-    var t = st.klara + ' av ' + st.totalt;
-    return t.length > 7 ? st.klara + '/' + st.totalt : t;
-  }
-
   function ariaText(m, st, arNuvarande) {
     var t = L.stor(L.MANADER[m]) + ', ' + L.plural(st.totalt, 'uppgift', 'uppgifter') + ', ' +
       (st.klara === 1 ? '1 klar' : st.klara + ' klara');
@@ -55,7 +49,7 @@
       var arNu = m === opts.nuManad;
       var forskjut = arVald ? punkt(8, mitt) : [C, C];
       var dx = f(forskjut[0] - C), dy = f(forskjut[1] - C);
-      var et = punkt(R_ETIKETT + (arNu ? 10 : 0), mitt), an = punkt(R_ANTAL, mitt);
+      var et = punkt(R_ETIKETT + (arNu ? 10 : 0), mitt);
       var etikett = L.MANADER_KORT[m] + (arNu ? ' · nu' : '');
       var etikettSvg;
       if (arNu) {
@@ -73,7 +67,6 @@
           '<g transform="translate(' + dx + ' ' + dy + ')">' +
             '<path class="seg-kant" d="' + segmentVag(a0, a1) + '"/>' +
             '<path class="seg-form arstid-' + L.arstid(m) + '" d="' + segmentVag(a0, a1) + '"/>' +
-            '<text class="seg-antal" x="' + f(an[0]) + '" y="' + f(an[1]) + '" aria-hidden="true">' + esc(antalText(st)) + '</text>' +
           '</g>' +
           etikettSvg +
         '</g>'
