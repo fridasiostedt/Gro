@@ -499,6 +499,25 @@ body.utan-ram .toast { bottom: 24px; }
   }
 }
 
+/* ---------- Statusfält som på en iPhone (bara i datorns telefonram) ---------- */
+.statusfalt { display: none; }
+@media (hover: hover) and (pointer: fine) {
+  .statusfalt {
+    position: relative; z-index: 6; flex: none; height: 54px; padding: 0 30px 0 44px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--bakgrund); color: var(--text); pointer-events: none; user-select: none;
+  }
+  .status-tid { font-family: var(--font-sans); font-size: 17px; font-weight: 600; letter-spacing: -.2px; padding-top: 2px; }
+  .status-o { /* Dynamic Island */
+    position: absolute; left: 50%; top: 11px; width: 124px; height: 36px; border-radius: 18px;
+    transform: translateX(-50%); background: #000;
+  }
+  .status-ikoner { display: flex; align-items: center; gap: 6px; padding-top: 2px; }
+  .status-ikoner svg { fill: currentColor; display: block; }
+  .toppfalt { padding-top: 0; }
+  body.utan-ram .huvud, body.med-hero .huvud { padding-top: 0; }
+}
+
 /* ---------- Visuellt djup: lager, lyft och rörelse ---------- */
 :root {
   --skugga-lyft: 0 4px 10px rgba(31, 41, 33, .08), 0 16px 32px rgba(31, 41, 33, .12);

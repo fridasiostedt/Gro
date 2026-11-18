@@ -828,6 +828,15 @@
   }
   huvud.addEventListener('scroll', uppdateraToppskugga, { passive: true });
 
+  // Klockslaget i statusfältet (bara synligt i datorns telefonram)
+  var statusTid = document.getElementById('status-tid');
+  function uppdateraKlocka() {
+    var d = new Date();
+    if (statusTid) statusTid.textContent = d.getHours() + ':' + String(d.getMinutes()).padStart(2, '0');
+  }
+  uppdateraKlocka();
+  setInterval(uppdateraKlocka, 15000);
+
   // ---------- Händelser ----------
   huvud.addEventListener('click', function (e) {
     var t = e.target;
