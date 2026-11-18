@@ -124,6 +124,8 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   utan konturlinjer, en pressad pion i rosa, smörblommor i höstorange, nävor i vinterblått med ådror,
   slöjblomster, knoppar, fröholkar och flikiga blad. Allt är en egen illustration (ingen kopia av bilden).
   Senare ändrat: blommorna står var för sig på en slät grön gräsmatta (utan strån) i stället för att vara knutna i en bukett.
+  Pionen är omritad för att likna Gros blomma på startsidan: ljusrosa krusiga kronblad med rosa strimmor,
+  en guldgul ståndarkrans, gröna pistiller med magentaspetsar och treflikiga salviagröna blad på rödaktiga skaft.
 - **GRO-loggan på Översikt är borttagen igen** (produktägarens begäran). Blommornas stjälkar ritas nu som
   avsmalnande, svajande former med små klängrankor, så att de ser mer levande ut.
 - **Tecknad header på Översikt, version 2 (närmare referensbilden):** luftigare, med tunna linjer (1,1 px), ljusa
