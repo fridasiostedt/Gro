@@ -512,7 +512,6 @@
           '<p class="hjalptext" id="foto-info">Platsinformation (GPS) tas bort från fotot innan det sparas.</p>' +
           (foto ? '<button type="button" class="textknapp" data-atgard="ta-bort-foto">Ta bort foto</button>' : '') +
           falt('namn', 'Namn', '<input class="falt" id="f-namn" name="namn" required maxlength="60" autocomplete="off" value="' + esc(d.namn) + '"' + beskrivning('namn') + '>') +
-          falt('sort', 'Sort eller information', '<input class="falt" id="f-sort" name="sort" autocomplete="off" value="' + esc(d.sort) + '"' + beskrivning('sort') + '>') +
           falt('typ', 'Typ (valfritt)', '<input class="falt" id="f-typ" name="typ" list="typlista" autocomplete="off" value="' + esc(d.typ) + '"' + beskrivning('typ', true) + '>' +
             '<datalist id="typlista"><option value="Buske"><option value="Träd"><option value="Perenn"><option value="Ettårig"><option value="Klätterväxt"><option value="Grönsak"><option value="Knöl"><option value="Lök"><option value="Ört"></datalist>',
             'Används för att filtrera, t.ex. Buske eller Träd.') +
@@ -562,7 +561,7 @@
           e.preventDefault();
           var fd = new FormData(form);
           var ny = {
-            namn: fd.get('namn'), sort: fd.get('sort'), typ: fd.get('typ'),
+            namn: fd.get('namn'), sort: d.sort || '', /* fältet är borttaget – behåll ev. tidigare värde */ typ: fd.get('typ'),
             antal: parseInt(fd.get('antal'), 10), plats: fd.get('plats'), skotsel: fd.get('skotsel'), foto: foto
           };
           var fel = L.valideraVaxt(ny);

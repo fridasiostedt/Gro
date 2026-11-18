@@ -58,6 +58,8 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   ("Deadline imorgon") på uppgiftskorten.
 - **Startsidan:** ordmärket GRO har fått skuggan från Figma (0 4px 4px, 25 % svart).
 - **Linje under panelen:** en heldragen linje (2 px, primärfärg) skiljer bilden från rubriken "Översikt".
+- **Fältet "Sort eller information" är borttaget** ur formuläret för växter (produktägarens begäran). Ett tidigare
+  sparat värde finns kvar och visas, men det går inte längre att fylla i.
 - **Rullningslisten är dold** (`scrollbar-width: none`). Innehållet scrollar fortfarande med mus, pekskärm
   och tangentbord.
 
