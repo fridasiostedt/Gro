@@ -93,8 +93,9 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
 - **Ingen utskjuten månad vid start:** när årshjulet öppnas är nuvarande månad vald men ligger kvar i ringen.
   Den skjuts ut först när du själv väljer en månad (klick, piltangenter eller månadspilarna) eller hovrar.
 - **Centrerade pilar:** först flyttades pilarna "<" och ">" 1 px för optisk balans. Produktägaren ville ha dem
-  exakt centrerade, så de är tillbaka i mitten. Uppmätt i webbläsaren ligger de 0,06 px från cirkelns mittpunkt.
-  Samma centrering är gjord i Figma.
+  exakt centrerade, men de såg ändå inte centrerade ut. Produktägaren jämförde fyra varianter och valde att flytta
+  pilen 1 px mot spetsen (< åt vänster, > åt höger). Det jämnar ut att den öppna sidan ser tyngre ut.
+  Samma justering är gjord i Figma. AI-fel: den första optiska justeringen gick åt fel håll (mot den öppna sidan).
 - **Månadsnamn i årshjulet** provades med versaler, men produktägaren valde gemener (jan, feb …), 16 px halvfet.
 - **Rullistor i GRO:s stil:** den öppna listan har fältfärg, mörkgrön kant, rundade hörn och beige markering i
   stället för systemets blå. Det görs med `appearance: base-select`, som fungerar i nyare Chrome och Edge. Andra
