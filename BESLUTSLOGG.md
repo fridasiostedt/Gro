@@ -5,6 +5,11 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
 
 ---
 
+## 2026-11-18 · "Kalender" heter nu "Årshjul"
+- Produktägaren bestämde att sidans rubrik ska vara "Årshjul" i stället för "Kalender", som i Figma. Nu heter
+  rubriken, menyn och sidtiteln samma sak (WCAG 3.2.4 Konsekvent identifiering).
+- **Att göra:** byt rubriken i Figma (skärmen *iPhone 17 - 8*).
+
 ## 2026-11-18 · Klickbara prioriteringar
 - Produktägaren önskade att kunna klicka på varje prioritering. Rutorna under *Mina prioriteringar* är nu länkar
   (hela rutan, 113 × 118 px) till en ny vy, `#/prioritet/<id>`.
@@ -33,7 +38,7 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
 | Valt foto gav namnet "Valt foto Byt foto" | 1.1.1 | `js/app.js` | Fotot i fotoväljaren har tom alt (dekorativt i etiketten). |
 | Fokus och "vald" såg nästan likadana ut i årshjulet | 2.4.7 | `css/styles.css` | Fokus ritar en extra tjock mörk ring utanför segmentet. |
 
-Inte ändrat: att sidan heter "Kalender" men menyn "Årshjul" (designval i Figma).
+Sidan som hette "Kalender" heter nu "Årshjul", samma som menyn och sidtiteln (se nedan).
 
 ### iPhone 17-ram
 - Appen är högst **402 × 874 px**, samma som iPhone 17 i Figma. Toppfältet och menyn ligger fast, och bara

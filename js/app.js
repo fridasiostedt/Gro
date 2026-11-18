@@ -294,7 +294,7 @@
     return {
       titel: 'Årshjul – GRO', flik: 'arshjul',
       html:
-        sidhuvud('Kalender', null, lage.ar !== nu.getFullYear() ? String(lage.ar) : null) +
+        sidhuvud('Årshjul', null, lage.ar !== nu.getFullYear() ? String(lage.ar) : null) +
         Hjul.rita({ ar: lage.ar, vald: lage.manad, nuManad: lage.ar === nu.getFullYear() ? nu.getMonth() : -1, statistik: statistik }) +
         manadskort(lage, 'kal') +
         '<section class="sektion" aria-labelledby="manadens">' +
