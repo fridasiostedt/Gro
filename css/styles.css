@@ -572,12 +572,13 @@ body.utan-ram .toast { bottom: 24px; }
   .prio-val input:focus-visible + .prio { outline: 3px solid Highlight; }
 }
 
-/* ---------- Tecknad panel överst på Översikt ---------- */
+/* ---------- Panel överst på Översikt ---------- */
 .hero { position: relative; flex: none; margin: 0 -24px; }
 body.med-hero .huvud { padding-top: env(safe-area-inset-top, 0px); }
 .hero-bild { display: block; width: 100%; height: auto; }
-.hero::after { /* tydlig linje mellan bilden och rubriken */
-  content: ""; display: block; height: 2px; background: var(--primar);
+.hero-blomma { /* Figma 02 Översikt: 114 × 142, spegelvänd, uppe till vänster */
+  position: absolute; left: 22px; top: 30px; width: auto; height: 160px;
+  transform: scaleX(-1); filter: drop-shadow(0 8px 10px rgba(31, 41, 33, .14));
 }
 .hero-knappar { position: absolute; top: 10px; right: 12px; display: flex; gap: 4px; }
 .hero-knapp {

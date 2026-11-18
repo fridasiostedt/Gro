@@ -49,15 +49,16 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
 ## 2026-11-18 · Översikt och startsida enligt Figma, tecknad panel
 - **Översikt** följer nu skärmen *02 Översikt* i Figma: datumraden och påminnelserutan är borttagna,
   och rubriken "Översikt" kommer direkt under den övre panelen.
-- **Övre panelen** är på produktägarens begäran en tecknad SVG-illustration med Gros blomma
-  (`assets/img/oversikt-panel.svg`) i stället för fotot. Den är dekorativ (`alt=""`).
+- **Övre panelen:** först en tecknad SVG-pion. Efter granskning ville produktägaren ha tillbaka originalet
+  av Gros blomma (`gro-blomma.png`, spegelvänd, uppe till vänster som i Figma). Den mjuka gröna
+  bakgrunden från illustrationen finns kvar (`assets/img/oversikt-panel.svg`). Allt är dekorativt (`alt=""`).
 - **Avvikelse från Figma (funktionalitet):** Figma-skärmen har inga knappar för påminnelser och inställningar.
   Utan dem går det inte att nå säkerhetskopia, radering eller listan över påminnelser. Två runda knappar
   (klocka med antal, kugghjul; 44 × 44 px) ligger därför uppe till höger i panelen. Knappen för att slå på
   aviseringar flyttades från påminnelserutan till Inställningar. Påminnelser syns också som taggar
   ("Deadline imorgon") på uppgiftskorten.
 - **Startsidan:** ordmärket GRO har fått skuggan från Figma (0 4px 4px, 25 % svart).
-- **Linje under panelen:** en heldragen linje (2 px, primärfärg) skiljer bilden från rubriken "Översikt".
+- **Linje under panelen** provades och togs bort igen på produktägarens begäran.
 - **Fältet "Sort eller information" är borttaget** ur formuläret för växter (produktägarens begäran). Ett tidigare
   sparat värde finns kvar och visas, men det går inte längre att fylla i.
 - **Rullningslisten är dold** (`scrollbar-width: none`). Innehållet scrollar fortfarande med mus, pekskärm

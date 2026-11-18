@@ -206,7 +206,7 @@
     };
   }
 
-  /** Övre panelen på Översikt: tecknad illustration med Gros blomma (dekorativ),
+  /** Övre panelen på Översikt: grön bakgrund med Gros blomma (dekorativ),
    *  plus knappar för påminnelser och inställningar så att de går att nå. */
   function hero() {
     var t = idag();
@@ -216,6 +216,7 @@
       : 'Påminnelser: inga just nu';
     return '<div class="hero">' +
       '<img class="hero-bild" src="assets/img/oversikt-panel.svg" alt="" width="402" height="196">' +
+      '<img class="hero-blomma" src="assets/img/gro-blomma.png" alt="" width="150" height="194">' +
       '<div class="hero-knappar">' +
         '<a class="hero-knapp" href="#/uppgifter" aria-label="' + esc(paminText) + '">' + ikon('notis', 22) +
           (antalPamin ? '<span class="hero-bricka" aria-hidden="true">' + antalPamin + '</span>' : '') + '</a>' +
