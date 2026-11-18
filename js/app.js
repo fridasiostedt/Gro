@@ -344,7 +344,7 @@
       titel: 'Årshjul – GRO', flik: 'arshjul',
       html:
         sidhuvud('Årshjul', null, lage.ar !== nu.getFullYear() ? String(lage.ar) : null) +
-        Hjul.rita({ ar: lage.ar, vald: lage.manad, arstid: lage.arstid || null, nuManad: lage.ar === nu.getFullYear() ? nu.getMonth() : -1, statistik: statistik }) +
+        Hjul.rita({ ar: lage.ar, vald: lage.manad, valdAvAnvandare: !!lage.klickad, arstid: lage.arstid || null, nuManad: lage.ar === nu.getFullYear() ? nu.getMonth() : -1, statistik: statistik }) +
         manadskort(lage, 'kal') +
         '<section class="sektion" aria-labelledby="manadens">' +
           '<div class="sektionsrubrik"><h2 id="manadens">Uppgifter i ' + esc(manadNamn) + '</h2></div>' +
@@ -355,6 +355,7 @@
         Hjul.koppla(huvud, function (m) {
           ui.kalender.manad = m;
           ui.kalender.arstid = null;
+          ui.kalender.klickad = true;
           rita({ fokus: '.segment[data-manad="' + m + '"]' });
         }, function (id) {
           // Klick på en årstid visar dess antal i mitten; klick igen går tillbaka till månaden
@@ -867,6 +868,7 @@
       var m = lage.manad + Number(steg.getAttribute('data-manad-steg'));
       lage.ar += Math.floor(m / 12);
       lage.manad = ((m % 12) + 12) % 12;
+      if (lage === ui.kalender) { lage.klickad = true; lage.arstid = null; }
       rita({ fokus: '[data-manad-steg="' + steg.getAttribute('data-manad-steg') + '"][data-lage="' + steg.getAttribute('data-lage') + '"]' });
       return;
     }

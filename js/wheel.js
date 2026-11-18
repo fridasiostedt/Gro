@@ -79,14 +79,15 @@
   }
 
   /**
-   * opts: { ar, vald (0–11), nuManad (0–11 eller -1), arstid (id eller null), statistik: [{totalt, klara}] × 12 }
+   * opts: { ar, vald (0–11), valdAvAnvandare (bool), nuManad (0–11 eller -1), arstid (id eller null), statistik: [{totalt, klara}] × 12 }
    */
   function rita(opts) {
     var delar = [];
     for (var m = 0; m < 12; m++) {
       var a0 = m * 30, a1 = a0 + 30, mitt = a0 + 15;
       var st = opts.statistik[m];
-      var arVald = m === opts.vald && !opts.arstid;
+      // Vald månad skjuts ut först när användaren själv har valt den (klick/tangentbord), inte vid start
+      var arVald = m === opts.vald && !opts.arstid && !!opts.valdAvAnvandare;
       var arNu = m === opts.nuManad;
       var forskjut = arVald ? punkt(LYFT, mitt) : [C, C];
       var dx = f(forskjut[0] - C), dy = f(forskjut[1] - C);

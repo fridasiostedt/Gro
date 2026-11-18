@@ -89,6 +89,8 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   **Fynd:** de mörkgröna linjerna mellan månaderna (#535d45) hade bara 2,0–2,1:1 mot vinter- och höstfärgerna.
   **Åtgärd:** årshjulet använder en mörkare grön, `--hjul-kant: #323b28`, med 3,4–6,0:1 mot alla årstider och
   8,5:1 mot sidans bakgrund. Den används också för fokusringen i hjulet.
+- **Ingen utskjuten månad vid start:** när årshjulet öppnas är nuvarande månad vald men ligger kvar i ringen.
+  Den skjuts ut först när du själv väljer en månad (klick, piltangenter eller månadspilarna) eller hovrar.
 - **Rullistor i GRO:s stil:** den öppna listan har fältfärg, mörkgrön kant, rundade hörn och beige markering i
   stället för systemets blå. Det görs med `appearance: base-select`, som fungerar i nyare Chrome och Edge. Andra
   webbläsare och telefoner visar sin vanliga väljare, och iPhone visar ett rullhjul. Rullistan är fortfarande
