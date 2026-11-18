@@ -119,6 +119,8 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
 - **Översiktens panel enligt Figma (ram 111:2):** den vita böljande linjen längs vågens ovankant är nu helt vit
   (#FDFBF8, 2 px) och inte halvgenomskinlig. Hela ytan ovanför vågen, även statusfältet och telefonens säkra
   yta, har färgen tertiär #E2DFCF. GRO-loggan har 5,2:1 i kontrast mot den nya färgen.
+- **GRO-loggan på Översikt är borttagen igen** (produktägarens begäran). Blommornas stjälkar ritas nu som
+  avsmalnande, svajande former med små klängrankor, så att de ser mer levande ut.
 - **Tecknad header på Översikt, version 2 (närmare referensbilden):** luftigare, med tunna linjer (1,1 px), ljusa
   nästan enfärgade fyllningar, en mjuk kulle bakom blommorna och svävande småblad. Den vita linjen och de
   bakre kullarna är borttagna, och ytan ovanför är fortfarande tertiär #E2DFCF.
