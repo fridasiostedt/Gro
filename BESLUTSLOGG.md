@@ -119,7 +119,10 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
 - **Översiktens panel enligt Figma (ram 111:2):** den vita böljande linjen längs vågens ovankant är nu helt vit
   (#FDFBF8, 2 px) och inte halvgenomskinlig. Hela ytan ovanför vågen, även statusfältet och telefonens säkra
   yta, har färgen tertiär #E2DFCF. GRO-loggan har 5,2:1 i kontrast mot den nya färgen.
-- **Tecknad header på Översikt (efter referensbild från produktägaren):** fotot av pionen är ersatt av en egen
+- **Tecknad header på Översikt, version 2 (närmare referensbilden):** luftigare, med tunna linjer (1,1 px), ljusa
+  nästan enfärgade fyllningar, en mjuk kulle bakom blommorna och svävande småblad. Den vita linjen och de
+  bakre kullarna är borttagna, och ytan ovanför är fortfarande tertiär #E2DFCF.
+- **Tecknad header på Översikt, version 1 (efter referensbild från produktägaren):** fotot av pionen är ersatt av en egen
   illustration i tunn linjestil. Den visar pion med knopp, prästkrage, tulpan, maskrosbollar, en kvist med
   parvisa blad, gräs, en fjäril och svävande kronblad i GRO:s färger (linjer i primärfärg, pion i rosa toner,
   gul mitt). Blommorna växer i vågen och skärs av vid dess nederkant. Fotot av Gros blomma finns kvar på startsidan.
