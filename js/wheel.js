@@ -9,7 +9,7 @@
   var L = root.GroLogic;
 
   // Yttre ring: månader (R_IN–R_UT) med namnet inuti. Inre ring: årstider (R_AR_IN–R_AR_UT), tre månader per årstid.
-  var STORLEK = 358, C = 179, R_UT = 168, R_IN = 124, R_AR_UT = 120, R_AR_IN = 80, R_MANADSNAMN = 146, LYFT = 6;
+  var STORLEK = 358, C = 179, R_UT = 168, R_IN = 130, R_AR_UT = 118, R_AR_IN = 80, R_MANADSNAMN = 149, LYFT = 6; // 12 px mellan ringarna
   // Årstidernas start i grader (januari börjar rakt upp, 30° per månad) och deras månader
   var ARSTIDER = [
     { id: 'vinter', a0: 330, manader: [11, 0, 1] },
