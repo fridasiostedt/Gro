@@ -127,7 +127,7 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   färger (#535D45 och #E2DFCF) och mot flera bakgrunder (#B7BEC4, #F5E0D5, #F0D8BF), men togs till sist bort.
   Nu är bakgrunden tertiär #E2DFCF och stjälkarna är kortare (headern är 190 px hög). Stjälkarna går ända ner, och headerns mjukt böljande nederkant fungerar som
   avskiljare mot innehållet under. Antalet blommor är minskat (en smörblomma, en näva och en slöjblomstertuva
-  borttagna) för ett luftigare intryck, och fler stjälkar har fått små blad (smörblommor, nävor, slöjblomster, fröholkar).
+  borttagna) för ett luftigare intryck, och några stjälkar har ett enstaka litet blad.
   Pionen ritades sedan om från sidan efter ännu en referensbild: en sluten, skålformad blomma med
   kronbladslinjer och breda blad med ådror, i samma färger som Gros blomma på startsidan (ljusrosa kronblad,
   mjukt rosa linjer, salviagröna blad). Pionens tre nedersta blad är borttagna, och två smörblommor, två nävor och en
