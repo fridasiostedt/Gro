@@ -144,3 +144,32 @@ test('store: exempeldata använder påhittade namn och inga foton', () => {
   const namn = new Set(s.uppgifter().map((u) => u.ansvarig).filter(Boolean));
   assert.deepEqual([...namn].sort(), ['Alva', 'Måns']);
 });
+
+test('store: export och import av säkerhetskopia', () => {
+  const s1 = skapaStore(minneslagring()).ladda();
+  s1.laddaExempel('2026-11-16');
+  const kopia = s1.exportera();
+  const s2 = skapaStore(minneslagring()).ladda();
+  const r = s2.importera(kopia);
+  assert.equal(r.vaxter, 4);
+  assert.equal(r.uppgifter, s1.uppgifter().length);
+  assert.deepEqual(s2.uppgifter().map((u) => u.status), s1.uppgifter().map((u) => u.status));
+});
+
+test('store: import avvisar felaktiga filer och skadlig data', () => {
+  const s = skapaStore(minneslagring()).ladda();
+  s.laggTillVaxt({ namn: 'Ros', antal: 1 });
+  assert.throws(() => s.importera('inte json'), /giltig/);
+  assert.throws(() => s.importera('{"vaxter":[]}'), /giltig/);
+  assert.equal(s.vaxter().length, 1); // ingenting ändrat
+  const r = s.importera(JSON.stringify({ app: 'GRO', vaxter: [
+    { id: 'a', namn: 'Pion', antal: 1, foto: 'javascript:alert(1)' },
+    { id: 'b', namn: '', antal: 1 }
+  ], uppgifter: [
+    { id: 'u1', titel: 'Stötta', vaxtId: 'a', deadline: '2026-06-01', prioritet: 'maste', status: 'hackad' },
+    { id: 'u2', titel: 'Föräldralös', vaxtId: 'saknas', deadline: '2026-06-01', prioritet: 'maste' }
+  ] }));
+  assert.deepEqual(r, { vaxter: 1, uppgifter: 1 });
+  assert.equal(s.vaxt('a').foto, null);
+  assert.equal(s.uppgift('u1').status, 'ej');
+});

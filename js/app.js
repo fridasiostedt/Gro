@@ -225,6 +225,102 @@
     '</section>';
   }
 
+  /** Dekorativa kvistar och kronblad runt blomman (egen illustration). */
+  function heroKvistar() {
+    var g = '<svg class="hero-kvistar" viewBox="0 0 402 200" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">' +
+      // vänster: hög kvist med blad
+      '<path d="M88 200 C90 160 84 120 96 82"/>' +
+      '<path d="M92 150 c-14 -6 -22 -18 -24 -30 c12 2 22 12 24 30z" fill="currentColor" fill-opacity=".18"/>' +
+      '<path d="M90 118 c12 -8 24 -10 32 -6 c-8 10 -20 12 -32 6z" fill="currentColor" fill-opacity=".18"/>' +
+      '<path d="M95 92 c-10 -8 -14 -18 -12 -28 c9 5 13 15 12 28z" fill="currentColor" fill-opacity=".18"/>' +
+      // vänster: liten blomma
+      '<path d="M60 200 C62 176 58 160 64 140"/>' +
+      '<circle cx="64" cy="134" r="5"/><path d="M64 124v-4M71 127l3-3M74 134h4M57 127l-3-3M54 134h-4"/>' +
+      // höger: gräs och knopp
+      '<path d="M318 200 C316 168 322 140 312 108"/>' +
+      '<path d="M312 108 c-4 -8 -2 -16 4 -20 c4 6 2 14 -4 20z" fill="currentColor" fill-opacity=".18"/>' +
+      '<path d="M316 160 c14 -4 24 -14 28 -26 c-12 2 -24 12 -28 26z" fill="currentColor" fill-opacity=".18"/>' +
+      '<path d="M340 200 C342 178 350 160 362 146"/>' +
+      '<path d="M352 168 c10 2 18 -2 22 -10 c-10 -2 -18 2 -22 10z" fill="currentColor" fill-opacity=".18"/>' +
+      // svävande kronblad och frön
+      '<path d="M140 38 c6 -2 10 2 8 8 c-6 2 -10 -2 -8 -8z" fill="currentColor" fill-opacity=".25"/>' +
+      '<path d="M276 30 c5 -3 10 0 9 6 c-5 3 -10 0 -9 -6z" fill="currentColor" fill-opacity=".25"/>' +
+      '<path d="M48 70 l6 -3"/><path d="M350 58 l-4 -5"/><path d="M362 84 l5 2"/>' +
+      '<circle cx="300" cy="62" r="1.6" fill="currentColor"/><circle cx="110" cy="54" r="1.6" fill="currentColor"/>' +
+      '</svg>';
+    return g;
+  }
+
+  function hero() {
+    var t = idag();
+    var antalPamin = store.uppgifter().filter(function (u) { return L.behoverPaminnelse(u, t); }).length;
+    var paminText = antalPamin
+      ? 'Påminnelser: ' + L.plural(antalPamin, 'uppgift', 'uppgifter') + ' med nära deadline'
+      : 'Påminnelser: inga just nu';
+    return '<section class="hero" aria-label="GRO">' +
+      '<div class="hero-bild" aria-hidden="true">' +
+        '<svg class="hero-form" viewBox="0 0 402 200" preserveAspectRatio="none" focusable="false">' +
+          '<path d="M40 200 C30 150 60 112 112 104 C150 98 160 60 205 56 C250 52 262 92 300 100 C352 110 380 150 372 200 Z"/></svg>' +
+        heroKvistar() +
+        '<img class="hero-blomma" src="assets/img/gro-blomma.png" alt="" width="150" height="194">' +
+      '</div>' +
+      '<div class="hero-band">' +
+        '<span class="hero-avatar" aria-hidden="true">' + ikon('tradgardsmastare', 34) + '</span>' +
+        '<div class="hero-knappar">' +
+          '<button type="button" class="hero-knapp" data-atgard="dela" aria-label="Dela appen">' + ikon('dela', 22) + '</button>' +
+          '<a class="hero-knapp" href="#/uppgifter" aria-label="' + esc(paminText) + '">' + ikon('notis', 22) +
+            (antalPamin ? '<span class="hero-bricka" aria-hidden="true">' + antalPamin + '</span>' : '') + '</a>' +
+          '<a class="hero-knapp" href="#/installningar" aria-label="Inställningar">' + ikon('installningar', 22) + '</a>' +
+        '</div>' +
+      '</div>' +
+    '</section>';
+  }
+
+  function vyInstallningar() {
+    var antalV = store.vaxter().length, antalU = store.uppgifter().length;
+    return {
+      titel: 'Inställningar – GRO', flik: 'oversikt',
+      html:
+        sidhuvud('Inställningar') +
+        '<section class="sektion installningskort" aria-labelledby="inst-kopia">' +
+          '<h2 class="sektion-h2" id="inst-kopia">Säkerhetskopia</h2>' +
+          '<p>Dina ' + esc(L.plural(antalV, 'växt', 'växter')) + ' och ' + esc(L.plural(antalU, 'uppgift', 'uppgifter')) +
+            ' finns bara på den här enheten. Spara en kopia ibland, eller flytta den till en annan telefon.</p>' +
+          '<button type="button" class="knapp knapp-primar" data-atgard="exportera">' + ikon('nedladdning', 20) + 'Spara säkerhetskopia</button>' +
+          '<label class="knapp knapp-sekundar" for="f-import">' + ikon('uppladdning', 20) + 'Läs in säkerhetskopia</label>' +
+          '<input type="file" id="f-import" accept="application/json,.json" class="visuellt-dold" aria-describedby="import-info">' +
+          '<p class="hjalptext" id="import-info">Inläsning ersätter allt som finns i appen nu. Filen innehåller dina foton – dela den inte med andra.</p>' +
+        '</section>' +
+        '<section class="sektion installningskort" aria-labelledby="inst-om">' +
+          '<h2 class="sektion-h2" id="inst-om">Om GRO</h2>' +
+          '<p>Grönska. Rutin. Omtanke. Allt sparas lokalt i webbläsaren – inget skickas till någon server.</p>' +
+          '<a class="knapp knapp-sekundar" href="#/start">' + ikon('vaxt', 20) + 'Visa startsidan</a>' +
+        '</section>' +
+        '<section class="sektion installningskort" aria-labelledby="inst-radera">' +
+          '<h2 class="sektion-h2" id="inst-radera">Radera all data</h2>' +
+          '<p>Tar bort alla växter, foton och uppgifter från den här enheten.</p>' +
+          '<button type="button" class="knapp knapp-fara" data-atgard="radera-allt">' + ikon('papperskorg', 20) + 'Radera all data</button>' +
+        '</section>',
+      efter: function () {
+        var inp = $('#f-import');
+        inp.addEventListener('change', function () {
+          var fil = inp.files && inp.files[0];
+          if (!fil) return;
+          bekrafta('Läsa in säkerhetskopian?', 'Allt som finns i appen nu ersätts med innehållet i ”' + fil.name + '”.', 'Läs in').then(function (ok) {
+            if (!ok) { inp.value = ''; $('label[for="f-import"]').focus(); return; }
+            fil.text().then(function (text) {
+              try {
+                var r = store.importera(text);
+                meddela('Inläst: ' + L.plural(r.vaxter, 'växt', 'växter') + ' och ' + L.plural(r.uppgifter, 'uppgift', 'uppgifter') + '.');
+                rita({ fokus: 'label[for="f-import"]' });
+              } catch (e) { meddela(e.message); inp.value = ''; }
+            });
+          });
+        });
+      }
+    };
+  }
+
   function vyOversikt() {
     var t = idag();
     var kvar = L.sorteraUppgifter(store.uppgifter().filter(function (u) { return !L.arKlar(u); }));
@@ -246,14 +342,10 @@
     }).join('');
 
     return {
-      titel: 'Översikt – GRO', flik: 'oversikt',
+      titel: 'Översikt – GRO', flik: 'oversikt', hero: true,
       html:
-        '<div class="oversikt-topp">' + sidhuvud('Översikt', L.rubrikDatum(nu)) +
-          // Gros blomma i mindre format – dekorativ här (beskrivs på startsidan)
-          '<div class="blomma blomma-liten" aria-hidden="true">' +
-            '<img class="blomma-bild" src="assets/img/gro-blomma.png" alt="" width="52" height="66">' +
-          '</div>' +
-        '</div>' +
+        hero() +
+        sidhuvud('Översikt', L.rubrikDatum(nu)) +
         paminnelseRuta() +
         manadskort(lage, 'ov') +
         '<section class="sektion" aria-labelledby="mina-uppg">' +
@@ -716,6 +808,7 @@
       case 'oversikt': return vyOversikt();
       case 'arshjul': return vyArshjul();
       case 'uppgifter': return vyUppgifter();
+      case 'installningar': return vyInstallningar();
       case 'prioritet': return vyPrioritet(v[1], r.params);
       case 'vaxter': return vyVaxter();
       case 'vaxt':
@@ -744,6 +837,9 @@
     bottennav.hidden = !!vy.utanRam;
     var arHuvudflik = HUVUDFLIKAR.indexOf(r.vag[0] || 'oversikt') !== -1 && r.vag.length <= 1;
     tillbakaKnapp.hidden = arHuvudflik && ui.interntAntalSteg === 0;
+    // Översikt börjar med heron högst upp – där behövs inget toppfält (menyn finns nedtill)
+    if (vy.hero) toppfalt.hidden = true;
+    document.body.classList.toggle('med-hero', !!vy.hero);
 
     $$('a', bottennav).forEach(function (a) {
       if (a.getAttribute('data-flik') === vy.flik) a.setAttribute('aria-current', 'page');
@@ -838,6 +934,31 @@
       } else {
         laddaExempel();
       }
+    } else if (namn === 'dela') {
+      var url = location.origin + location.pathname;
+      if (navigator.share) {
+        navigator.share({ title: 'GRO – Grönska. Rutin. Omtanke.', text: 'Håll koll på allt trädgården behöver – och när.', url: url }).catch(function () {});
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(function () { meddela('Länken till appen är kopierad.'); },
+          function () { meddela('Länken kunde inte kopieras: ' + url); });
+      } else {
+        meddela('Dela länken: ' + url);
+      }
+    } else if (namn === 'exportera') {
+      var blob = new Blob([store.exportera()], { type: 'application/json' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'gro-sakerhetskopia-' + idag() + '.json';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+      meddela('Säkerhetskopian är sparad i dina hämtade filer.');
+    } else if (namn === 'radera-allt') {
+      bekrafta('Radera all data?', 'Alla växter, foton och uppgifter tas bort från den här enheten. Det går inte att ångra.', 'Radera allt').then(function (ok) {
+        if (!ok) { atg.focus(); return; }
+        store.raderaAllt();
+        meddela('All data är raderad.');
+        ersatt('#/oversikt');
+      });
     } else if (namn === 'aviseringar') {
       Notification.requestPermission().then(function () { avisera(); rita(); });
     } else if (namn === 'ta-bort-vaxt') {

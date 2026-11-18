@@ -8,6 +8,7 @@ config.local.*
 
 # Egna foton (kan innehålla platsdata/EXIF). Lägg aldrig upp privata bilder.
 privat/
+gro-sakerhetskopia-*.json
 foton/
 *.heic
 *.HEIC

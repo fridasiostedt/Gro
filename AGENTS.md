@@ -13,6 +13,7 @@ Ren HTML, CSS och JavaScript utan byggsteg. Data sparas lokalt i webbläsaren (`
 - `js/wheel.js` – årshjulet (SVG, tangentbord, skärmläsare)
 - `js/app.js` – vyer och router
 - `tests/` – enhetstester, körs med `npm test` (Node 18+, inga beroenden)
+- Säkerhetskopior (`gro-sakerhetskopia-*.json`) innehåller användarens foton och får aldrig läggas i repot
 
 ## Design
 Färger, typografi, komponenter, ikoner och avstånd kommer från Figma-filen **Trädgårdsplaneraren**.

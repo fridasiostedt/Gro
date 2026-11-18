@@ -104,6 +104,10 @@ När en **återkommande** uppgift blir klar skapas nästa tillfälle automatiskt
 Tryck på uppgiftens titel för att redigera eller ta bort den.
 
 ### 5. Översikt
+- **Överst** finns Gros blomma och tre knappar:
+  - **Dela** skickar länken till appen, eller kopierar den.
+  - **Påminnelser** (klockan) visar antalet uppgifter med nära deadline och öppnar uppgiftslistan.
+  - **Inställningar** (kugghjulet) öppnar inställningssidan, se nedan.
 - **Påminnelse.** En gul ruta visar uppgifter som har deadline inom tre dagar eller som är försenade.
   Uppgiftskorten får också en etikett, t.ex. "Deadline imorgon".
   Tryck på **Få aviseringar på telefonen** för att även få notiser medan appen är öppen.
@@ -124,11 +128,18 @@ Tryck på uppgiftens titel för att redigera eller ta bort den.
   januari och **End** till december.
 - **Med skärmläsare** läses varje månad upp, t.ex. "Mars, 8 uppgifter, 3 klara".
 
+### 7. Inställningar och säkerhetskopia
+Tryck på kugghjulet överst på Översikt.
+- **Spara säkerhetskopia** laddar ner en fil (`gro-sakerhetskopia-ÅÅÅÅ-MM-DD.json`) med alla växter, foton och uppgifter.
+- **Läs in säkerhetskopia** ersätter allt i appen med innehållet i en sådan fil. Så flyttar du till exempel datan
+  till en ny telefon. Filen innehåller dina foton, så dela den inte med andra.
+- **Visa startsidan** och **Radera all data** finns också här. Appen frågar alltid innan något raderas.
+
 ### Var sparas mina uppgifter?
 Allt sparas **bara i webbläsaren på enheten** du använder. Det finns inget konto och ingen molnsynk än.
 Det innebär att:
-- data inte följer med mellan telefon och dator
-- data försvinner om du rensar webbläsarens webbplatsdata för sidan.
+- data inte följer med mellan telefon och dator, men du kan flytta den med en säkerhetskopia
+- data försvinner om du rensar webbläsarens webbplatsdata för sidan. Spara en säkerhetskopia ibland.
 
 ## Tester
 Kräver Node 18 eller senare. Inga beroenden.

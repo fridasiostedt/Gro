@@ -199,7 +199,47 @@
         spara();
       },
 
-      raderaAllt: function () { data = tomData(); data.startsidaSedd = true; spara(); }
+      raderaAllt: function () { data = tomData(); data.startsidaSedd = true; spara(); },
+
+      /** Säkerhetskopia som JSON-text. */
+      exportera: function () {
+        return JSON.stringify({ app: 'GRO', version: 1, exporterad: new Date().toISOString(), vaxter: data.vaxter, uppgifter: data.uppgifter }, null, 2);
+      },
+
+      /**
+       * Ersätter all data med en säkerhetskopia. Kontrollerar formatet och
+       * rensar varje post genom samma regler som vanliga formulär.
+       * Returnerar { vaxter, uppgifter } = antal inlästa.
+       */
+      importera: function (text) {
+        var p;
+        try { p = JSON.parse(text); } catch (e) { throw new Error('Filen är ingen giltig säkerhetskopia från GRO.'); }
+        if (!p || p.app !== 'GRO' || !Array.isArray(p.vaxter) || !Array.isArray(p.uppgifter)) {
+          throw new Error('Filen är ingen giltig säkerhetskopia från GRO.');
+        }
+        var vaxter = [], uppgifter = [], ids = {};
+        p.vaxter.forEach(function (v) {
+          if (!v || typeof v.id !== 'string' || Object.keys(L.valideraVaxt(v)).length) return;
+          var ren = rensaVaxt(v);
+          if (ren.foto && !/^data:image\/(jpeg|png|webp);base64,/.test(ren.foto)) ren.foto = null;
+          ren.id = v.id; ren.skapad = v.skapad || null;
+          ids[v.id] = true; vaxter.push(ren);
+        });
+        var vaxtIds = Object.keys(ids);
+        p.uppgifter.forEach(function (u) {
+          if (!u || typeof u.id !== 'string' || Object.keys(L.valideraUppgift(u, vaxtIds)).length) return;
+          var ren = rensaUppgift(u);
+          ren.id = u.id;
+          ren.status = ['ej', 'pagaende', 'klar'].indexOf(u.status) !== -1 ? u.status : 'ej';
+          ren.klarDatum = ren.status === 'klar' && L.tillDatum(u.klarDatum) ? u.klarDatum : null;
+          if (typeof u.nastaSkapad === 'string') ren.nastaSkapad = u.nastaSkapad;
+          uppgifter.push(ren);
+        });
+        sparaMedAterstallning(function () {
+          data.vaxter = vaxter; data.uppgifter = uppgifter; data.startsidaSedd = true;
+        });
+        return { vaxter: vaxter.length, uppgifter: uppgifter.length };
+      }
     };
     return api;
   }

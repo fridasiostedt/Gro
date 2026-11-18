@@ -5,6 +5,24 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
 
 ---
 
+## 2026-11-18 · Hero överst på Översikt och inställningar
+- Produktägaren skickade en referensbild: en illustration på en mjuk form, ett band med en rund avatar och
+  ikonknappar. Den är nu byggd överst på Översikt, med Gros blomma i stället för illustrationen. Resten av
+  Översikt är oförändrad. Den lilla blomman i sidhuvudet togs bort eftersom heron visar blomman.
+- Kvistarna och kronbladen runt blomman är en egen enkel SVG-illustration i appens gröna färg. Inget är
+  kopierat från referensbilden.
+- **Ikonerna fungerar på riktigt.** Knappar utan funktion är förvirrande och sämre för tillgängligheten.
+  - *Dela* använder telefonens delningsmeny, och på datorn kopieras länken i stället.
+  - *Påminnelser* visar antalet som en siffra, inte bara en färgprick, och leder till uppgiftslistan.
+  - *Inställningar* leder till en ny sida.
+- **Avataren** är dekorativ (en trädgårdsmästare), eftersom appen inte har konton än. Den kan bli en
+  profilbild när inloggning byggs.
+- **Toppfältet** visas inte på Översikt, så heron börjar högst upp. Menyn nedtill räcker för att navigera.
+- **Ny sida Inställningar:** spara och läs in säkerhetskopia (JSON), visa startsidan och radera all data.
+  Säkerhetskopian behövs eftersom data bara finns i en webbläsare. Inläsningen kontrollerar filen och
+  rensar varje post med samma regler som formulären. Foton som inte är riktiga bilddata tas bort, så att
+  en manipulerad fil inte kan köra kod. Det finns två nya enhetstester för detta.
+
 ## 2026-11-18 · "Kalender" heter nu "Årshjul"
 - Produktägaren bestämde att sidans rubrik ska vara "Årshjul" i stället för "Kalender", som i Figma. Nu heter
   rubriken, menyn och sidtiteln samma sak (WCAG 3.2.4 Konsekvent identifiering).
