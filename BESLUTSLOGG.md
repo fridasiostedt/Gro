@@ -70,6 +70,8 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
 - **Årshjulets kanter:** den vita och den svarta kanten runt månaderna ersattes av en mörkgrön kant
   (primärfärg #535d45, 2 px; vald månad 3 px). Den mörkgröna har mer än 3:1 i kontrast mot sidans bakgrund, så
   kravet på gränssnittsdelar uppfylls fortfarande. Fokusmarkeringen är en bred mörkgrön ring (10 px).
+- **Den svarta lappen "nov · nu" är borttagen** ur årshjulet. Nuvarande månad har samma etikett som de andra.
+  När appen öppnas är den vald, och skärmläsare läser upp den som "nuvarande månad".
 - **Årstiden i hjulets mitt** ("HÖST", "VINTER" …) är större: 16 px halvfet i stället för 12 px.
 - **Ingen understrykning vid hovring eller klick:** uppgiftstitlar och månadsnamnen i årshjulet stryks inte längre
   under. Hovring syns ändå genom att kortet får ljusare bakgrund, och fokus syns genom fokusringen.

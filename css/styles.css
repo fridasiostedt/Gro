@@ -337,13 +337,11 @@ a.valchip { text-decoration: none; }
 .segment:focus-visible .seg-form { stroke: var(--primar); stroke-width: 3; }
 /* Fokus syns som en extra tjock mörk ring utanför segmentet – tydligt skild från "vald" */
 .segment:focus-visible .seg-kant { stroke: var(--primar); stroke-width: 10; } /* tydlig fokusring */
-.segment:focus-visible .manad-etikett:not(.nu) { font-weight: 700; }
+.segment:focus-visible .manad-etikett { font-weight: 700; }
 .manad-etikett {
   font-family: var(--font-sans); font-size: 16px; fill: var(--text-dampad);
   text-anchor: middle; dominant-baseline: central;
 }
-.manad-etikett.nu { fill: var(--text-pa-mork); font-size: 14px; font-weight: 600; }
-.nu-bricka { fill: var(--text); }
 .hjul-mitt text { text-anchor: middle; dominant-baseline: central; }
 .mitt-arstid { font-family: var(--font-sans); font-size: 16px; font-weight: 600; letter-spacing: 0.4px; fill: var(--text-dampad); }
 .mitt-manad { font-family: var(--font-serif); font-size: 24px; fill: var(--text); }

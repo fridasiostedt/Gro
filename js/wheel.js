@@ -49,16 +49,9 @@
       var arNu = m === opts.nuManad;
       var forskjut = arVald ? punkt(8, mitt) : [C, C];
       var dx = f(forskjut[0] - C), dy = f(forskjut[1] - C);
-      var et = punkt(R_ETIKETT + (arNu ? 10 : 0), mitt);
-      var etikett = L.MANADER_KORT[m] + (arNu ? ' · nu' : '');
-      var etikettSvg;
-      if (arNu) {
-        var b = etikett.length * 7.6 + 18;
-        etikettSvg = '<rect class="nu-bricka" x="' + f(et[0] - b / 2) + '" y="' + f(et[1] - 13) + '" width="' + f(b) + '" height="26" rx="13"/>' +
-          '<text class="manad-etikett nu" x="' + f(et[0]) + '" y="' + f(et[1]) + '">' + esc(etikett) + '</text>';
-      } else {
-        etikettSvg = '<text class="manad-etikett" x="' + f(et[0]) + '" y="' + f(et[1]) + '">' + esc(etikett) + '</text>';
-      }
+      var et = punkt(R_ETIKETT, mitt);
+      // Alla månader har samma etikett; nuvarande månad läses upp som "nuvarande månad" av skärmläsare
+      var etikettSvg = '<text class="manad-etikett" x="' + f(et[0]) + '" y="' + f(et[1]) + '">' + esc(L.MANADER_KORT[m]) + '</text>';
       delar.push(
         '<g class="segment' + (arVald ? ' vald' : '') + '" role="radio" data-manad="' + m + '"' +
         ' aria-checked="' + arVald + '" tabindex="' + (arVald ? 0 : -1) + '"' +
