@@ -336,7 +336,7 @@ a.valchip { text-decoration: none; }
   transform-box: view-box; transform-origin: 179px 179px; transition: transform .15s ease;
 }
 @media (hover: hover) {
-  .segment:hover .seg-inre { transform: scale(1.045); }
+  .segment:hover .seg-inre { transform: scale(1.03); }
   .segment:hover .seg-form, .arstid-knapp:hover .seg-form { stroke-width: 3.5; }
   .segment:hover, .arstid-knapp:hover { filter: drop-shadow(0 4px 6px rgba(31, 41, 33, .3)); }
   .arstid-knapp:hover > .seg-form, .arstid-knapp:hover > .arstid-kant, .arstid-knapp:hover > .arstid-namn { transform: scale(1.035); }

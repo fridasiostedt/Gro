@@ -79,7 +79,8 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   visar årstidens antal uppgifter och antal klara i hjulets mitt, och ett nytt klick går tillbaka till månaden.
   Skärmläsare läser t.ex. "Höst (sep–nov): 6 uppgifter, 2 klara".
 - **Större hjul med månadsnamnen inuti:** månadsnamnen står inne i segmenten i stället för utanför. Därför kunde
-  hjulet bli större (månader 130–168 px i radie, årstider 80–118 px, 12 px mellanrum mellan ringarna).
+  hjulet bli större. Båda ringarna är 46 px breda (månader 128–174 px i radie, årstider 70–116 px) med
+  12 px mellanrum.
 - **Tydligare hovring i årshjulet:** en månad eller årstid som pekas på växer ut från hjulets mitt och får tjockare
   kant och en skugga. Färgen ändras inte, så textkontrasten är densamma som utan hovring. Vid "minska rörelse" sker
   ändringen utan animation.
