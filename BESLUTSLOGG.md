@@ -156,6 +156,8 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   fem nya uppgifter har lagts till, spridda över året så att årshjulet och prioriteringarna får innehåll.
   Inläsning av säkerhetskopior godkänner, utöver `data:image`, bara exakt sökvägen till de här exempelbilderna.
   Allt annat (t.ex. `javascript:`) rensas fortfarande bort, och testerna kontrollerar det.
+- **Ifyllnadsfälten är helt släta:** den inre skuggan som gjorde #FEFAFA gråare är borttagen. Mätning i webbläsaren
+  visar att alla fält på alla sidor har bakgrunden #FEFAFA.
 - **Rullningslisten är dold** (`scrollbar-width: none`). Innehållet scrollar fortfarande med mus, pekskärm
   och tangentbord.
 

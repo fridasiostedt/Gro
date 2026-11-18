@@ -613,9 +613,8 @@ body.utan-ram .toast { bottom: 24px; }
 .statusknapp .indikator { transition: transform .15s ease; box-shadow: var(--skugga-liten); }
 .statusknapp:active .indikator { transform: scale(.85); }
 
-/* Fält ser nedsänkta ut */
-.falt, .stegvaljare { box-shadow: inset 0 1px 3px rgba(31, 41, 33, .08); }
-.fotovaljare { box-shadow: inset 0 2px 8px rgba(31, 41, 33, .06); }
+/* Fälten är helt släta i #FEFAFA (ingen inre skugga som gör färgen gråare) */
+.falt, .stegvaljare, .fotovaljare { box-shadow: none; }
 .fotovaljare-cirkel { box-shadow: var(--hojdljus), var(--skugga-liten); }
 
 /* Startsidans blomma och årshjulet får djup */
