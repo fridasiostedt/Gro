@@ -126,7 +126,8 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   Senare ändrat: blommorna står var för sig på en slät grön gräsmatta (utan strån) i stället för att vara knutna i en bukett.
   Pionen ritades sedan om från sidan efter ännu en referensbild: en sluten, skålformad blomma med
   kronbladslinjer och breda blad med ådror, i samma färger som Gros blomma på startsidan (ljusrosa kronblad,
-  mjukt rosa linjer, salviagröna blad). Den tidigare versionen sågs ovanifrån: ljusrosa krusiga kronblad med rosa strimmor,
+  mjukt rosa linjer, salviagröna blad). Pionens tre nedersta blad är borttagna, och två smörblommor, två nävor och en
+  fröholk har fått små blad längs stjälken. Den tidigare versionen sågs ovanifrån: ljusrosa krusiga kronblad med rosa strimmor,
   en guldgul ståndarkrans, gröna pistiller med magentaspetsar och treflikiga salviagröna blad på rödaktiga skaft.
 - **GRO-loggan på Översikt är borttagen igen** (produktägarens begäran). Blommornas stjälkar ritas nu som
   avsmalnande, svajande former med små klängrankor, så att de ser mer levande ut.
