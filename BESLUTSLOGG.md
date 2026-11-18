@@ -112,6 +112,12 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   ny användare) och en mjuk, inspirerande rad för månaden, en för var och en av årets tolv månader. Ordet "Översikt"
   står som liten överrad, så att sidan fortfarande heter likadant som i menyn. Hälsningen innehåller inget namn,
   eftersom appen inte sparar personuppgifter.
+- **Böljande panel på Översikt:** den raka kanten mellan bilden och texten är ersatt av en mjuk vågform. Under vågen
+  finns en suddig skugga, bakom den en mörkare kulle och längs ovankanten en svag ljuskant, vilket ger djup.
+- **Mer visuellt djup:** kort och rutor har fått ett svagt ljus uppifrån (vit gradient) och skuggor i tre lager.
+  Den nedre menyn har en mjukare skugga. Kontrastgranskningen kördes igen efteråt, och all text klarar fortfarande
+  WCAG AA, eftersom ljuset bara gör bakgrunden ljusare.
+- **Förklarande text** finns nu under rubriken på Årshjul (vad man kan klicka på) och Mina växter (vad sidan är till för).
 - **Rullningslisten är dold** (`scrollbar-width: none`). Innehållet scrollar fortfarande med mus, pekskärm
   och tangentbord.
 
@@ -207,6 +213,9 @@ ihop med bildkanten gjordes genomskinliga. Bilden förminskades till 400 px bred
   som SVG efter designen (Lucide-stil, ISC-licens). Byt gärna mot exporter från Figma om något skiljer.
 
 ### AI-fel (upptäckta och åtgärdade under bygget)
+0. **Element trycktes ihop (18 nov):** innehållsytan är en flexkolumn. När sidan blev längre än skärmen krympte
+   elementen i stället för att scrolla, och filterknapparna på Mina växter klipptes av. *Upptäckt:* på skärmdump
+   efter att introtexten lagts till. *Åtgärd:* `.huvud > * { flex-shrink: 0 }`.
 1. **Testkommandot:** `node --test tests/` fungerar inte i Node 22 (mappen tolkades som en fil).
    *Upptäckt:* testkörningen misslyckades trots att alla tester var gröna. *Åtgärd:* `node --test`.
 2. **Tillbaka-knappen:** Första versionen räknade navigering via `popstate`. Den händelsen avfyras vid alla

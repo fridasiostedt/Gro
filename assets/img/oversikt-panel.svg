@@ -1,7 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 402 196" width="402" height="196" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <!-- Grön bakgrund för övre panelen på Översikt. Gros blomma (foto) läggs ovanpå i HTML. -->
-  <!-- Mjuka bakgrundsformer -->
-  <path d="M-10 196 C-6 132 30 92 88 80 C140 70 160 30 214 26 C276 22 300 66 344 74 C384 82 410 116 412 196 Z" fill="#d6d8c9"/>
-  <path d="M236 196 C240 160 268 136 304 132 C344 128 372 150 380 196 Z" fill="#e2dfcf"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 402 224" width="402" height="224">
+  <!-- Grön, böljande bakgrund för övre panelen på Översikt. Gros blomma (foto) läggs ovanpå i HTML. -->
+  <defs>
+    <filter id="mjuk-skugga" x="-10%" y="-10%" width="120%" height="140%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+    <linearGradient id="gron" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dfe1d3"/>
+      <stop offset="1" stop-color="#d0d4c2"/>
+    </linearGradient>
+  </defs>
 
+  <!-- Bakre kulle: ger djup bakom huvudformen -->
+  <path d="M-10 160 L-10 120 C30 84 76 64 140 58 C200 52 228 16 288 14 C344 12 376 44 412 54 L412 160 L-10 160 Z" fill="#c9cdb9"/>
+
+  <!-- Mjuk skugga under den böljande nederkanten -->
+  <path d="M-10 196 C10 204 34 204 60 196 C112 180 172 208 236 190 C300 172 362 210 412 182 L412 150 L-10 150 Z" fill="#1f2921" opacity=".14" filter="url(#mjuk-skugga)"/>
+
+  <!-- Huvudformen med böljande nederkant -->
+  <path d="M-10 190 L-10 150 C-4 120 34 92 88 80 C140 70 160 30 214 26 C276 22 300 66 344 74 C384 82 410 116 412 150 L412 176 C362 204 300 166 236 184 C172 202 112 174 60 190 C34 198 10 198 -10 190 Z" fill="url(#gron)"/>
+
+  <!-- Ljus kulle till höger -->
+  <path d="M232 184 C236 150 266 126 304 122 C346 118 374 140 388 170 C356 190 300 166 232 184 Z" fill="#e5e2d3"/>
+
+  <!-- Svagt högdager längs ovankanten -->
+  <path d="M-4 136 C10 112 42 90 88 80 C140 70 160 30 214 26 C276 22 300 66 344 74 C384 82 406 110 410 130" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="2" stroke-linecap="round"/>
 </svg>

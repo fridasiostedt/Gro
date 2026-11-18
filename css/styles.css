@@ -34,8 +34,8 @@
   --sasong-host: #bc7a47;
   --hjul-kant: #323b28;     /* mörkgrön kant i årshjulet – minst 3:1 mot alla årstidsfärger */
 
-  --skugga-kort: 0 2px 8px rgba(31, 41, 33, 0.06), 0 8px 24px rgba(31, 41, 33, 0.05);
-  --skugga-uppgift: 0 2px 4px rgba(31, 41, 33, 0.06), 0 8px 12px rgba(31, 41, 33, 0.05);
+  --skugga-kort: 0 1px 2px rgba(31, 41, 33, .06), 0 6px 14px rgba(31, 41, 33, .08), 0 22px 36px -14px rgba(31, 41, 33, .18);
+  --skugga-uppgift: 0 1px 2px rgba(31, 41, 33, .07), 0 6px 12px rgba(31, 41, 33, .07), 0 16px 24px -12px rgba(31, 41, 33, .16);
   --skugga-nav: 0 -2px 16px rgba(31, 41, 33, 0.08);
 
   --font-sans: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -135,6 +135,7 @@ body {
   scrollbar-width: none; /* ingen synlig rullningslist – scrollning fungerar ändå */
 }
 .huvud::-webkit-scrollbar, .filter::-webkit-scrollbar { display: none; }
+.huvud > * { flex-shrink: 0; } /* innehållet ska scrolla, aldrig tryckas ihop */
 body.utan-ram .huvud { padding: max(12px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom)); }
 .huvud:focus { outline: none; }
 
@@ -170,6 +171,7 @@ body.utan-ram .huvud { padding: max(12px, env(safe-area-inset-top)) 24px max(24p
 .sidhuvud { display: flex; flex-direction: column; gap: 8px; }
 .sidhuvud .overrad { color: var(--text-dampad); }
 .sidhuvud .underrad { color: var(--text-dampad); margin-top: -8px; }
+.intro-text { color: var(--text-dampad); font-size: 16px; line-height: 24px; margin-top: -12px; max-width: 38ch; }
 .valkomnande { gap: 6px; }
 .valkomnande .overrad { font-size: 12px; line-height: 16px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
 .valkomst-text { /* mjuk, inspirerande rad som följer årstiden */
@@ -579,6 +581,16 @@ body.utan-ram .toast { bottom: 24px; }
 .bottennav .indikator { transition: background-color .2s ease, transform .2s ease; }
 .bottennav a[aria-current="page"] .indikator { box-shadow: var(--hojdljus), 0 1px 3px rgba(31, 41, 33, .15); }
 
+/* Mjukt ljus uppifrån på kort och rutor – gör ytorna lite rundare. Ljuset gör bakgrunden ljusare,
+   så textkontrasten blir högre, inte lägre. */
+.manadskort, .prio-sektion, .uppgiftskort, .vaxtkort, .raknare, .installningskort, .detalj-innehall {
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, .38) 0%, rgba(255, 255, 255, 0) 55%);
+}
+.uppgiftskort { box-shadow: var(--hojdljus), var(--skugga-uppgift); }
+.vaxtkort, .installningskort { box-shadow: var(--hojdljus), var(--skugga-uppgift); }
+.prio-sektion { box-shadow: var(--hojdljus), var(--skugga-kort); }
+.bottennav { box-shadow: 0 -1px 0 rgba(255, 255, 255, .6) inset, 0 -6px 20px rgba(31, 41, 33, .10); }
+
 /* Kort lyfter vid hovring och trycks ned vid klick */
 .uppgiftskort, .vaxtkort, .raknare { transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease; }
 .manadskort, .detalj-innehall { box-shadow: var(--hojdljus), var(--skugga-kort); }
@@ -637,7 +649,7 @@ body.utan-ram .toast { bottom: 24px; }
 }
 
 /* ---------- Panel överst på Översikt ---------- */
-.hero { position: relative; flex: none; margin: 0 -24px; }
+.hero { position: relative; flex: none; margin: 0 -24px -14px; }
 body.med-hero .huvud { padding-top: env(safe-area-inset-top, 0px); }
 .hero-bild { display: block; width: 100%; height: auto; }
 .hero-blomma { /* Figma 02 Översikt: 114 × 142, spegelvänd, uppe till vänster */
