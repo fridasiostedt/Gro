@@ -277,7 +277,6 @@ body.utan-ram .huvud { padding: max(12px, env(safe-area-inset-top)) 24px max(24p
 .uppgiftskort .kort-titel a:focus-visible { box-shadow: none; }
 .uppgiftskort .kort-titel a:focus-visible::after { box-shadow: var(--fokus); }
 .uppgiftskort:has(.kort-titel a:hover) { background: #f8e8df; }
-.kort-titel a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .status-klar .kort-titel a { text-decoration: line-through; text-decoration-thickness: 1.5px; }
 .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
 .meta .prick { color: var(--text-secondary); font-size: 14px; }
@@ -338,7 +337,7 @@ a.valchip { text-decoration: none; }
 .segment:focus-visible .seg-form { stroke: var(--primar); stroke-width: 3; }
 /* Fokus syns som en extra tjock mörk ring utanför segmentet – tydligt skild från "vald" */
 .segment:focus-visible .seg-kant { stroke: var(--primar); stroke-width: 10; } /* tydlig fokusring */
-.segment:focus-visible .manad-etikett:not(.nu) { text-decoration: underline; font-weight: 700; }
+.segment:focus-visible .manad-etikett:not(.nu) { font-weight: 700; }
 .manad-etikett {
   font-family: var(--font-sans); font-size: 16px; fill: var(--text-dampad);
   text-anchor: middle; dominant-baseline: central;

@@ -71,6 +71,8 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   (primärfärg #535d45, 2 px; vald månad 3 px). Den mörkgröna har mer än 3:1 i kontrast mot sidans bakgrund, så
   kravet på gränssnittsdelar uppfylls fortfarande. Fokusmarkeringen är en bred mörkgrön ring (10 px).
 - **Årstiden i hjulets mitt** ("HÖST", "VINTER" …) är större: 16 px halvfet i stället för 12 px.
+- **Ingen understrykning vid hovring eller klick:** uppgiftstitlar och månadsnamnen i årshjulet stryks inte längre
+  under. Hovring syns ändå genom att kortet får ljusare bakgrund, och fokus syns genom fokusringen.
 - **Rullningslisten är dold** (`scrollbar-width: none`). Innehållet scrollar fortfarande med mus, pekskärm
   och tangentbord.
 
