@@ -123,7 +123,7 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   pressade blommor som är knuten nertill. Den har tunna olivfärgade stjälkar, platta och lite genomskinliga kronblad
   utan konturlinjer, en pressad pion i rosa, smörblommor i höstorange, nävor i vinterblått med ådror,
   slöjblomster, knoppar, fröholkar och flikiga blad. Allt är en egen illustration (ingen kopia av bilden).
-  Senare ändrat: blommorna står var för sig på en gräsmatta med tunna strån i stället för att vara knutna i en bukett.
+  Senare ändrat: blommorna står var för sig på en slät grön gräsmatta (utan strån) i stället för att vara knutna i en bukett.
 - **GRO-loggan på Översikt är borttagen igen** (produktägarens begäran). Blommornas stjälkar ritas nu som
   avsmalnande, svajande former med små klängrankor, så att de ser mer levande ut.
 - **Tecknad header på Översikt, version 2 (närmare referensbilden):** luftigare, med tunna linjer (1,1 px), ljusa
