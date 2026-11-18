@@ -400,6 +400,7 @@
         inp.forEach(function (i) { i.setAttribute('aria-invalid', 'true'); });
       } else if (p) {
         p.hidden = true;
+        p.textContent = ''; // annars läser skärmläsare upp det gamla felet via aria-describedby
         inp.forEach(function (i) { i.removeAttribute('aria-invalid'); });
       }
     });
@@ -439,7 +440,7 @@
 
     function fotovaljare() {
       return foto
-        ? '<img class="fotovaljare-bild" src="' + esc(foto) + '" alt="Valt foto"><span class="fotovaljare-text">Byt foto</span>'
+        ? '<img class="fotovaljare-bild" src="' + esc(foto) + '" alt=""><span class="fotovaljare-text">Byt foto</span>'
         : '<span class="fotovaljare-cirkel">' + ikon('kamera', 28) + '</span>' +
           '<span class="fotovaljare-text">Ta ett foto av växten</span>' +
           '<span class="liten-text dampad2">eller välj en bild från telefonen</span>';
@@ -676,7 +677,7 @@
     opts = opts || {};
     var r = tolka();
     var vy = valjVy(r);
-    var scroll = window.scrollY;
+    var scroll = huvud.scrollTop; // innehållet scrollar i <main>, inte i fönstret
     huvud.innerHTML = vy.html;
     document.title = vy.titel;
     document.body.classList.toggle('utan-ram', !!vy.utanRam);
@@ -693,16 +694,29 @@
 
     if (vy.efter) vy.efter();
 
+    // Mjuk övergång bara vid byte av vy, inte när samma vy ritas om
+    huvud.classList.remove('vy-in');
+    if (opts.ruttbyte || opts.forsta) { void huvud.offsetWidth; huvud.classList.add('vy-in'); }
+
     if (opts.fokus) {
-      window.scrollTo(0, scroll);
+      huvud.scrollTop = scroll;
       var el = $(opts.fokus, huvud);
       if (el) el.focus({ preventScroll: false });
     } else if (opts.ruttbyte) {
-      window.scrollTo(0, 0);
+      huvud.scrollTop = 0;
       var h1 = $('h1', huvud);
       if (h1) h1.focus({ preventScroll: true });
+    } else {
+      huvud.scrollTop = scroll;
     }
+    uppdateraToppskugga();
   }
+
+  /** Skugga under toppfältet när innehållet har scrollats in under det. */
+  function uppdateraToppskugga() {
+    toppfalt.classList.toggle('skuggad', huvud.scrollTop > 4);
+  }
+  huvud.addEventListener('scroll', uppdateraToppskugga, { passive: true });
 
   // ---------- Händelser ----------
   huvud.addEventListener('click', function (e) {
@@ -834,6 +848,6 @@
     try { localStorage.setItem(nyckel, JSON.stringify(gjort)); } catch (e) { /* ignorera */ }
   }
 
-  rita();
+  rita({ forsta: true });
   avisera();
 })();

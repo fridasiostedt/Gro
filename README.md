@@ -15,6 +15,10 @@ Målet är mindre att komma ihåg och mer tid att njuta av trädgården.
 
 All data sparas **lokalt i webbläsaren**. Ingenting skickas till någon server.
 
+## Skärmstorlek
+Appen är byggd för iPhone 17 och är högst **402 × 874 px**. Toppfältet och menyn ligger fast, och
+innehållet scrollar inuti appen. På en dator visas appen i en telefonram mitt på skärmen.
+
 ## Tillgänglighet
 Målet är WCAG 2.2 AA. Prioritet och status visas med ikon och text, inte bara färg. Alla fält har synliga
 etiketter, fokus syns alltid och tryckytorna är minst 44 × 44 px. Årshjulet fungerar med piltangenter och

@@ -5,6 +5,37 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
 
 ---
 
+## 2026-11-18 · Tillgänglighetsfixar, iPhone 17-ram och visuellt djup
+
+### Åtgärdade fynd från WCAG-granskningen
+| Fynd | WCAG | Fil | Åtgärd |
+| --- | --- | --- | --- |
+| Ingen fokusmarkering i högkontrastläge | 2.4.7 | `css/styles.css` | Genomskinlig `outline` bakom fokusskuggan, plus egna regler för `forced-colors` (även årshjulet, växtkort, fotoväljare, prioritetsval). Testat med emulerat högkontrastläge. |
+| Dolda felmeddelanden lästes fortfarande upp | 3.3.1, 4.1.2 | `js/app.js` (`visaFel`) | Texten töms när felet döljs. Testat: rättat fält har ingen beskrivning kvar. |
+| Valt foto gav namnet "Valt foto Byt foto" | 1.1.1 | `js/app.js` | Fotot i fotoväljaren har tom alt (dekorativt i etiketten). |
+| Fokus och "vald" såg nästan likadana ut i årshjulet | 2.4.7 | `css/styles.css` | Fokus ritar en extra tjock mörk ring utanför segmentet. |
+
+Inte ändrat: att sidan heter "Kalender" men menyn "Årshjul" (designval i Figma).
+
+### iPhone 17-ram
+- Appen är högst **402 × 874 px**, samma som iPhone 17 i Figma. Toppfältet och menyn ligger fast, och bara
+  innehållet scrollar. Hela sidan scrollar aldrig, inte heller på desktop.
+- På desktop visas appen i en telefonram mitt på sidan. Om fönstret är lägre än 874 px krymper ramen
+  till fönstrets höjd, och innehållet scrollar som vanligt.
+- På mobilen fyller appen skärmen (`100dvh`) och tar hänsyn till notch och hemindikator (`safe-area`).
+
+### Visuellt djup (önskat av produktägaren)
+- Kort lyfter vid hovring och trycks ned vid klick. Knappar är upphöjda med en ljuskant upptill, och fält
+  ser nedsänkta ut.
+- Toppfältet får skugga när innehållet scrollar in under det. Menyn är ett halvgenomskinligt lager med oskärpa.
+- Årshjulet och startsidans blomma har skugga, och den valda månaden lyfts ut med egen skugga.
+- Nya vyer tonar in mjukt. All rörelse stängs av för den som valt minskad rörelse i systemet.
+- Färger, typsnitt och avstånd är oförändrade från Figma. Kontrasterna påverkas inte.
+
+### AI-fel
+- **Påminnelseraderna** delades upp i två kolumner efter att tryckytan gjorts 44 px hög (`display: flex`).
+  *Upptäckt:* på skärmdump. *Åtgärd:* `display: block` med utfyllnad.
+
 ## 2026-11-16 · Tillbaka till startsidan
 - Länken **Till startsidan** finns längst ner på Översikt. Produktägaren önskade att kunna komma tillbaka
   till startsidan. Länken saknas i Figma och har stil som en diskret textlänk med 44 px tryckyta.
