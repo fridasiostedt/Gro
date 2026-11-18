@@ -68,7 +68,7 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
 - **Mina prioriteringar ligger i en egen ruta** på Översikt, med samma stil som månadskortet
   (tertiär bakgrund, primärfärgad kant, rundade hörn 24 px).
 - **Årshjulets kanter:** den vita och den svarta kanten runt månaderna ersattes av en mörkgrön kant
-  (primärfärg #535d45, 2 px; vald månad 3 px). Den mörkgröna har mer än 3:1 i kontrast mot sidans bakgrund, så
+  (primärfärg #535d45, 2 px; vald månad 3 px). Senare: tunnare i viloläge (1,25 px), 3–3,5 px vid hovring och val. Den mörkgröna har mer än 3:1 i kontrast mot sidans bakgrund, så
   kravet på gränssnittsdelar uppfylls fortfarande. Fokusmarkeringen är en bred mörkgrön ring (10 px).
 - **Den svarta lappen "nov · nu" är borttagen** ur årshjulet. Nuvarande månad har samma etikett som de andra.
   När appen öppnas är den vald, och skärmläsare läser upp den som "nuvarande månad".

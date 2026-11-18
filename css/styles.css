@@ -333,7 +333,7 @@ a.valchip { text-decoration: none; }
 .arshjul svg { max-width: 100%; height: auto; overflow: visible; }
 .segment { cursor: pointer; outline: none; }
 .seg-kant { fill: none; stroke: none; } /* används bara för fokusmarkering */
-.seg-form { stroke: var(--hjul-kant); stroke-width: 2; stroke-linejoin: round; transition: transform .15s; } /* mörkgrön kant runt varje månad */
+.seg-form { stroke: var(--hjul-kant); stroke-width: 1.25; stroke-linejoin: round; transition: transform .15s; } /* mörkgrön kant runt varje månad */
 .arstid-knapp { cursor: pointer; outline: none; }
 /* Hovring: segmentet växer ut från hjulets mitt, får tjockare mörkgrön kant och en skugga.
    Färgen ändras inte, så textkontrasten är densamma som utan hovring. */
