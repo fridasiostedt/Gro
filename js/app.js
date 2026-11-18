@@ -245,7 +245,12 @@
     return {
       titel: 'Översikt – GRO', flik: 'oversikt',
       html:
-        sidhuvud('Översikt', L.rubrikDatum(nu)) +
+        '<div class="oversikt-topp">' + sidhuvud('Översikt', L.rubrikDatum(nu)) +
+          // Gros blomma i mindre format – dekorativ här (beskrivs på startsidan)
+          '<div class="blomma blomma-liten" aria-hidden="true">' +
+            '<img class="blomma-bild" src="assets/img/gro-blomma.png" alt="" width="52" height="66">' +
+          '</div>' +
+        '</div>' +
         paminnelseRuta() +
         manadskort(lage, 'ov') +
         '<section class="sektion" aria-labelledby="mina-uppg">' +

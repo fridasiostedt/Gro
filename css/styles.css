@@ -188,7 +188,12 @@ body.utan-ram .huvud { padding: max(12px, env(safe-area-inset-top)) 24px max(24p
   position: relative; width: 260px; height: 260px; border-radius: 50%;
   background: var(--tertiar); border: 1px solid var(--text-secondary); overflow: hidden;
 }
-.blomma-bild { position: absolute; left: 37.5px; top: 10px; width: 185px; height: 239px; object-fit: cover; transform: scaleX(-1); }
+.blomma-bild { /* placering från Figma (185 × 239 i en cirkel på 260), i procent så att den skalar */
+  position: absolute; left: 14.42%; top: 3.85%; width: 71.15%; height: 91.92%; object-fit: cover; transform: scaleX(-1);
+}
+/* Mindre blomma i Översiktens sidhuvud */
+.oversikt-topp { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.blomma.blomma-liten { flex: none; width: 76px; height: 76px; }
 .blomma-reserv { display: none; }
 .blomma.saknas .blomma-bild { display: none; }
 .blomma.saknas .blomma-reserv { display: flex; position: absolute; inset: 0; align-items: center; justify-content: center; color: var(--primar); }
@@ -534,6 +539,7 @@ body.utan-ram .toast { bottom: 24px; }
 
 /* Startsidans blomma och årshjulet får djup */
 .blomma { box-shadow: inset 0 3px 10px rgba(31, 41, 33, .12), 0 14px 32px rgba(31, 41, 33, .14); }
+.blomma.blomma-liten { box-shadow: inset 0 2px 5px rgba(31, 41, 33, .12), 0 6px 14px rgba(31, 41, 33, .14); }
 .arshjul svg { filter: drop-shadow(0 8px 14px rgba(31, 41, 33, .14)); }
 .segment.vald .seg-form, .segment.vald .seg-kant { filter: drop-shadow(0 4px 6px rgba(31, 41, 33, .28)); }
 .prio { box-shadow: var(--hojdljus); }

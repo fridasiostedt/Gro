@@ -5,6 +5,14 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
 
 ---
 
+## 2026-11-18 · GRO-blomman på Översikt
+- Produktägaren önskade Gros blomma även på Översikt, i mindre format: en cirkel på 76 px till höger om
+  rubriken. Den finns inte i Figma.
+- Bilden är dekorativ där (`aria-hidden`, tom alt). Den beskrivs redan på startsidan, och skärmläsare ska inte
+  läsa upp den på varje besök.
+- Blommans placering i cirkeln är omräknad till procent (samma mått som i Figma), så att samma stil fungerar
+  i båda storlekarna.
+
 ## 2026-11-18 · Tillgänglighetsfixar, iPhone 17-ram och visuellt djup
 
 ### Åtgärdade fynd från WCAG-granskningen
