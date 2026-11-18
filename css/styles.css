@@ -323,14 +323,19 @@ a.valchip { text-decoration: none; }
 /* ---------- Påminnelse ---------- */
 
 /* ---------- Årshjul ---------- */
-.arshjul { display: flex; justify-content: center; margin: -12px -2px 0; }
+.arshjul { display: flex; justify-content: center; margin: 0 -2px; }
 .arshjul svg { max-width: 100%; height: auto; overflow: visible; }
 .segment { cursor: pointer; outline: none; }
 .seg-kant { fill: none; stroke: none; } /* används bara för fokusmarkering */
 .seg-form { stroke: var(--primar); stroke-width: 2; stroke-linejoin: round; transition: transform .15s; } /* mörkgrön kant runt varje månad */
-.arstidsring .seg-form { stroke-width: 2; }
+.arstid-knapp { cursor: pointer; outline: none; }
+.arstid-kant { fill: none; stroke: none; }
+.arstid-knapp:hover .seg-form { filter: brightness(1.06); }
+.arstid-knapp.vald .seg-form { stroke-width: 3.5; }
+.arstid-knapp.vald { filter: drop-shadow(0 3px 5px rgba(31, 41, 33, .28)); }
+.arstid-knapp:focus-visible .arstid-kant { stroke: var(--primar); stroke-width: 10; stroke-linejoin: round; } /* fokusring */
 .arstid-namn {
-  font-family: var(--font-sans); font-size: 11px; font-weight: 700; letter-spacing: 1px; fill: var(--text);
+  font-family: var(--font-sans); font-size: 13px; font-weight: 700; letter-spacing: 1px; fill: var(--text);
   text-anchor: middle; dominant-baseline: central; pointer-events: none;
 }
 .arstid-vinter { fill: var(--sasong-vinter); }
@@ -343,9 +348,9 @@ a.valchip { text-decoration: none; }
 /* Fokus syns som en extra tjock mörk ring utanför segmentet – tydligt skild från "vald" */
 .segment:focus-visible .seg-kant { stroke: var(--primar); stroke-width: 10; } /* tydlig fokusring */
 .segment:focus-visible .manad-etikett { font-weight: 700; }
-.manad-etikett {
-  font-family: var(--font-sans); font-size: 16px; fill: var(--text-dampad);
-  text-anchor: middle; dominant-baseline: central;
+.manad-etikett { /* månadsnamnet inuti segmentet */
+  font-family: var(--font-sans); font-size: 15px; font-weight: 600; fill: var(--text);
+  text-anchor: middle; dominant-baseline: central; pointer-events: none;
 }
 .hjul-mitt text { text-anchor: middle; dominant-baseline: central; }
 .mitt-arstid { font-family: var(--font-sans); font-size: 16px; font-weight: 600; letter-spacing: 0.4px; fill: var(--text-dampad); }
@@ -422,6 +427,25 @@ select.falt {
   background-repeat: no-repeat; background-position: right 12px center;
 }
 input[type="date"].falt { padding-right: 8px; }
+/* Rullistans öppna lista i GRO:s stil i stället för systemets blå (webbläsare med stöd för base-select).
+   Andra webbläsare och telefoner visar sin vanliga väljare. */
+@supports (appearance: base-select) {
+  select.falt, select.falt::picker(select) { appearance: base-select; }
+  select.falt { display: flex; align-items: center; }
+  select.falt::picker-icon { display: none; } /* vi har redan en egen pil */
+  select.falt::picker(select) {
+    margin-top: 6px; padding: 6px; border: 1.5px solid var(--primar); border-radius: 12px;
+    background: var(--bg-falt); color: var(--text-primary); box-shadow: var(--skugga-lyft);
+  }
+  select.falt option {
+    min-height: 44px; padding: 10px 12px; border-radius: 8px; gap: 8px;
+    font-size: 16px; line-height: 24px; color: var(--text-primary); background: transparent; cursor: pointer;
+  }
+  select.falt option:hover, select.falt option:focus-visible { background: var(--tertiar); outline: none; }
+  select.falt option:checked { background: var(--brand-soft); font-weight: 600; }
+  select.falt option::checkmark { color: var(--primar); }
+  select.falt option:disabled { color: var(--text-dampad); }
+}
 /* Fokus = 2 px grön ram + halo */
 .falt:focus-visible, .steg-varde:focus-visible {
   border: 2px solid var(--primar); box-shadow: 0 0 0 4px rgba(83, 93, 69, 0.3); border-radius: 12px;

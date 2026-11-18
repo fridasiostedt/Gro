@@ -344,7 +344,7 @@
       titel: 'Årshjul – GRO', flik: 'arshjul',
       html:
         sidhuvud('Årshjul', null, lage.ar !== nu.getFullYear() ? String(lage.ar) : null) +
-        Hjul.rita({ ar: lage.ar, vald: lage.manad, nuManad: lage.ar === nu.getFullYear() ? nu.getMonth() : -1, statistik: statistik }) +
+        Hjul.rita({ ar: lage.ar, vald: lage.manad, arstid: lage.arstid || null, nuManad: lage.ar === nu.getFullYear() ? nu.getMonth() : -1, statistik: statistik }) +
         manadskort(lage, 'kal') +
         '<section class="sektion" aria-labelledby="manadens">' +
           '<div class="sektionsrubrik"><h2 id="manadens">Uppgifter i ' + esc(manadNamn) + '</h2></div>' +
@@ -354,7 +354,12 @@
       efter: function () {
         Hjul.koppla(huvud, function (m) {
           ui.kalender.manad = m;
+          ui.kalender.arstid = null;
           rita({ fokus: '.segment[data-manad="' + m + '"]' });
+        }, function (id) {
+          // Klick på en årstid visar dess antal i mitten; klick igen går tillbaka till månaden
+          ui.kalender.arstid = ui.kalender.arstid === id ? null : id;
+          rita({ fokus: '.arstid-knapp[data-arstid="' + id + '"]' });
         });
       }
     };

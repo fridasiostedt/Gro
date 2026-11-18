@@ -74,8 +74,16 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   När appen öppnas är den vald, och skärmläsare läser upp den som "nuvarande månad".
 - **Inre ring med årstider i årshjulet:** innanför månaderna finns en ring med fyra delar (Vinter, Vår, Sommar,
   Höst), där varje del täcker tre månader. Den har samma färger och mörkgröna kanter som månaderna, och
-  årstidens namn står längs bågen. Ringen är dekorativ (`aria-hidden`), eftersom månaderna redan läses upp och
-  hjulets mitt visar årstiden. Månadsringen är smalare (102–132 px i radie) för att ringarna ska få plats.
+  årstidens namn står längs bågen.
+- **Klickbara årstider:** varje årstid är en knapp (`role="button"`, `aria-pressed`, Tab + Enter/mellanslag). Ett klick
+  visar årstidens antal uppgifter och antal klara i hjulets mitt, och ett nytt klick går tillbaka till månaden.
+  Skärmläsare läser t.ex. "Höst (sep–nov): 6 uppgifter, 2 klara".
+- **Större hjul med månadsnamnen inuti:** månadsnamnen står inne i segmenten i stället för utanför. Därför kunde
+  hjulet bli större (månader 124–168 px i radie, årstider 80–120 px).
+- **Rullistor i GRO:s stil:** den öppna listan har fältfärg, mörkgrön kant, rundade hörn och beige markering i
+  stället för systemets blå. Det görs med `appearance: base-select`, som fungerar i nyare Chrome och Edge. Andra
+  webbläsare och telefoner visar sin vanliga väljare, och iPhone visar ett rullhjul. Rullistan är fortfarande
+  ett vanligt `<select>`, så tangentbord och skärmläsare fungerar som förut.
 - **Årstiden i hjulets mitt** ("HÖST", "VINTER" …) är större: 16 px halvfet i stället för 12 px.
 - **Ingen understrykning vid hovring eller klick:** uppgiftstitlar och månadsnamnen i årshjulet stryks inte längre
   under. Hovring syns ändå genom att kortet får ljusare bakgrund, och fokus syns genom fokusringen.
