@@ -365,10 +365,12 @@
       : '<p class="tom-text">Inga uppgifter i ' + esc(manadNamn) + '.</p>';
 
     return {
-      titel: 'Årshjul – GRO', flik: 'arshjul',
+      titel: 'Årshjul – GRO', flik: 'arshjul', gronRubrik: true,
       html:
-        sidhuvud('Årshjul', null, lage.ar !== nu.getFullYear() ? String(lage.ar) : null) +
-        '<p class="intro-text">Se vad som väntar kommande månader. Tryck på en månad eller årstid.</p>' +
+        '<div class="gron-rubrik">' +
+          sidhuvud('Årshjul', null, lage.ar !== nu.getFullYear() ? String(lage.ar) : null) +
+          '<p class="intro-text">Se vad som väntar kommande månader. Tryck på en månad eller årstid.</p>' +
+        '</div>' +
         Hjul.rita({ ar: lage.ar, vald: lage.manad, valdAvAnvandare: !!lage.klickad, arstid: lage.arstid || null, nuManad: lage.ar === nu.getFullYear() ? nu.getMonth() : -1, statistik: statistik }) +
         manadskort(lage, 'kal') +
         '<section class="sektion" aria-labelledby="manadens">' +
@@ -827,6 +829,7 @@
     // Översikt börjar med heron högst upp – där behövs inget toppfält (menyn finns nedtill)
     if (vy.hero) toppfalt.hidden = true;
     document.body.classList.toggle('med-hero', !!vy.hero);
+    document.body.classList.toggle('gron-sida', !!vy.gronRubrik);
 
     $$('a', bottennav).forEach(function (a) {
       if (a.getAttribute('data-flik') === vy.flik) a.setAttribute('aria-current', 'page');

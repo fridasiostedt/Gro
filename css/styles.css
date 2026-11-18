@@ -683,3 +683,18 @@ body.med-hero .statusfalt { background-color: var(--tertiar); }
   .hero-bricka { border-color: CanvasText; }
   .knapp:has(+ #f-import:focus-visible) { outline: 3px solid Highlight; outline-offset: 2px; }
 }
+
+/* ---------- Grön rubrikyta (Årshjul): samma mörkgröna som gräsmattan, böljande nederkant ---------- */
+body.gron-sida .statusfalt, body.gron-sida .toppfalt { background-color: var(--primar); color: var(--text-pa-mork); }
+body.gron-sida .toppfalt.skuggad { box-shadow: none; }
+body.gron-sida .toppfalt .ikonknapp { color: var(--text); } /* pilen ska synas på den ljusa knappen */
+.gron-rubrik {
+  position: relative; flex: none; margin: -11px -24px 8px; padding: 6px 24px 40px;
+  background: var(--primar); color: var(--text-pa-mork);
+}
+.gron-rubrik h1, .gron-rubrik .underrad, .gron-rubrik .intro-text { color: var(--text-pa-mork); }
+.gron-rubrik .intro-text { margin-top: 10px; }
+.gron-rubrik::after { /* mjukt böljande kant mot sidans bakgrund */
+  content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 22px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 402 22' preserveAspectRatio='none'%3E%3Cpath d='M0 10 C60 0 120 4 200 12 C280 20 340 4 402 8 V22 H0Z' fill='%23f0d8bf'/%3E%3C/svg%3E") bottom / 100% 100% no-repeat;
+}

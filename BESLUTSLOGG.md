@@ -158,6 +158,8 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   Allt annat (t.ex. `javascript:`) rensas fortfarande bort, och testerna kontrollerar det.
 - **Ifyllnadsfälten är helt släta:** den inre skuggan som gjorde #FEFAFA gråare är borttagen. Mätning i webbläsaren
   visar att alla fält på alla sidor har bakgrunden #FEFAFA.
+- **Grön rubrikyta på Årshjul (test):** rubriken och introtexten ligger på mörkgrönt #535D45 med en mjukt böljande
+  nederkant. Statusfältet och tillbaka-raden har samma gröna färg. Texten är ljus #FAF5F5, med 7,1:1 i kontrast.
 - **Rullningslisten är dold** (`scrollbar-width: none`). Innehållet scrollar fortfarande med mus, pekskärm
   och tangentbord.
 
