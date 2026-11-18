@@ -99,7 +99,7 @@
           '<g transform="translate(' + dx + ' ' + dy + ')"><g class="seg-inre">' +
             '<path class="seg-kant" d="' + segmentVag(a0, a1) + '"/>' +
             '<path class="seg-form arstid-' + L.arstid(m) + '" d="' + segmentVag(a0, a1) + '"/>' +
-            '<text class="manad-etikett" aria-hidden="true" x="' + f(et[0]) + '" y="' + f(et[1]) + '">' + esc(L.MANADER_KORT[m].toUpperCase()) + '</text>' +
+            '<text class="manad-etikett" aria-hidden="true" x="' + f(et[0]) + '" y="' + f(et[1]) + '">' + esc(L.MANADER_KORT[m]) + '</text>' +
           '</g></g>' +
         '</g>'
       );

@@ -94,7 +94,7 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   Den skjuts ut först när du själv väljer en månad (klick, piltangenter eller månadspilarna) eller hovrar.
 - **Optiskt centrerade pilar:** pilarna "<" och ">" i de runda knapparna var matematiskt centrerade men såg
   förskjutna ut, eftersom spetsen gör den ena sidan tyngre. De är flyttade 1 px mot den öppna sidan.
-- **Månadsnamn med versaler** i årshjulet (JAN, FEB …), 14 px fet med lite spärrning, samma stil som årstiderna.
+- **Månadsnamn i årshjulet** provades med versaler, men produktägaren valde gemener (jan, feb …), 16 px halvfet.
 - **Rullistor i GRO:s stil:** den öppna listan har fältfärg, mörkgrön kant, rundade hörn och beige markering i
   stället för systemets blå. Det görs med `appearance: base-select`, som fungerar i nyare Chrome och Edge. Andra
   webbläsare och telefoner visar sin vanliga väljare, och iPhone visar ett rullhjul. Rullistan är fortfarande
