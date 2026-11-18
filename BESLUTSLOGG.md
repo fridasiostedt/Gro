@@ -5,6 +5,16 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
 
 ---
 
+## 2026-11-18 · Klickbara prioriteringar
+- Produktägaren önskade att kunna klicka på varje prioritering. Rutorna under *Mina prioriteringar* är nu länkar
+  (hela rutan, 113 × 118 px) till en ny vy, `#/prioritet/<id>`.
+- Vyn visar uppgifterna uppdelade i *Försenade*, *Att göra* och *Klara*. Två filterchips växlar mellan den valda
+  månaden (samma som på Översikt) och alla månader.
+- *Ny uppgift* från vyn har prioriteringen förvald.
+- Skärmläsare hör t.ex. "Måste 2 av 2 kvar i november. Visa uppgifterna."
+- **AI-fel:** siffran och texten lästes först ihop ("Måste2av 2 kvar"). *Upptäckt:* i testet av länkarnas
+  tillgängliga namn. *Åtgärd:* mellanslag mellan delarna.
+
 ## 2026-11-18 · GRO-blomman på Översikt
 - Produktägaren önskade Gros blomma även på Översikt, i mindre format: en cirkel på 76 px till höger om
   rubriken. Den finns inte i Figma.

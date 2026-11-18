@@ -237,9 +237,12 @@
 
     var raknare = L.PRIORITETER.map(function (p) {
       var pp = st.perPrio[p.id];
-      return '<li class="raknare">' + prioBricka(p.id) +
-        '<span class="raknare-tal">' + pp.kvar + '</span>' +
-        '<span>av ' + pp.totalt + ' kvar</span></li>';
+      // Hela rutan är en länk till listan med uppgifter i den prioriteringen
+      return '<li><a class="raknare" href="#/prioritet/' + p.id + '?ar=' + lage.ar + '&manad=' + lage.manad + '">' +
+        prioBricka(p.id) + ' ' +
+        '<span class="raknare-tal">' + pp.kvar + '</span> ' +
+        '<span>av ' + pp.totalt + ' kvar</span>' +
+        '<span class="visuellt-dold"> i ' + esc(L.MANADER[lage.manad]) + '. Visa uppgifterna.</span></a></li>';
     }).join('');
 
     return {
@@ -541,7 +544,7 @@
           '<a class="knapp knapp-primar" href="#/vaxt/ny">Lägg till växt' + ikon('plus', 20) + '</a>'
       };
     }
-    var d = u || { titel: '', vaxtId: params.vaxt || (vaxter.length === 1 ? vaxter[0].id : ''), start: idag(), deadline: '', aterkommande: 'nej', paminnelse: true, prioritet: '', ansvarig: '' };
+    var d = u || { titel: '', vaxtId: params.vaxt || (vaxter.length === 1 ? vaxter[0].id : ''), start: idag(), deadline: '', aterkommande: 'nej', paminnelse: true, prioritet: L.prioNamn(params.prioritet) ? params.prioritet : '', ansvarig: '' };
 
     var vaxtVal = '<select class="falt" id="f-vaxtId" name="vaxtId" required' + beskrivning('vaxtId') + '>' +
       '<option value="">Välj växt</option>' +
@@ -601,6 +604,55 @@
           }
         });
       }
+    };
+  }
+
+  /** Uppgifterna i en prioritering, för vald månad eller alla månader. */
+  function vyPrioritet(prio, params) {
+    if (L.prioNamn(prio) === '') return vyHittadesInte('Prioriteringen finns inte.');
+    var ar = parseInt(params.ar, 10), manad = parseInt(params.manad, 10);
+    if (isNaN(ar) || isNaN(manad) || manad < 0 || manad > 11) { ar = nu.getFullYear(); manad = nu.getMonth(); }
+    var allaManader = params.alla === '1';
+    var t = idag();
+    var bas = store.uppgifter().filter(function (u) { return u.prioritet === prio; });
+    var urval = allaManader ? bas : L.uppgifterIManad(bas, ar, manad);
+    var lista = L.sorteraUppgifter(urval);
+    var kvar = lista.filter(function (u) { return !L.arKlar(u); });
+    var klara = lista.filter(L.arKlar);
+    var manadNamn = L.MANADER[manad] + (ar !== nu.getFullYear() ? ' ' + ar : '');
+    var namn = L.prioNamn(prio);
+    var basUrl = '#/prioritet/' + prio + '?ar=' + ar + '&manad=' + manad;
+
+    function chip(href, text, vald) {
+      return '<a class="valchip' + (vald ? ' vald' : '') + '" href="' + href + '"' + (vald ? ' aria-current="true"' : '') + '>' +
+        (vald ? ikon('bock', 18) : '') + '<span>' + esc(text) + '</span></a>';
+    }
+    function avsnitt(id, rubrik, uppg) {
+      return '<section class="sektion" aria-labelledby="' + id + '"><h2 class="sektion-h2" id="' + id + '">' + esc(rubrik) +
+        ' <span class="grupp-antal">(' + uppg.length + ')</span></h2>' + uppgiftslista(uppg) + '</section>';
+    }
+    var forsenade = kvar.filter(function (u) { return L.arForsenad(u, t); });
+    var kommande = kvar.filter(function (u) { return !L.arForsenad(u, t); });
+
+    return {
+      titel: namn + ' – GRO', flik: 'oversikt',
+      html:
+        '<div class="sidhuvud">' +
+          '<p class="overrad">Prioritering</p>' +
+          '<h1 tabindex="-1" class="prio-rubrik">' + prioBricka(prio) + '</h1>' +
+          '<p class="underrad">' + (allaManader ? 'Alla månader' : esc(L.stor(manadNamn))) + ' · ' +
+            kvar.length + ' av ' + lista.length + ' kvar</p>' +
+        '</div>' +
+        '<nav class="filter" aria-label="Visa period">' +
+          chip(basUrl, L.stor(manadNamn), !allaManader) +
+          chip(basUrl + '&alla=1', 'Alla månader', allaManader) +
+        '</nav>' +
+        (lista.length
+          ? (forsenade.length ? avsnitt('p-forsenade', 'Försenade', forsenade) : '') +
+            (kommande.length ? avsnitt('p-kvar', 'Att göra', kommande) : '') +
+            (klara.length ? avsnitt('p-klara', 'Klara', klara) : '')
+          : '<p class="tom-text">Inga uppgifter med prioriteringen ' + esc(namn) + (allaManader ? '' : ' i ' + esc(manadNamn)) + '.</p>') +
+        (store.vaxter().length ? '<a class="knapp knapp-sekundar" href="#/uppgift/ny?prioritet=' + prio + '">Ny uppgift' + ikon('plus', 20) + '</a>' : '')
     };
   }
 
@@ -664,6 +716,7 @@
       case 'oversikt': return vyOversikt();
       case 'arshjul': return vyArshjul();
       case 'uppgifter': return vyUppgifter();
+      case 'prioritet': return vyPrioritet(v[1], r.params);
       case 'vaxter': return vyVaxter();
       case 'vaxt':
         if (v[1] === 'ny') return vyVaxtForm(null);

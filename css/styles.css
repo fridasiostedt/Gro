@@ -301,6 +301,17 @@ body.utan-ram .huvud { padding: max(12px, env(safe-area-inset-top)) 24px max(24p
   flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 12px;
   background: var(--bg-navigation); border: 1px solid var(--primar); border-radius: 16px;
 }
+/* Rutan är en länk: hela ytan klickbar */
+a.raknare { height: 100%; text-decoration: none; color: inherit; cursor: pointer; }
+.fordelning > li { flex: 1; min-width: 0; display: flex; }
+.fordelning > li > .raknare { flex: 1; }
+@media (hover: hover) { a.raknare:hover { transform: translateY(-2px); box-shadow: var(--skugga-lyft); } }
+a.raknare:active { transform: scale(.97); }
+a.raknare:focus-visible { border-radius: 16px; }
+.prio-rubrik { display: flex; }
+a.valchip { text-decoration: none; }
+.prio-rubrik .prio { font-family: var(--font-sans); font-weight: 500; letter-spacing: 0.4px; font-size: 16px; line-height: 20px; padding: 6px 14px; gap: 6px; }
+.prio-rubrik .prio .ikon { width: 20px; height: 20px; }
 .raknare-tal { font-family: var(--font-serif); font-size: 30px; line-height: 36px; letter-spacing: -0.5px; }
 
 /* ---------- Påminnelse ---------- */

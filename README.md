@@ -112,6 +112,8 @@ Tryck på uppgiftens titel för att redigera eller ta bort den.
 - **Mina uppgifter** visar de närmaste uppgifterna. Tryck på **Visa alla** för hela listan, med
   försenade, kommande och klara uppgifter.
 - **Mina prioriteringar** visar hur många uppgifter som är kvar per prioritet under den valda månaden.
+  Tryck på en ruta (Måste, Vore bra eller Bonus) för att se alla uppgifter i den prioriteringen, uppdelade
+  i försenade, att göra och klara. Du kan välja mellan den valda månaden och alla månader.
 
 ### 6. Årshjulet
 Årshjulet visar årets tolv månader i säsongsfärger: vinter, vår, sommar och höst.
