@@ -72,6 +72,10 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   kravet på gränssnittsdelar uppfylls fortfarande. Fokusmarkeringen är en bred mörkgrön ring (10 px).
 - **Den svarta lappen "nov · nu" är borttagen** ur årshjulet. Nuvarande månad har samma etikett som de andra.
   När appen öppnas är den vald, och skärmläsare läser upp den som "nuvarande månad".
+- **Inre ring med årstider i årshjulet:** innanför månaderna finns en ring med fyra delar (Vinter, Vår, Sommar,
+  Höst), där varje del täcker tre månader. Den har samma färger och mörkgröna kanter som månaderna, och
+  årstidens namn står längs bågen. Ringen är dekorativ (`aria-hidden`), eftersom månaderna redan läses upp och
+  hjulets mitt visar årstiden. Månadsringen är smalare (102–132 px i radie) för att ringarna ska få plats.
 - **Årstiden i hjulets mitt** ("HÖST", "VINTER" …) är större: 16 px halvfet i stället för 12 px.
 - **Ingen understrykning vid hovring eller klick:** uppgiftstitlar och månadsnamnen i årshjulet stryks inte längre
   under. Hovring syns ändå genom att kortet får ljusare bakgrund, och fokus syns genom fokusringen.

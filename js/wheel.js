@@ -8,7 +8,12 @@
   'use strict';
   var L = root.GroLogic;
 
-  var STORLEK = 358, C = 179, R_UT = 132, R_IN = 72, R_ETIKETT = 160;
+  // Yttre ring: månader (R_IN–R_UT). Inre ring: årstider (R_AR_IN–R_AR_UT), tre månader per årstid.
+  var STORLEK = 358, C = 179, R_UT = 132, R_IN = 102, R_AR_UT = 98, R_AR_IN = 70, R_ETIKETT = 160;
+  // Årstidernas start i grader (januari börjar rakt upp, 30° per månad)
+  var ARSTIDER = [
+    { id: 'vinter', a0: 330 }, { id: 'var', a0: 60 }, { id: 'sommar', a0: 150 }, { id: 'host', a0: 240 }
+  ];
 
   function punkt(r, grader) {
     var rad = grader * Math.PI / 180;
@@ -16,12 +21,27 @@
   }
   function f(n) { return Math.round(n * 100) / 100; }
 
-  function segmentVag(a0, a1) {
-    var o0 = punkt(R_UT, a0), o1 = punkt(R_UT, a1), i1 = punkt(R_IN, a1), i0 = punkt(R_IN, a0);
+  function segmentVag(a0, a1, rUt, rIn) {
+    rUt = rUt || R_UT; rIn = rIn || R_IN;
+    var o0 = punkt(rUt, a0), o1 = punkt(rUt, a1), i1 = punkt(rIn, a1), i0 = punkt(rIn, a0);
     return 'M' + f(o0[0]) + ' ' + f(o0[1]) +
-      ' A' + R_UT + ' ' + R_UT + ' 0 0 1 ' + f(o1[0]) + ' ' + f(o1[1]) +
+      ' A' + rUt + ' ' + rUt + ' 0 0 1 ' + f(o1[0]) + ' ' + f(o1[1]) +
       ' L' + f(i1[0]) + ' ' + f(i1[1]) +
-      ' A' + R_IN + ' ' + R_IN + ' 0 0 0 ' + f(i0[0]) + ' ' + f(i0[1]) + ' Z';
+      ' A' + rIn + ' ' + rIn + ' 0 0 0 ' + f(i0[0]) + ' ' + f(i0[1]) + ' Z';
+  }
+
+  /** Inre ringen med årstiderna (dekorativ – månaderna och mitten bär informationen). */
+  function arstidsring() {
+    var rText = (R_AR_UT + R_AR_IN) / 2;
+    return '<g class="arstidsring" aria-hidden="true">' + ARSTIDER.map(function (a, i) {
+      var a1 = a.a0 + 90, mitt = a.a0 + 45;
+      var vand = ((mitt % 360) > 90 && (mitt % 360) < 270); // undre halvan: rita texten åt andra hållet så den blir rättvänd
+      var p0 = punkt(rText, vand ? a1 : a.a0), p1 = punkt(rText, vand ? a.a0 : a1);
+      var id = 'arstid-bage-' + i;
+      return '<path class="seg-form arstid-' + a.id + '" d="' + segmentVag(a.a0, a1, R_AR_UT, R_AR_IN) + '"/>' +
+        '<path id="' + id + '" fill="none" d="M' + f(p0[0]) + ' ' + f(p0[1]) + ' A' + rText + ' ' + rText + ' 0 0 ' + (vand ? 0 : 1) + ' ' + f(p1[0]) + ' ' + f(p1[1]) + '"/>' +
+        '<text class="arstid-namn"><textPath href="#' + id + '" startOffset="50%">' + esc(L.ARSTID_NAMN[a.id].toUpperCase()) + '</textPath></text>';
+    }).join('') + '</g>';
   }
 
   function esc(s) {
@@ -76,7 +96,7 @@
 
     return '<div class="arshjul" role="radiogroup" aria-label="Årshjul ' + opts.ar + '. Välj månad med piltangenterna." >' +
       '<svg viewBox="0 0 ' + STORLEK + ' ' + STORLEK + '" width="' + STORLEK + '" height="' + STORLEK + '" focusable="false">' +
-      delar.join('') + mittText + '</svg></div>';
+      arstidsring() + delar.join('') + mittText + '</svg></div>';
   }
 
   /** Kopplar klick och tangentbord. onVal(manad, flyttaFokus) */

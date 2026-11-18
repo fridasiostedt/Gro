@@ -328,6 +328,11 @@ a.valchip { text-decoration: none; }
 .segment { cursor: pointer; outline: none; }
 .seg-kant { fill: none; stroke: none; } /* används bara för fokusmarkering */
 .seg-form { stroke: var(--primar); stroke-width: 2; stroke-linejoin: round; transition: transform .15s; } /* mörkgrön kant runt varje månad */
+.arstidsring .seg-form { stroke-width: 2; }
+.arstid-namn {
+  font-family: var(--font-sans); font-size: 11px; font-weight: 700; letter-spacing: 1px; fill: var(--text);
+  text-anchor: middle; dominant-baseline: central; pointer-events: none;
+}
 .arstid-vinter { fill: var(--sasong-vinter); }
 .arstid-var { fill: var(--sasong-var); }
 .arstid-sommar { fill: var(--sasong-sommar); }
