@@ -80,6 +80,15 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   Skärmläsare läser t.ex. "Höst (sep–nov): 6 uppgifter, 2 klara".
 - **Större hjul med månadsnamnen inuti:** månadsnamnen står inne i segmenten i stället för utanför. Därför kunde
   hjulet bli större (månader 124–168 px i radie, årstider 80–120 px).
+- **Tydligare hovring i årshjulet:** en månad eller årstid som pekas på växer ut från hjulets mitt och får tjockare
+  kant och en skugga. Färgen ändras inte, så textkontrasten är densamma som utan hovring. Vid "minska rörelse" sker
+  ändringen utan animation.
+- **Kontrastgranskning (WCAG 2.2 AA), 18 nov:** all HTML-text på samtliga 13 vyer mättes automatiskt mot sin
+  bakgrund, och ingen låg under 4,5:1 (3:1 för stor text). SVG-text och gränssnittsdelar räknades för hand:
+  månads- och årstidsnamn mot segmentfärgerna 4,8–10,9:1, prio- och statusfärger 3,9–13,4:1, fältkanter 6,7:1.
+  **Fynd:** de mörkgröna linjerna mellan månaderna (#535d45) hade bara 2,0–2,1:1 mot vinter- och höstfärgerna.
+  **Åtgärd:** årshjulet använder en mörkare grön, `--hjul-kant: #323b28`, med 3,4–6,0:1 mot alla årstider och
+  8,5:1 mot sidans bakgrund. Den används också för fokusringen i hjulet.
 - **Rullistor i GRO:s stil:** den öppna listan har fältfärg, mörkgrön kant, rundade hörn och beige markering i
   stället för systemets blå. Det görs med `appearance: base-select`, som fungerar i nyare Chrome och Edge. Andra
   webbläsare och telefoner visar sin vanliga väljare, och iPhone visar ett rullhjul. Rullistan är fortfarande

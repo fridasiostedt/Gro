@@ -95,11 +95,11 @@
         '<g class="segment' + (arVald ? ' vald' : '') + '" role="radio" data-manad="' + m + '"' +
         ' aria-checked="' + (m === opts.vald) + '" tabindex="' + (m === opts.vald ? 0 : -1) + '"' +
         ' aria-label="' + esc(ariaText(m, st, arNu)) + '">' +
-          '<g transform="translate(' + dx + ' ' + dy + ')">' +
+          '<g transform="translate(' + dx + ' ' + dy + ')"><g class="seg-inre">' +
             '<path class="seg-kant" d="' + segmentVag(a0, a1) + '"/>' +
             '<path class="seg-form arstid-' + L.arstid(m) + '" d="' + segmentVag(a0, a1) + '"/>' +
             '<text class="manad-etikett" aria-hidden="true" x="' + f(et[0]) + '" y="' + f(et[1]) + '">' + esc(L.MANADER_KORT[m]) + '</text>' +
-          '</g>' +
+          '</g></g>' +
         '</g>'
       );
     }

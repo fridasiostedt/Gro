@@ -32,6 +32,7 @@
   --sasong-var: #e3ad9e;
   --sasong-sommar: #f3cd69;
   --sasong-host: #bc7a47;
+  --hjul-kant: #323b28;     /* mörkgrön kant i årshjulet – minst 3:1 mot alla årstidsfärger */
 
   --skugga-kort: 0 2px 8px rgba(31, 41, 33, 0.06), 0 8px 24px rgba(31, 41, 33, 0.05);
   --skugga-uppgift: 0 2px 4px rgba(31, 41, 33, 0.06), 0 8px 12px rgba(31, 41, 33, 0.05);
@@ -327,13 +328,26 @@ a.valchip { text-decoration: none; }
 .arshjul svg { max-width: 100%; height: auto; overflow: visible; }
 .segment { cursor: pointer; outline: none; }
 .seg-kant { fill: none; stroke: none; } /* används bara för fokusmarkering */
-.seg-form { stroke: var(--primar); stroke-width: 2; stroke-linejoin: round; transition: transform .15s; } /* mörkgrön kant runt varje månad */
+.seg-form { stroke: var(--hjul-kant); stroke-width: 2; stroke-linejoin: round; transition: transform .15s; } /* mörkgrön kant runt varje månad */
 .arstid-knapp { cursor: pointer; outline: none; }
+/* Hovring: segmentet växer ut från hjulets mitt, får tjockare mörkgrön kant och en skugga.
+   Färgen ändras inte, så textkontrasten är densamma som utan hovring. */
+.seg-inre, .arstid-knapp > .seg-form, .arstid-knapp > .arstid-kant, .arstid-knapp > .arstid-namn {
+  transform-box: view-box; transform-origin: 179px 179px; transition: transform .15s ease;
+}
+@media (hover: hover) {
+  .segment:hover .seg-inre { transform: scale(1.045); }
+  .segment:hover .seg-form, .arstid-knapp:hover .seg-form { stroke-width: 3.5; }
+  .segment:hover, .arstid-knapp:hover { filter: drop-shadow(0 4px 6px rgba(31, 41, 33, .3)); }
+  .arstid-knapp:hover > .seg-form, .arstid-knapp:hover > .arstid-kant, .arstid-knapp:hover > .arstid-namn { transform: scale(1.035); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .seg-inre, .arstid-knapp > * { transition: none; }
+}
 .arstid-kant { fill: none; stroke: none; }
-.arstid-knapp:hover .seg-form { filter: brightness(1.06); }
 .arstid-knapp.vald .seg-form { stroke-width: 3.5; }
 .arstid-knapp.vald { filter: drop-shadow(0 3px 5px rgba(31, 41, 33, .28)); }
-.arstid-knapp:focus-visible .arstid-kant { stroke: var(--primar); stroke-width: 10; stroke-linejoin: round; } /* fokusring */
+.arstid-knapp:focus-visible .arstid-kant { stroke: var(--hjul-kant); stroke-width: 10; stroke-linejoin: round; } /* fokusring */
 .arstid-namn {
   font-family: var(--font-sans); font-size: 13px; font-weight: 700; letter-spacing: 1px; fill: var(--text);
   text-anchor: middle; dominant-baseline: central; pointer-events: none;
@@ -342,11 +356,10 @@ a.valchip { text-decoration: none; }
 .arstid-var { fill: var(--sasong-var); }
 .arstid-sommar { fill: var(--sasong-sommar); }
 .arstid-host { fill: var(--sasong-host); }
-.segment.vald .seg-form { stroke: var(--primar); stroke-width: 3; }
-.segment:hover .seg-form { filter: brightness(1.06); }
-.segment:focus-visible .seg-form { stroke: var(--primar); stroke-width: 3; }
+.segment.vald .seg-form { stroke: var(--hjul-kant); stroke-width: 3; }
+.segment:focus-visible .seg-form { stroke: var(--hjul-kant); stroke-width: 3; }
 /* Fokus syns som en extra tjock mörk ring utanför segmentet – tydligt skild från "vald" */
-.segment:focus-visible .seg-kant { stroke: var(--primar); stroke-width: 10; } /* tydlig fokusring */
+.segment:focus-visible .seg-kant { stroke: var(--hjul-kant); stroke-width: 10; } /* tydlig fokusring */
 .segment:focus-visible .manad-etikett { font-weight: 700; }
 .manad-etikett { /* månadsnamnet inuti segmentet */
   font-family: var(--font-sans); font-size: 15px; font-weight: 600; fill: var(--text);
