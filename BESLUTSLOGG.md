@@ -119,6 +119,13 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   WCAG AA, eftersom ljuset bara gör bakgrunden ljusare.
 - **Förklarande text** under rubriken, kortad på produktägarens begäran: Årshjul – "Se vad som väntar kommande månader.
   Tryck på en månad eller årstid." Texten på Mina växter togs bort igen.
+- **GRO-logga på Översikt:** "GRO" med den lilla växtsymbolen står uppe till vänster i panelen (DM Serif Display,
+  primärfärg, 5:1 mot bakgrunden). Blomman flyttades ner lite för att ge plats.
+- **Exempeldata med bilder:** exempelväxterna har egna tecknade illustrationer (`assets/img/exempel/*.svg`) i
+  stället för foton, så inga riktiga foton eller platsdata ingår. Två nya exempelväxter (Tulpaner, Tomater) och
+  fem nya uppgifter har lagts till, spridda över året så att årshjulet och prioriteringarna får innehåll.
+  Inläsning av säkerhetskopior godkänner, utöver `data:image`, bara exakt sökvägen till de här exempelbilderna.
+  Allt annat (t.ex. `javascript:`) rensas fortfarande bort, och testerna kontrollerar det.
 - **Rullningslisten är dold** (`scrollbar-width: none`). Innehållet scrollar fortfarande med mus, pekskärm
   och tangentbord.
 

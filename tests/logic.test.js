@@ -137,10 +137,10 @@ test('store: full lagring ger begripligt fel och ingen halvsparad data', () => {
   assert.equal(s.vaxter().length, 0);
 });
 
-test('store: exempeldata använder påhittade namn och inga foton', () => {
+test('store: exempeldata använder påhittade namn och egna tecknade bilder (inga foton)', () => {
   const s = skapaStore(minneslagring()).ladda();
   s.laddaExempel('2026-11-16');
-  assert.ok(s.vaxter().every((v) => v.foto === null));
+  assert.ok(s.vaxter().every((v) => /^assets\/img\/exempel\/[a-z]+\.svg$/.test(v.foto)));
   const namn = new Set(s.uppgifter().map((u) => u.ansvarig).filter(Boolean));
   assert.deepEqual([...namn].sort(), ['Alva', 'Måns']);
 });
@@ -151,7 +151,8 @@ test('store: export och import av säkerhetskopia', () => {
   const kopia = s1.exportera();
   const s2 = skapaStore(minneslagring()).ladda();
   const r = s2.importera(kopia);
-  assert.equal(r.vaxter, 4);
+  assert.equal(r.vaxter, 6);
+  assert.deepEqual(s2.vaxter().map((v) => v.foto), s1.vaxter().map((v) => v.foto)); // exempelbilderna följer med
   assert.equal(r.uppgifter, s1.uppgifter().length);
   assert.deepEqual(s2.uppgifter().map((u) => u.status), s1.uppgifter().map((u) => u.status));
 });

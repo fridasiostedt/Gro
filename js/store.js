@@ -173,18 +173,21 @@
         return { uppgift: u, nasta: nasta };
       },
 
-      /** Påhittad exempeldata (inga riktiga namn eller foton). */
+      /** Påhittad exempeldata: påhittade namn och egna tecknade bilder (inga riktiga foton). */
       laddaExempel: function (idagStr) {
         var t = idagStr || L.idag();
         var d = function (n) { return L.laggTillDagar(t, n); };
-        var v1 = { id: nyttId(), namn: 'Rosor', sort: "Rosa 'New Dawn'", typ: 'Buske', antal: 3, plats: 'Södra spaljén', skotsel: 'Vattna rikligt vid torka. Gödsla i maj och juni. Beskär döda grenar på våren.', foto: null };
-        var v2 = { id: nyttId(), namn: 'Lavendel', sort: "Lavandula 'Hidcote'", typ: 'Perenn', antal: 6, plats: 'Rabatten vid trappan', skotsel: 'Tål torka. Klipp ner en tredjedel efter blomningen.', foto: null };
-        var v3 = { id: nyttId(), namn: 'Dahlior', sort: "'Café au Lait'", typ: 'Knöl', antal: 5, plats: 'Skärrabatten', skotsel: 'Ta upp knölarna efter första frosten och förvara frostfritt.', foto: null };
-        var v4 = { id: nyttId(), namn: 'Äppelträd', sort: "'Ingrid Marie'", typ: 'Träd', antal: 1, plats: 'Gräsmattan', skotsel: 'Vinterbeskär i februari–mars.', foto: null };
+        var bild = function (namn) { return 'assets/img/exempel/' + namn + '.svg'; };
+        var v1 = { id: nyttId(), namn: 'Rosor', sort: "Rosa 'New Dawn'", typ: 'Buske', antal: 3, plats: 'Södra spaljén', skotsel: 'Vattna rikligt vid torka. Gödsla i maj och juni. Beskär döda grenar på våren.', foto: bild('rosor') };
+        var v2 = { id: nyttId(), namn: 'Lavendel', sort: "Lavandula 'Hidcote'", typ: 'Perenn', antal: 6, plats: 'Rabatten vid trappan', skotsel: 'Tål torka. Klipp ner en tredjedel efter blomningen.', foto: bild('lavendel') };
+        var v3 = { id: nyttId(), namn: 'Dahlior', sort: "'Café au Lait'", typ: 'Knöl', antal: 5, plats: 'Skärrabatten', skotsel: 'Ta upp knölarna efter första frosten och förvara frostfritt.', foto: bild('dahlior') };
+        var v4 = { id: nyttId(), namn: 'Äppelträd', sort: "'Ingrid Marie'", typ: 'Träd', antal: 1, plats: 'Gräsmattan', skotsel: 'Vinterbeskär i februari–mars.', foto: bild('appeltrad') };
+        var v5 = { id: nyttId(), namn: 'Tulpaner', sort: 'Blandade färger', typ: 'Lök', antal: 40, plats: 'Krukorna vid entrén', skotsel: 'Plantera lökarna på hösten, ca 15 cm djupt. Låt bladen vissna ner efter blomningen.', foto: bild('tulpaner') };
+        var v6 = { id: nyttId(), namn: 'Tomater', sort: "'Gardeners Delight'", typ: 'Grönsak', antal: 4, plats: 'Växthuset', skotsel: 'Förodla inomhus i mars. Vattna jämnt och knip av sidoskotten.', foto: bild('tomater') };
         var u = function (titel, vaxt, start, dl, prio, ansv, status, ater) {
           return { id: nyttId(), titel: titel, vaxtId: vaxt.id, start: start, deadline: dl, aterkommande: ater || 'nej', paminnelse: true, prioritet: prio, ansvarig: ansv || '', status: status || 'ej', klarDatum: status === 'klar' ? t : null };
         };
-        data.vaxter = [v1, v2, v3, v4];
+        data.vaxter = [v1, v2, v3, v4, v5, v6];
         data.uppgifter = [
           u('Ta upp dahliaknölarna', v3, d(-5), d(2), 'maste', 'Alva'),
           u('Beskär rosorna', v1, d(-2), d(4), 'vorebra', 'Måns', 'pagaende'),
@@ -193,7 +196,12 @@
           u('Kalka gräsmattan runt trädet', v4, d(-14), d(-7), 'bonus', 'Måns', 'klar'),
           u('Vattna i krukorna', v2, d(-1), d(1), 'bonus', '', 'ej', 'vecka'),
           u('Vinterbeskär äppelträdet', v4, d(70), d(100), 'maste', 'Måns'),
-          u('Gödsla rosorna', v1, d(160), d(175), 'vorebra', 'Alva', 'ej', 'ar')
+          u('Gödsla rosorna', v1, d(160), d(175), 'vorebra', 'Alva', 'ej', 'ar'),
+          u('Plantera tulpanlökar', v5, d(-3), d(6), 'maste', 'Måns'),
+          u('Ställ krukorna med tulpaner i lä', v5, d(20), d(30), 'bonus', ''),
+          u('Så tomatfrön inomhus', v6, d(110), d(125), 'vorebra', 'Alva'),
+          u('Plantera ut tomaterna', v6, d(175), d(190), 'maste', 'Alva'),
+          u('Skörda äpplen', v4, d(280), d(300), 'bonus', 'Måns', 'ej', 'ar')
         ];
         data.startsidaSedd = true;
         spara();
@@ -221,7 +229,7 @@
         p.vaxter.forEach(function (v) {
           if (!v || typeof v.id !== 'string' || Object.keys(L.valideraVaxt(v)).length) return;
           var ren = rensaVaxt(v);
-          if (ren.foto && !/^data:image\/(jpeg|png|webp);base64,/.test(ren.foto)) ren.foto = null;
+          if (ren.foto && !/^data:image\/(jpeg|png|webp);base64,/.test(ren.foto) && !/^assets\/img\/exempel\/[a-z]+\.svg$/.test(ren.foto)) ren.foto = null;
           ren.id = v.id; ren.skapad = v.skapad || null;
           ids[v.id] = true; vaxter.push(ren);
         });
