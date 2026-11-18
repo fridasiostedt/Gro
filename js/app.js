@@ -313,7 +313,7 @@
             ? '<a class="knapp knapp-sekundar" href="#/uppgift/ny">Ny uppgift' + ikon('plus', 20) + '</a>'
             : '<a class="knapp knapp-primar" href="#/vaxt/ny">Lägg till växt' + ikon('plus', 20) + '</a>') +
         '</section>' +
-        '<section class="sektion" aria-labelledby="mina-prio">' +
+        '<section class="sektion prio-sektion" aria-labelledby="mina-prio">' +
           '<div class="sektionsrubrik"><h2 id="mina-prio">Mina prioriteringar</h2></div>' +
           '<p class="visuellt-dold">Gäller ' + esc(L.MANADER[lage.manad]) + '.</p>' +
           '<ul class="fordelning" role="list">' + raknare + '</ul>' +

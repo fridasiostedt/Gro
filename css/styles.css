@@ -299,6 +299,11 @@ body.utan-ram .huvud { padding: max(12px, env(safe-area-inset-top)) 24px max(24p
 
 /* ---------- Mina prioriteringar ---------- */
 .fordelning { display: flex; gap: 8px; }
+.prio-sektion { /* Mina prioriteringar samlade i en egen ruta, samma stil som månadskortet */
+  background: var(--tertiar); border: 1px solid var(--primar); border-radius: 24px;
+  padding: 20px 12px 16px; box-shadow: var(--hojdljus), var(--skugga-kort);
+}
+.prio-sektion .sektionsrubrik { padding: 0 4px; }
 .raknare {
   flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 12px;
   background: var(--bg-navigation); border: 1px solid var(--primar); border-radius: 16px;

@@ -65,6 +65,8 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
 - **Årshjulet visar inte längre streck eller antal** ("–", "2 av 6") i segmenten. Skärmläsare får fortfarande
   antalet via segmentets namn ("November, 6 uppgifter, 2 klara"), och mitten av hjulet och månadskortet
   visar siffrorna för vald månad. Kravet i briefen om att visa t.ex. "3 av 8" uppfylls därför fortfarande.
+- **Mina prioriteringar ligger i en egen ruta** på Översikt, med samma stil som månadskortet
+  (tertiär bakgrund, primärfärgad kant, rundade hörn 24 px).
 - **Rullningslisten är dold** (`scrollbar-width: none`). Innehållet scrollar fortfarande med mus, pekskärm
   och tangentbord.
 
