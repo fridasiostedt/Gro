@@ -10,6 +10,9 @@
     </linearGradient>
   </defs>
 
+  <!-- Ytan ovanför vågen (tertiär #E2DFCF), går ända upp till kanten -->
+  <path d="M-10 -2 L412 -2 L412 150 C410 116 384 82 344 74 C300 66 276 22 214 26 C160 30 140 70 88 80 C34 92 -4 120 -10 150 Z" fill="#e2dfcf"/>
+
   <!-- Bakre kulle: ger djup bakom huvudformen -->
   <path d="M-10 160 L-10 120 C30 84 76 64 140 58 C200 52 228 16 288 14 C344 12 376 44 412 54 L412 160 L-10 160 Z" fill="#c9cdb9"/>
 
@@ -22,6 +25,6 @@
   <!-- Ljus kulle till höger -->
   <path d="M232 184 C236 150 266 126 304 122 C346 118 374 140 388 170 C356 190 300 166 232 184 Z" fill="#e5e2d3"/>
 
-  <!-- Svagt högdager längs ovankanten -->
-  <path d="M-4 136 C10 112 42 90 88 80 C140 70 160 30 214 26 C276 22 300 66 344 74 C384 82 406 110 410 130" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="2" stroke-linecap="round"/>
+  <!-- Vit böljande linje längs vågens ovankant -->
+  <path d="M-4 136 C10 112 42 90 88 80 C140 70 160 30 214 26 C276 22 300 66 344 74 C384 82 406 110 410 130" fill="none" stroke="#fdfbf8" stroke-width="2" stroke-linecap="round"/>
 </svg>

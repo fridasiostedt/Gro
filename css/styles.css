@@ -650,7 +650,13 @@ body.utan-ram .toast { bottom: 24px; }
 
 /* ---------- Panel överst på Översikt ---------- */
 .hero { position: relative; flex: none; margin: 0 -24px -14px; }
-body.med-hero .huvud { padding-top: env(safe-area-inset-top, 0px); }
+body.med-hero .huvud { padding-top: 0; }
+/* Ytan ovanför vågen är tertiär (#E2DFCF) ända upp, även bakom statusfältet och telefonens säkra yta */
+body.med-hero .statusfalt { background-color: var(--tertiar); }
+.hero {
+  padding-top: env(safe-area-inset-top, 0px);
+  background: linear-gradient(var(--tertiar), var(--tertiar)) top / 100% calc(env(safe-area-inset-top, 0px) + 1px) no-repeat;
+}
 .hero-bild { display: block; width: 100%; height: auto; }
 .hero-blomma { /* Figma 02 Översikt: 114 × 142, spegelvänd, uppe till vänster */
   position: absolute; left: 30px; top: 56px; width: auto; height: 150px;

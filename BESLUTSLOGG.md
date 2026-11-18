@@ -114,6 +114,9 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   eftersom appen inte sparar personuppgifter.
 - **Böljande panel på Översikt:** den raka kanten mellan bilden och texten är ersatt av en mjuk vågform. Under vågen
   finns en suddig skugga, bakom den en mörkare kulle och längs ovankanten en svag ljuskant, vilket ger djup.
+- **Översiktens panel enligt Figma (ram 111:2):** den vita böljande linjen längs vågens ovankant är nu helt vit
+  (#FDFBF8, 2 px) och inte halvgenomskinlig. Hela ytan ovanför vågen, även statusfältet och telefonens säkra
+  yta, har färgen tertiär #E2DFCF. GRO-loggan har 5,2:1 i kontrast mot den nya färgen.
 - **Mer visuellt djup:** kort och rutor har fått ett svagt ljus uppifrån (vit gradient) och skuggor i tre lager.
   Den nedre menyn har en mjukare skugga. Kontrastgranskningen kördes igen efteråt, och all text klarar fortfarande
   WCAG AA, eftersom ljuset bara gör bakgrunden ljusare.
