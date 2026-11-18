@@ -119,6 +119,10 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
 - **Översiktens panel enligt Figma (ram 111:2):** den vita böljande linjen längs vågens ovankant är nu helt vit
   (#FDFBF8, 2 px) och inte halvgenomskinlig. Hela ytan ovanför vågen, även statusfältet och telefonens säkra
   yta, har färgen tertiär #E2DFCF. GRO-loggan har 5,2:1 i kontrast mot den nya färgen.
+- **Tecknad header på Översikt, version 3 (pressade blommor, efter ny referensbild):** headern är nu en bukett
+  pressade blommor som är knuten nertill. Den har tunna olivfärgade stjälkar, platta och lite genomskinliga kronblad
+  utan konturlinjer, en pressad pion i rosa, smörblommor i höstorange, nävor i vinterblått med ådror,
+  slöjblomster, knoppar, fröholkar och flikiga blad. Allt är en egen illustration (ingen kopia av bilden).
 - **GRO-loggan på Översikt är borttagen igen** (produktägarens begäran). Blommornas stjälkar ritas nu som
   avsmalnande, svajande former med små klängrankor, så att de ser mer levande ut.
 - **Tecknad header på Översikt, version 2 (närmare referensbilden):** luftigare, med tunna linjer (1,1 px), ljusa
