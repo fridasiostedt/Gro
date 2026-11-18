@@ -649,7 +649,7 @@ body.utan-ram .toast { bottom: 24px; }
 }
 
 /* ---------- Panel överst på Översikt ---------- */
-.hero { position: relative; flex: none; margin: 0 -24px -14px; }
+.hero { position: relative; flex: none; margin: 0 -24px 12px; } /* luft mellan headern och "Översikt" */
 body.med-hero .huvud { padding-top: 0; }
 /* Ytan ovanför vågen är tertiär (#E2DFCF) ända upp, även bakom statusfältet och telefonens säkra yta */
 body.med-hero .statusfalt { background-color: var(--tertiar); }
