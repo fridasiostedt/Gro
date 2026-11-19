@@ -193,6 +193,18 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   - Ett uppgiftskort med fokus kunde delvis hamna utanför bild (WCAG 2.4.11). Hela kortet scrollas nu fram.
   - Fokusringen på uppgiftskort var förskjuten. Nu följer den hela kortet.
   - På Årshjul kommer månaderna nu före årstiderna i fokusordningen.
+- **Klicktest av hela appen (19 nov):** `tests/klickflode.py` klickar sig igenom alla vyer med mus och formulär
+  och kontrollerar resultatet i lagringen. Den täcker start, månadspilar, status, filter, Ny/Redigera/Ta bort
+  uppgift och växt (även foto och antal), årshjulets månader och årstider, säkerhetskopia (export och import),
+  startsidan och Radera allt. Testet kördes på den vanliga appen, visningsversionen och de inbäddade filerna,
+  i datorns telefonram och i telefonstorlek med pekskärm: 37–38 godkända och 0 fel i alla körningar. Testet
+  hittade två fel som fanns i båda versionerna:
+  1. **AI-fel:** statusknappen på ett kort längst ned reagerade inte på klick. Fokus vid nedtryck fick sidan
+     att scrolla kortet till synligt läge (fixen för WCAG 2.4.11), så knappen flyttade sig 46 px innan musen
+     släpptes och klicket kom aldrig fram. Nu scrollas bara vid tangentbordsfokus (`:focus-visible`).
+  2. **AI-fel:** knappen Ta bort foto visades först när växten hade sparats, inte direkt efter att ett foto
+     valts. Nu läggs knappen till direkt.
+  Dessutom delar Dela-knappen nu adressen med `?visning` när man är i visningsversionen.
 - **Visningsversion (19 nov):** produktägaren ville visa appen med vanliga trädgårdsväxter. `visning.html`
   leder till `?visning`. Där används en egen lagringsnyckel (`gro:visning`), och appen fylls vid första start med
   de sex exempelväxterna plus åtta till: pioner, syren, hortensia, jordgubbar, rabarber, vinbär, potatis och

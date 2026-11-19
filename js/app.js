@@ -587,6 +587,10 @@
           forbeeredFoto(fil).then(function (data) {
             foto = data;
             $('.fotovaljare').innerHTML = fotovaljare();
+            // Knappen Ta bort foto ska finnas direkt efter att ett foto valts, inte först när växten sparats
+            if (!$('[data-atgard="ta-bort-foto"]')) {
+              $('#foto-info').insertAdjacentHTML('afterend', '<button type="button" class="textknapp" data-atgard="ta-bort-foto">Ta bort foto</button>');
+            }
             meddela('Fotot är valt.');
           }).catch(function (e) { meddela(e.message); });
         });
@@ -880,6 +884,11 @@
 
   // När ett kort får tangentbordsfokus visas hela kortet, inte bara länken (WCAG 2.4.11)
   huvud.addEventListener('focusin', function (e) {
+    // Bara vid tangentbordsfokus: vid klick/tryck skulle scrollen flytta knappen mellan nedtryck och
+    // släpp, och då kommer klicket aldrig fram (t.ex. statusknappen på ett kort längst ned).
+    var tangentbord = true;
+    try { tangentbord = e.target.matches(':focus-visible'); } catch (fel) { /* äldre webbläsare */ }
+    if (!tangentbord) return;
     var kort = e.target.closest && e.target.closest('.uppgiftskort, .vaxtkort, .raknare');
     if (kort && kort.scrollIntoView) kort.scrollIntoView({ block: 'nearest' });
   });
@@ -959,7 +968,7 @@
         laddaExempel();
       }
     } else if (namn === 'dela') {
-      var url = location.origin + location.pathname;
+      var url = location.origin + location.pathname + location.search; // visningsversionen delas som visningsversion
       if (navigator.share) {
         navigator.share({ title: 'GRO – Grönska. Rutin. Omtanke.', text: 'Håll koll på allt trädgården behöver – och när.', url: url }).catch(function () {});
       } else if (navigator.clipboard) {
