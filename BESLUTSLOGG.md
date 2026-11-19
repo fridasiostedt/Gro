@@ -177,6 +177,9 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   är det 12 px, och samma sak gäller på Alla uppgifter.
 - **Startsidan uppifrån:** innehållet ligger i överkant och börjar 124 px från skärmens topp i stället för att stå
   längst ner.
+- **Mindre rubriker utanför kort är #1D1F19:** det gäller sektionsrubriker som "Mina uppgifter", "Kommande",
+  "Uppgifter" och "Att göra", och grupprubrikerna på Årshjul. Stora sidrubriker (h1) är kvar i #535D45, och
+  rubriker inne i kort är #1F2A22.
 - **All text i kort är #1F2A22:** det gäller månadskortet, uppgiftskorten, växtkorten, prioriteringsrutorna,
   skötselkortet och inställningskorten, med rubriker, metadata, taggar, länkar och knapptext. Undantag är piller och
   knappar med mörk bakgrund (Måste, Vore bra, primär- och farliga knappar). De behåller ljus text, eftersom
