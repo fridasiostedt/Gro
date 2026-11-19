@@ -177,6 +177,10 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   är det 12 px, och samma sak gäller på Alla uppgifter.
 - **Startsidan uppifrån:** innehållet ligger i överkant och börjar 124 px från skärmens topp i stället för att stå
   längst ner.
+- **All text i kort är #1F2A22:** det gäller månadskortet, uppgiftskorten, växtkorten, prioriteringsrutorna,
+  skötselkortet och inställningskorten, med rubriker, metadata, taggar, länkar och knapptext. Undantag är piller och
+  knappar med mörk bakgrund (Måste, Vore bra, primär- och farliga knappar). De behåller ljus text, eftersom
+  #1F2A22 på mörkrött eller mörkgrönt skulle ge under 3:1 i kontrast. Kontrastgranskningen av alla vyer gick igenom.
 - **Rullningslisten är dold** (`scrollbar-width: none`). Innehållet scrollar fortfarande med mus, pekskärm
   och tangentbord.
 
