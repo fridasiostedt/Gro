@@ -247,12 +247,14 @@ body.utan-ram .huvud { padding: max(12px, env(safe-area-inset-top)) 24px max(24p
 .forlopp span { position: absolute; left: -1px; top: -1px; bottom: -1px; background: var(--primar); border-radius: 4px; }
 
 /* ---------- Sektioner ---------- */
-.sektion { display: flex; flex-direction: column; gap: 32px; }
+.sektion { display: flex; flex-direction: column; gap: 12px; } /* rubrik → innehåll: 12 px */
+.sektion > .knapp, .sektion > .prio-grupp + .prio-grupp { margin-top: 20px; } /* fristående delelement: 32 px */
+.installningskort > .knapp, .installningskort > .prio-grupp + .prio-grupp { margin-top: 0; }
 .sektionsrubrik { display: flex; align-items: center; justify-content: space-between; }
 .sektionsrubrik h2 { color: var(--primar); }
 .visa-alla { font-size: 12px; line-height: 18px; padding: 13px 0; margin: -13px 0; text-underline-offset: 3px; }
 .tom-text { color: var(--text-dampad); }
-.kortlista { display: flex; flex-direction: column; gap: 32px; }
+.kortlista { display: flex; flex-direction: column; gap: 12px; } /* mellan uppgiftskort: 12 px */
 
 /* ---------- Prioritetsbricka ---------- */
 .prio {
@@ -379,7 +381,7 @@ a.valchip { text-decoration: none; }
 .mitt-manad { font-family: var(--font-serif); font-size: 24px; fill: var(--text); }
 .mitt-antal { font-family: var(--font-sans); font-size: 12px; fill: var(--text); }
 
-.prio-grupp { display: flex; flex-direction: column; gap: 32px; }
+.prio-grupp { display: flex; flex-direction: column; gap: 12px; } /* grupprubrik → kort: 12 px */
 .grupp-rubrik { display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 500; }
 .grupp-antal { color: var(--text-dampad); }
 
