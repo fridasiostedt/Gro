@@ -182,8 +182,10 @@ body.utan-ram .huvud { padding: max(12px, env(safe-area-inset-top)) 24px max(24p
 
 /* ---------- Startsida ---------- */
 .start {
-  flex: 1 0 auto; display: flex; flex-direction: column; justify-content: flex-end;
-  align-items: center; gap: 32px; padding: 24px 0 0;
+  flex: 1 0 auto; display: flex; flex-direction: column; justify-content: flex-start;
+  align-items: center; gap: 32px;
+  /* Allt uppe, 124 px från skärmens överkant (statusfältet är 54 px på dator) */
+  padding: calc(124px - var(--statusfalt-h, 0px)) 0 0;
 }
 .start-topp { display: flex; flex-direction: column; align-items: center; gap: 25px; }
 .start-rubriker { display: flex; flex-direction: column; align-items: center; gap: 32px; }
@@ -554,6 +556,7 @@ body.utan-ram .toast { bottom: 24px; }
 /* ---------- Statusfält som på en iPhone (bara i datorns telefonram) ---------- */
 .statusfalt { display: none; }
 @media (hover: hover) and (pointer: fine) {
+  :root { --statusfalt-h: 54px; }
   .statusfalt {
     position: relative; z-index: 6; flex: none; height: 54px; padding: 0 30px 0 44px;
     display: flex; align-items: center; justify-content: space-between;
