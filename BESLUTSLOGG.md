@@ -193,6 +193,10 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   - Ett uppgiftskort med fokus kunde delvis hamna utanför bild (WCAG 2.4.11). Hela kortet scrollas nu fram.
   - Fokusringen på uppgiftskort var förskjuten. Nu följer den hela kortet.
   - På Årshjul kommer månaderna nu före årstiderna i fokusordningen.
+- **Stora knappar: högst 12 px (19 nov):** alla stora knappar har nu 12 px till innehållet ovanför och till
+  nästa knapp. Det gäller Lägg till växt, Ny uppgift, Skapa ny uppgift, Redigera växt, Spara-knapparna i
+  formulären, startsidans knappar och knapparna i bekräftelsedialogen (tidigare 32 eller 44 px). Avståndet
+  från en knapp till nästa sektion är kvar på 32 px, för det skiljer sektioner åt och hör inte till knappen.
 - **Prioritet som rubrik (19 nov):** där Måste, Vore bra och Bonus fungerar som rubrik utanför korten (grupperna
   i Årshjulets lista och rubriken på prioriteringssidan) står nu bara texten i versaler, utan etikett. Det var
   produktägarens beslut. Etiketterna i korten och räknarna är kvar. Versalerna kommer från CSS

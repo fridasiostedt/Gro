@@ -212,7 +212,7 @@ body.utan-ram .huvud { padding: max(12px, env(safe-area-inset-top)) 24px max(24p
 .blomma.saknas .blomma-bild { display: none; }
 .blomma.saknas .blomma-reserv { display: flex; position: absolute; inset: 0; align-items: center; justify-content: center; color: var(--primar); }
 .start-text { text-align: center; }
-.atgarder { display: flex; flex-direction: column; gap: 12px; width: 100%; padding-top: 12px; }
+.atgarder { display: flex; flex-direction: column; gap: 12px; width: 100%; margin-top: -20px; } /* 12 px från texten ovanför */
 .atgarder + .liten-text { margin-top: -20px; } /* 12 px från knapparna till informationstexten */
 .start .liten-text { color: var(--text-dampad); text-align: center; }
 
@@ -251,7 +251,10 @@ body.utan-ram .huvud { padding: max(12px, env(safe-area-inset-top)) 24px max(24p
 
 /* ---------- Sektioner ---------- */
 .sektion { display: flex; flex-direction: column; gap: 12px; } /* rubrik → innehåll: 12 px */
-.sektion > .knapp, .sektion > .prio-grupp + .prio-grupp { margin-top: 20px; } /* fristående delelement: 32 px */
+.sektion > .prio-grupp + .prio-grupp { margin-top: 20px; } /* fristående delelement: 32 px */
+/* Stora knappar: högst 12 px till innehållet ovanför och till knappen under (produktägarens beslut 19 nov) */
+.sektion > .knapp { margin-top: 0; }
+.huvud > .knapp, .huvud > .hantera { margin-top: -20px; } /* 32 px gap − 20 = 12 px */
 .installningskort > .knapp, .installningskort > .prio-grupp + .prio-grupp { margin-top: 0; }
 .sektionsrubrik { display: flex; align-items: center; justify-content: space-between; }
 .sektionsrubrik h2 { color: var(--primar); }
@@ -442,10 +445,10 @@ a.valchip { text-decoration: none; }
 .formular { display: flex; flex-direction: column; gap: 32px; }
 .formular > .sidhuvud { margin-bottom: 0; }
 .formular > .knapp-primar { margin-top: 0; } /* 32 px som övriga delelement */
-/* Ny växt och Ny uppgift (även redigera): 12 px mellan fälten. Rubriken och Spara-knappen behåller 32 px (12 + 20). */
+/* Ny växt och Ny uppgift (även redigera): 12 px mellan fälten och till Spara-knappen. Rubriken behåller 32 px (12 + 20). */
 .formular-tat { gap: 12px; }
 .formular-tat > .sidhuvud { margin-bottom: 20px; }
-.formular-tat > .knapp-primar { margin-top: 20px; }
+.formular-tat > .knapp-primar { margin-top: 0; } /* 12 px, som alla stora knappar */
 .falt-grupp, .val-grupp { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .val-grupp { border: 0; padding: 0; margin: 0; gap: 8px; }
 .val-grupp legend { padding: 0; margin-bottom: 8px; }
@@ -536,7 +539,7 @@ input[type="date"].falt { padding-right: 8px; }
 .dialog::backdrop { background: rgba(29, 31, 25, 0.45); }
 .dialog h2 { font-family: var(--font-fraunces); font-weight: 600; font-size: 22px; line-height: 26px; font-variation-settings: "SOFT" 0, "WONK" 1; }
 .dialog p { margin: 8px 0 20px; }
-.dialog-knappar { display: flex; flex-direction: column-reverse; gap: 32px; }
+.dialog-knappar { display: flex; flex-direction: column-reverse; gap: 12px; }
 
 .toast {
   position: absolute; left: 50%; bottom: calc(100px + env(safe-area-inset-bottom)); transform: translate(-50%, 20px);
