@@ -160,6 +160,10 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   visar att alla fält på alla sidor har bakgrunden #FEFAFA.
 - **Grön rubrikyta på Årshjul (test):** rubriken och introtexten ligger på mörkgrönt #535D45 med en mjukt böljande
   nederkant. Statusfältet och tillbaka-raden har samma gröna färg. Texten är ljus #FAF5F5, med 6,4:1 i kontrast.
+- **Rubriker i #535D45:** sidrubriker (h1), sektionsrubriker (h2) och månadsnamnet i månadskortet har nu primärfärgen.
+  Kontrasten är minst 5:1 mot alla bakgrunder, och den automatiska kontrastgranskningen av alla vyer godkände
+  ändringen. Namnen på uppgifter och växter i korten är kvar i mörk textfärg. Rubriken på den gröna ytan på
+  Årshjul är fortfarande ljus.
 - **Rullningslisten är dold** (`scrollbar-width: none`). Innehållet scrollar fortfarande med mus, pekskärm
   och tangentbord.
 

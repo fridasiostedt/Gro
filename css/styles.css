@@ -87,6 +87,8 @@ h1:focus-visible, main:focus-visible, .huvud:focus-visible { box-shadow: none; o
 }
 
 /* ---------- Typografi (Figma-textstilar) ---------- */
+/* Rubrikfärg: primär mörkgrön #535D45 (sidrubriker, sektionsrubriker och månadsnamn) */
+h1, .rubrik, .sektionsrubrik h2, .sektion-h2, .h2-kort, .manad-namn, .mindre-rubrik { color: var(--primar); }
 h1, .rubrik { /* Rubrik/Rubrik */
   font-family: var(--font-serif); font-weight: 400; font-size: 30px; line-height: 36px; letter-spacing: -0.5px;
 }
@@ -236,7 +238,7 @@ body.utan-ram .huvud { padding: max(12px, env(safe-area-inset-top)) 24px max(24p
 .manadsvaljare .ikonknapp { background: var(--bg-navigation-ljus); }
 .manad-namn { /* Rubrik/H1 */
   font-family: var(--font-fraunces); font-weight: 600; font-size: 26px; line-height: 32px; letter-spacing: -0.5px;
-  font-variation-settings: "SOFT" 0, "WONK" 1; color: var(--text-primary); text-align: center;
+  font-variation-settings: "SOFT" 0, "WONK" 1; color: var(--primar); text-align: center;
 }
 .forlopp {
   position: relative; height: 8px; border-radius: 4px; overflow: hidden;
@@ -247,7 +249,7 @@ body.utan-ram .huvud { padding: max(12px, env(safe-area-inset-top)) 24px max(24p
 /* ---------- Sektioner ---------- */
 .sektion { display: flex; flex-direction: column; gap: 12px; }
 .sektionsrubrik { display: flex; align-items: center; justify-content: space-between; }
-.sektionsrubrik h2 { color: var(--text-primary); }
+.sektionsrubrik h2 { color: var(--primar); }
 .visa-alla { font-size: 12px; line-height: 18px; padding: 13px 0; margin: -13px 0; text-underline-offset: 3px; }
 .tom-text { color: var(--text-dampad); }
 .kortlista { display: flex; flex-direction: column; gap: 12px; }
