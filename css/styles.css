@@ -650,7 +650,7 @@ body.utan-ram .toast { bottom: 24px; }
 }
 
 /* ---------- Panel överst på Översikt ---------- */
-.hero { position: relative; flex: none; margin: 0 -24px 12px; } /* luft mellan headern och "Översikt" */
+.hero { position: relative; flex: none; margin: 0 -24px -24px; } /* 12 px från vågens lägsta punkt till texten under (vågen slutar 12 px ovanför bildens nederkant) */
 body.med-hero .huvud { padding-top: 0; }
 /* Ytan ovanför vågen är tertiär (#E2DFCF) ända upp, även bakom statusfältet och telefonens säkra yta */
 body.med-hero .statusfalt { background-color: var(--tertiar); }
@@ -691,7 +691,7 @@ body.gron-sida .statusfalt, body.gron-sida .toppfalt { background-color: var(--t
 body.gron-sida .toppfalt.skuggad { box-shadow: none; }
 body.gron-sida .toppfalt .ikonknapp { color: var(--text); } /* pilen ska synas på den ljusa knappen */
 .gron-rubrik {
-  position: relative; flex: none; margin: -11px -24px 8px; padding: 6px 24px 40px;
+  position: relative; flex: none; margin: -11px -24px -18px; padding: 6px 24px 40px; /* 12 px från vågens lägsta punkt till årshjulet */
   background: var(--tertiar); color: var(--text);
 }
 .gron-rubrik h1 { color: var(--primar); }

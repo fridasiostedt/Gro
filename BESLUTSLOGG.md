@@ -165,6 +165,8 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   Kontrasten är minst 5:1 mot alla bakgrunder, och den automatiska kontrastgranskningen av alla vyer godkände
   ändringen. Namnen på uppgifter och växter i korten är kvar i mörk textfärg. Rubriken på den gröna ytan på
   Årshjul är fortfarande ljus.
+- **12 px under headern:** på Översikt och Årshjul är avståndet 12 px från headerns böljande nederkant (lägsta
+  punkten) till innehållet under.
 - **Rullningslisten är dold** (`scrollbar-width: none`). Innehållet scrollar fortfarande med mus, pekskärm
   och tangentbord.
 
