@@ -439,6 +439,10 @@ a.valchip { text-decoration: none; }
 .formular { display: flex; flex-direction: column; gap: 32px; }
 .formular > .sidhuvud { margin-bottom: 0; }
 .formular > .knapp-primar { margin-top: 0; } /* 32 px som övriga delelement */
+/* Ny växt och Ny uppgift (även redigera): 12 px mellan fälten. Rubriken och Spara-knappen behåller 32 px (12 + 20). */
+.formular-tat { gap: 12px; }
+.formular-tat > .sidhuvud { margin-bottom: 20px; }
+.formular-tat > .knapp-primar { margin-top: 20px; }
 .falt-grupp, .val-grupp { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .val-grupp { border: 0; padding: 0; margin: 0; gap: 8px; }
 .val-grupp legend { padding: 0; margin-bottom: 8px; }

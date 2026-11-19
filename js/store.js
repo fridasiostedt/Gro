@@ -17,13 +17,57 @@
 
   function tomData() { return { version: 1, startsidaSedd: false, vaxter: [], uppgifter: [] }; }
 
-  function skapaStore(lagring) {
+  /** Visningsversionen: fler vanliga trädgårdsväxter och deras uppgifter (påhittade namn, egna tecknade bilder). */
+  function laggTillVisningData(data, nyttId, d, bild, u) {
+    var v = function (namn, sort, typ, antal, plats, skotsel, fil) {
+      return { id: nyttId(), namn: namn, sort: sort, typ: typ, antal: antal, plats: plats, skotsel: skotsel, foto: bild(fil) };
+    };
+    var pion = v('Pioner', "Paeonia 'Sarah Bernhardt'", 'Perenn', 4, 'Rabatten mot staketet', 'Sol och näringsrik jord. Plantera grunt. Klipp ner blasten på hösten.', 'pioner');
+    var syren = v('Syren', 'Syringa vulgaris', 'Buske', 2, 'Vid infarten', 'Klipp bort överblommade vippor. Gallra gamla grenar vart tredje år.', 'syren');
+    var hort = v('Hortensia', "Hydrangea 'Annabelle'", 'Buske', 3, 'Norra husväggen', 'Vill ha fukt och halvskugga. Klipp ner på våren.', 'hortensia');
+    var jord = v('Jordgubbar', "'Honeoye'", 'Perenn', 20, 'Pallkragarna', 'Vattna jämnt under blomning och skörd. Byt till nya plantor vart tredje år.', 'jordgubbar');
+    var rab = v('Rabarber', "'Victoria'", 'Perenn', 2, 'Köksträdgården', 'Skörda maj–juni. Låt plantan vila efter midsommar.', 'rabarber');
+    var vin = v('Vinbär', "Röda vinbär 'Jonkheer van Tets'", 'Buske', 3, 'Längs staketet', 'Beskär på senvintern. Gödsla med kompost på våren.', 'vinbar');
+    var pot = v('Potatis', "'Amandine'", 'Grönsak', 24, 'Potatislandet', 'Förgro i ljus i april. Kupa när blasten är 15 cm.', 'potatis');
+    var sol = v('Solrosor', "Helianthus 'Russian Giant'", 'Ettårig', 8, 'Söderväggen', 'Så inomhus i april. Behöver stöd när de blir höga.', 'solrosor');
+    data.vaxter.push(pion, syren, hort, jord, rab, vin, pot, sol);
+    data.uppgifter.push(
+      u('Klipp ner pionernas blast', pion, d(-6), d(3), 'vorebra', 'Alva'),
+      u('Täck hortensian med löv', hort, d(-1), d(5), 'maste', 'Alva', 'pagaende'),
+      u('Lägg kompost runt rabarbern', rab, d(-10), d(-3), 'bonus', 'Måns', 'klar'),
+      u('Skaka av snön från syrenen', syren, d(48), d(60), 'bonus', 'Måns'),
+      u('Kolla vinterskyddet på hortensian', hort, d(55), d(70), 'vorebra', 'Alva'),
+      u('Beskär vinbärsbuskarna', vin, d(85), d(110), 'vorebra', 'Måns'),
+      u('Gallra syrenbuskarna', syren, d(100), d(120), 'vorebra', ''),
+      u('Klipp ner hortensian', hort, d(115), d(135), 'vorebra', 'Alva'),
+      u('Gödsla pionerna', pion, d(120), d(135), 'bonus', ''),
+      u('Förgro sättpotatisen', pot, d(125), d(140), 'vorebra', 'Alva'),
+      u('Så solrosor inomhus', sol, d(140), d(150), 'bonus', 'Alva'),
+      u('Sätt stöd vid pionerna', pion, d(150), d(165), 'vorebra', 'Måns'),
+      u('Skörda rabarber', rab, d(160), d(205), 'bonus', 'Måns', 'ej', 'ar'),
+      u('Sätt potatis', pot, d(160), d(175), 'maste', 'Måns'),
+      u('Täck jordgubbarna med halm', jord, d(165), d(180), 'vorebra', 'Måns'),
+      u('Plantera ut solrosorna', sol, d(180), d(190), 'vorebra', 'Alva'),
+      u('Kupa potatisen', pot, d(190), d(200), 'vorebra', ''),
+      u('Klipp bort överblommade syrenvippor', syren, d(195), d(210), 'bonus', 'Måns'),
+      u('Plocka jordgubbar', jord, d(210), d(235), 'maste', 'Alva', 'ej', 'ar'),
+      u('Plocka vinbär', vin, d(225), d(245), 'vorebra', 'Alva', 'ej', 'ar'),
+      u('Ta upp potatisen', pot, d(255), d(275), 'maste', 'Alva'),
+      u('Rensa bort jordgubbsrevorna', jord, d(255), d(270), 'bonus', ''),
+      u('Spara solrosfrön till fåglarna', sol, d(290), d(310), 'bonus', ''),
+      u('Plantera nya jordgubbsplantor', jord, d(318), d(330), 'vorebra', 'Alva'),
+      u('Dela och flytta pionerna', pion, d(320), d(335), 'bonus', 'Måns')
+    );
+  }
+
+  function skapaStore(lagring, nyckel) {
+    var NYCKEL_ANVAND = nyckel || NYCKEL;
     var data = tomData();
     var lyssnare = [];
 
     function las() {
       try {
-        var r = lagring.getItem(NYCKEL);
+        var r = lagring.getItem(NYCKEL_ANVAND);
         if (r) {
           var p = JSON.parse(r);
           if (p && Array.isArray(p.vaxter) && Array.isArray(p.uppgifter)) data = p;
@@ -34,7 +78,7 @@
     /** Sparar. Kastar ett begripligt fel om lagringen är full. */
     function spara() {
       try {
-        lagring.setItem(NYCKEL, JSON.stringify(data));
+        lagring.setItem(NYCKEL_ANVAND, JSON.stringify(data));
       } catch (e) {
         var fel = new Error('Telefonens lagring för appen är full. Ta bort några foton eller växter och försök igen.');
         fel.kod = 'FULL';
@@ -174,7 +218,7 @@
       },
 
       /** Påhittad exempeldata: påhittade namn och egna tecknade bilder (inga riktiga foton). */
-      laddaExempel: function (idagStr) {
+      laddaExempel: function (idagStr, utokad) {
         var t = idagStr || L.idag();
         var d = function (n) { return L.laggTillDagar(t, n); };
         var bild = function (namn) { return 'assets/img/exempel/' + namn + '.svg'; };
@@ -203,7 +247,8 @@
           u('Plantera ut tomaterna', v6, d(175), d(190), 'maste', 'Alva'),
           u('Skörda äpplen', v4, d(280), d(300), 'bonus', 'Måns', 'ej', 'ar')
         ];
-        data.startsidaSedd = true;
+        if (utokad) laggTillVisningData(data, nyttId, d, bild, u);
+        data.startsidaSedd = !utokad;
         spara();
       },
 

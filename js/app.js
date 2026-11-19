@@ -8,17 +8,21 @@
   var L = window.GroLogic;
   var ikon = window.GroIkon;
   var Hjul = window.GroHjul;
+  // Visningsversion (visning.html eller ?visning): egen lagring, fylld med vanliga trädgårdsväxter.
+  var VISNING = !!window.GRO_VISNING || /[?&]visning\b/.test(location.search);
+  var NYCKEL = VISNING ? 'gro:visning' : undefined;
   var store;
   try {
-    store = window.GroStore.skapaStore(window.localStorage).ladda();
+    store = window.GroStore.skapaStore(window.localStorage, NYCKEL).ladda();
   } catch (e) {
     // localStorage avstängt (t.ex. privat läge i vissa webbläsare): kör i minnet
     var minne = {};
     store = window.GroStore.skapaStore({
       getItem: function (k) { return k in minne ? minne[k] : null; },
       setItem: function (k, v) { minne[k] = String(v); }
-    }).ladda();
+    }, NYCKEL).ladda();
   }
+  if (VISNING && !store.vaxter().length && !store.uppgifter().length) store.laddaExempel(L.idag(), true);
 
   var huvud = document.getElementById('huvud');
   var toppfalt = document.getElementById('toppfalt');
@@ -551,7 +555,7 @@
     return {
       titel: (v ? 'Redigera ' + v.namn : 'Ny växt') + ' – GRO', flik: 'vaxter',
       html:
-        '<form class="formular" novalidate>' +
+        '<form class="formular formular-tat" novalidate>' +
           sidhuvud(v ? 'Redigera växt' : 'Ny växt') +
           '<label class="fotovaljare" for="f-foto">' + fotovaljare() + '</label>' +
           '<input type="file" id="f-foto" accept="image/*" class="visuellt-dold" aria-describedby="foto-info">' +
@@ -660,7 +664,7 @@
     return {
       titel: (u ? 'Redigera uppgift' : 'Ny uppgift') + ' – GRO', flik: null,
       html:
-        '<form class="formular" novalidate>' +
+        '<form class="formular formular-tat" novalidate>' +
           sidhuvud(u ? 'Redigera uppgift' : 'Ny uppgift') +
           falt('titel', 'Vad ska göras?', '<input class="falt" id="f-titel" name="titel" required maxlength="80" autocomplete="off" value="' + esc(d.titel) + '"' + beskrivning('titel') + '>') +
           falt('vaxtId', 'Växt', vaxtVal) +
@@ -942,12 +946,13 @@
       ersatt('#/oversikt');
     } else if (namn === 'exempel') {
       var laddaExempel = function () {
-        store.laddaExempel(idag());
+        store.laddaExempel(idag(), VISNING);
+        if (VISNING) store.markeraStartsidaSedd();
         meddela('Exempelväxter och uppgifter är tillagda.');
         ersatt('#/oversikt');
       };
       // Skydda användarens egna växter från att skrivas över
-      if (store.vaxter().length || store.uppgifter().length) {
+      if (!VISNING && (store.vaxter().length || store.uppgifter().length)) {
         bekrafta('Ersätta dina växter?', 'Dina växter och uppgifter ersätts med exempelväxter. Det går inte att ångra.', 'Ersätt med exempel')
           .then(function (ok) { if (ok) laddaExempel(); else atg.focus(); });
       } else {

@@ -145,6 +145,22 @@ test('store: exempeldata använder påhittade namn och egna tecknade bilder (ing
   assert.deepEqual([...namn].sort(), ['Alva', 'Måns']);
 });
 
+test('store: visningsversionen har fler växter, egen lagringsnyckel och giltiga uppgifter', () => {
+  const lag = minneslagring();
+  const s = skapaStore(lag, 'gro:visning').ladda();
+  s.laddaExempel('2026-11-19', true);
+  assert.equal(s.vaxter().length, 14);
+  assert.ok(lag.getItem('gro:visning') && !lag.getItem('gro:v1')); // rör inte den vanliga appens data
+  assert.ok(s.vaxter().every((v) => /^assets\/img\/exempel\/[a-z]+\.svg$/.test(v.foto)));
+  const ids = s.vaxter().map((v) => v.id);
+  assert.ok(s.uppgifter().every((u) => Object.keys(L.valideraUppgift(u, ids)).length === 0));
+  assert.ok(ids.every((id) => s.uppgifter().some((u) => u.vaxtId === id))); // varje växt har uppgifter
+  const namn = new Set(s.uppgifter().map((u) => u.ansvarig).filter(Boolean));
+  assert.deepEqual([...namn].sort(), ['Alva', 'Måns']);
+  const r = skapaStore(minneslagring()).ladda().importera(s.exportera());
+  assert.equal(r.vaxter, 14);
+});
+
 test('store: export och import av säkerhetskopia', () => {
   const s1 = skapaStore(minneslagring()).ladda();
   s1.laddaExempel('2026-11-16');

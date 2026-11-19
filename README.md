@@ -53,6 +53,10 @@ Du kan också använda tillägget *Live Server* i VS Code: högerklicka på `ind
 ### 1. Kom igång
 Första gången visas startsidan med Gros blomma. Där kan du välja mellan två knappar:
 - **Kom igång.** Du börjar med en tom trädgård.
+- **Visningsversion.** `visning.html` (eller `?visning` efter adressen) öppnar appen fylld med 14 vanliga
+  trädgårdsväxter, till exempel pioner, syren, hortensia, jordgubbar, rabarber, vinbär, potatis och solrosor, med
+  uppgifter utspridda över hela året. Den sparar i en egen lagring (`gro:visning`), så den vanliga appens data
+  påverkas inte. Bra när du ska visa appen för någon.
 - **Prova med exempelväxter.** Appen fylls med påhittade växter och uppgifter, så att du kan se hur den
   fungerar. Exempeldatan kan tas bort växt för växt.
 

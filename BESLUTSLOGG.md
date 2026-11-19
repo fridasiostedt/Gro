@@ -193,6 +193,15 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   - Ett uppgiftskort med fokus kunde delvis hamna utanför bild (WCAG 2.4.11). Hela kortet scrollas nu fram.
   - Fokusringen på uppgiftskort var förskjuten. Nu följer den hela kortet.
   - På Årshjul kommer månaderna nu före årstiderna i fokusordningen.
+- **Visningsversion (19 nov):** produktägaren ville visa appen med vanliga trädgårdsväxter. `visning.html`
+  leder till `?visning`. Där används en egen lagringsnyckel (`gro:visning`), och appen fylls vid första start med
+  de sex exempelväxterna plus åtta till: pioner, syren, hortensia, jordgubbar, rabarber, vinbär, potatis och
+  solrosor. Det blir 14 växter med uppgifter i varje månad av det rullande året. Bilderna är egna tecknade SVG:er
+  i samma stil som de tidigare, alltså inga foton och ingen platsdata. Ansvariga är fortfarande de påhittade Alva
+  och Måns. Vi valde en egen lagringsnyckel så att en visning aldrig skriver över riktiga data. Ett enhetstest
+  kontrollerar antal, bilder, att varje växt har uppgifter och att `gro:v1` lämnas orörd.
+- **12 px mellan fälten (19 nov):** Ny/Redigera växt och Ny/Redigera uppgift har 12 px mellan fälten
+  (`.formular-tat`). Rubriken och Spara-knappen ligger kvar på 32 px.
 - **Responsiv telefonram (19 nov):** under 480 px (riktiga telefoner) fyller appen hela skärmen, även på bredare
   modeller som Pro Max. Från 480 px visas iPhone-ramen alltid i iPhonens proportioner, 402 × 874. Får den inte
   plats i höjd eller bredd skalas hela ramen ned med CSS `zoom`, och skalan beräknas i `skalaRam()` i app.js.
