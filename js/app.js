@@ -356,7 +356,7 @@
       };
     });
     var rubrikText = arstid
-      ? 'Uppgifter under ' + BESTAMD[arstid] + ' (' + arstidStat[arstid].period + ')'
+      ? 'Uppgifter under ' + BESTAMD[arstid]
       : 'Uppgifter i ' + manadNamn;
     var tomText = arstid ? 'Inga uppgifter under ' + BESTAMD[arstid] + '.' : 'Inga uppgifter i ' + manadNamn + '.';
     var lista = grupper.length

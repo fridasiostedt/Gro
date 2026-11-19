@@ -113,10 +113,9 @@
       var as = arstidStatistik(valdArstid, opts.statistik, opts.arstidStat);
       mittText =
         '<g class="hjul-mitt" aria-hidden="true">' +
-          '<text class="mitt-arstid mitt-period" x="' + C + '" y="' + (C - 26) + '">' + esc(arstidPeriod(valdArstid, opts.arstidStat)) + '</text>' +
-          '<text class="mitt-manad" x="' + C + '" y="' + (C + 2) + '">' + esc(L.ARSTID_NAMN[valdArstid.id]) + '</text>' +
-          '<text class="mitt-antal" x="' + C + '" y="' + (C + 26) + '">' + esc(L.plural(as.totalt, 'uppgift', 'uppgifter')) + '</text>' +
-          '<text class="mitt-antal" x="' + C + '" y="' + (C + 44) + '">' + esc(klaraText(as.klara)) + '</text>' +
+          '<text class="mitt-manad" x="' + C + '" y="' + (C - 8) + '">' + esc(L.ARSTID_NAMN[valdArstid.id]) + '</text>' +
+          '<text class="mitt-antal" x="' + C + '" y="' + (C + 18) + '">' + esc(L.plural(as.totalt, 'uppgift', 'uppgifter')) + '</text>' +
+          '<text class="mitt-antal" x="' + C + '" y="' + (C + 36) + '">' + esc(klaraText(as.klara)) + '</text>' +
         '</g>';
     } else {
       var v = opts.vald, vs = opts.statistik[v];
