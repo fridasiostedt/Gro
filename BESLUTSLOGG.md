@@ -110,8 +110,8 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
 - **Ifyllnadsfält i #FEFAFA:** alla fält hade redan färgen (`--bg-falt`). Antalsväljaren (− 1 +) var ljusbeige och
   har nu samma färg.
 - **Välkomnande Översikt:** rubriken är en hälsning som följer tiden på dygnet: God morgon, Hej och välkommen,
-  God eftermiddag, God kväll eller God natt. Under den står "Välkommen tillbaka." (eller "Välkommen till GRO." för en
-  ny användare) och en mjuk, inspirerande rad för månaden, en för var och en av årets tolv månader. Ordet "Översikt"
+  God eftermiddag, God kväll eller God natt. Under den står "Välkommen till GRO. Dags för lite planering?"
+  (tidigare en rad per månad, ändrat på produktägarens begäran 19 nov). Ordet "Översikt"
   står som liten överrad, så att sidan fortfarande heter likadant som i menyn. Hälsningen innehåller inget namn,
   eftersom appen inte sparar personuppgifter.
 - **Böljande panel på Översikt:** den raka kanten mellan bilden och texten är ersatt av en mjuk vågform. Under vågen
