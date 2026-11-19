@@ -193,6 +193,12 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   - Ett uppgiftskort med fokus kunde delvis hamna utanför bild (WCAG 2.4.11). Hela kortet scrollas nu fram.
   - Fokusringen på uppgiftskort var förskjuten. Nu följer den hela kortet.
   - På Årshjul kommer månaderna nu före årstiderna i fokusordningen.
+- **Årstidernas uppgifter:** ett klick på en årstid i årshjulet visar alla uppgifter för årstidens tre månader under
+  hjulet, grupperade efter prioritet. Rubriken är t.ex. "Uppgifter under vintern (dec 2026–feb 2027)". Månadskortet
+  döljs medan en årstid är vald. Eftersom sidan handlar om "kommande månader" visas årstidens pågående eller nästa
+  förekomst när innevarande år visas: i november 2026 är vintern dec 2026–feb 2027 och våren mar–maj 2027. Samma
+  period används i hjulets mitt och i knapparnas namn för skärmläsare. Logiken finns i `L.arstidPerioder` och
+  `L.uppgifterIArstid` och har enhetstester.
 - **Rullningslisten är dold** (`scrollbar-width: none`). Innehållet scrollar fortfarande med mus, pekskärm
   och tangentbord.
 

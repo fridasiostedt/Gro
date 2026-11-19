@@ -47,13 +47,15 @@
     return t;
   }
 
-  /** Summerar uppgifterna för en årstids tre månader. */
-  function arstidStatistik(a, statistik) {
+  /** Summerar uppgifterna för en årstids tre månader (eller använder appens beräkning av kommande förekomst). */
+  function arstidStatistik(a, statistik, given) {
+    if (given && given[a.id]) return given[a.id];
     var sum = { totalt: 0, klara: 0 };
     a.manader.forEach(function (m) { sum.totalt += statistik[m].totalt; sum.klara += statistik[m].klara; });
     return sum;
   }
-  function arstidPeriod(a) {
+  function arstidPeriod(a, given) {
+    if (given && given[a.id] && given[a.id].period) return given[a.id].period;
     return L.MANADER_KORT[a.manader[0]] + '–' + L.MANADER_KORT[a.manader[2]];
   }
 
@@ -66,10 +68,10 @@
       var p0 = punkt(rText, vand ? a1 : a.a0), p1 = punkt(rText, vand ? a.a0 : a1);
       var id = 'arstid-bage-' + i;
       var vald = opts.arstid === a.id;
-      var st = arstidStatistik(a, opts.statistik);
+      var st = arstidStatistik(a, opts.statistik, opts.arstidStat);
       var namn = L.ARSTID_NAMN[a.id];
       return '<g class="arstid-knapp' + (vald ? ' vald' : '') + '" role="button" tabindex="0" data-arstid="' + a.id + '"' +
-        ' aria-pressed="' + vald + '" aria-label="' + esc(namn + ' (' + arstidPeriod(a) + '): ' + L.plural(st.totalt, 'uppgift', 'uppgifter') + ', ' + klaraText(st.klara)) + '">' +
+        ' aria-pressed="' + vald + '" aria-label="' + esc(namn + ' (' + arstidPeriod(a, opts.arstidStat) + '): ' + L.plural(st.totalt, 'uppgift', 'uppgifter') + ', ' + klaraText(st.klara)) + '">' +
           '<path class="arstid-kant" d="' + segmentVag(a.a0, a1, R_AR_UT, R_AR_IN) + '"/>' +
           '<path class="seg-form arstid-' + a.id + '" d="' + segmentVag(a.a0, a1, R_AR_UT, R_AR_IN) + '"/>' +
           '<path id="' + id + '" fill="none" d="M' + f(p0[0]) + ' ' + f(p0[1]) + ' A' + rText + ' ' + rText + ' 0 0 ' + (vand ? 0 : 1) + ' ' + f(p1[0]) + ' ' + f(p1[1]) + '"/>' +
@@ -108,10 +110,10 @@
     var mittText;
     var valdArstid = ARSTIDER.filter(function (a) { return a.id === opts.arstid; })[0];
     if (valdArstid) {
-      var as = arstidStatistik(valdArstid, opts.statistik);
+      var as = arstidStatistik(valdArstid, opts.statistik, opts.arstidStat);
       mittText =
         '<g class="hjul-mitt" aria-hidden="true">' +
-          '<text class="mitt-arstid" x="' + C + '" y="' + (C - 30) + '">' + esc(arstidPeriod(valdArstid).toUpperCase()) + '</text>' +
+          '<text class="mitt-arstid mitt-period" x="' + C + '" y="' + (C - 26) + '">' + esc(arstidPeriod(valdArstid, opts.arstidStat)) + '</text>' +
           '<text class="mitt-manad" x="' + C + '" y="' + (C + 2) + '">' + esc(L.ARSTID_NAMN[valdArstid.id]) + '</text>' +
           '<text class="mitt-antal" x="' + C + '" y="' + (C + 26) + '">' + esc(L.plural(as.totalt, 'uppgift', 'uppgifter')) + '</text>' +
           '<text class="mitt-antal" x="' + C + '" y="' + (C + 44) + '">' + esc(klaraText(as.klara)) + '</text>' +

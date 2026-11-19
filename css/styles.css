@@ -725,3 +725,6 @@ body.gron-sida .toppfalt .ikonknapp { color: var(--text); } /* pilen ska synas p
 
 /* Fokus får aldrig döljas (WCAG 2.4.11): scrolla med marginal mot toppraden och menyn */
 .huvud { scroll-padding-top: 16px; scroll-padding-bottom: 24px; }
+
+/* Årstidens period i hjulets mitt ("dec 2026–feb 2027") ska rymmas i cirkeln */
+.mitt-arstid.mitt-period { font-size: 12px; font-weight: 600; letter-spacing: 0; }

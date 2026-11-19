@@ -146,6 +146,36 @@
     return lista.filter(function (t) { return t.deadline && t.deadline.indexOf(prefix) === 0; });
   }
 
+  /** Årstidens månader (0–11) i ordning. Vintern är dec, jan och feb (samma år som i årshjulet). */
+  var ARSTID_MANADER = { vinter: [11, 0, 1], var: [2, 3, 4], sommar: [5, 6, 7], host: [8, 9, 10] };
+
+  /**
+   * Årstidens tre månader som [år, månad]. Visas innevarande år väljs den pågående eller nästa
+   * förekomsten (kommande månader): i november 2026 är vintern dec 2026–feb 2027 och våren mar–maj 2027.
+   * För andra år börjar årstiden det året (vintern: dec det året–feb året efter).
+   */
+  function arstidPerioder(arstidId, ar, idagStr) {
+    var manader = ARSTID_MANADER[arstidId] || [];
+    if (!manader.length) return [];
+    var startAr = ar;
+    var d = idagStr ? tillDatum(idagStr) : null;
+    if (d && d.getFullYear() === ar) {
+      var m = d.getMonth();
+      if (arstidId === 'vinter') startAr = m <= 1 ? ar - 1 : ar;     // jan–feb hör till vintern som började i december
+      else if (m > manader[2]) startAr = ar + 1;                       // årstiden är slut i år → nästa år
+    }
+    return manader.map(function (mm) {
+      return [arstidId === 'vinter' && mm !== 11 ? startAr + 1 : startAr, mm];
+    });
+  }
+
+  /** Alla uppgifter vars deadline ligger i någon av årstidens tre månader (se arstidPerioder). */
+  function uppgifterIArstid(lista, ar, arstidId, idagStr) {
+    var ut = [];
+    arstidPerioder(arstidId, ar, idagStr).forEach(function (p) { ut = ut.concat(uppgifterIManad(lista, p[0], p[1])); });
+    return ut;
+  }
+
   function manadsStatistik(lista, ar, manad, idagStr) {
     var m = uppgifterIManad(lista, ar, manad);
     var perPrio = {};
@@ -248,6 +278,7 @@
     relativDag: relativDag, arstid: arstid,
     arKlar: arKlar, nastaStatus: nastaStatus, sorteraUppgifter: sorteraUppgifter,
     uppgifterIManad: uppgifterIManad, manadsStatistik: manadsStatistik,
+    uppgifterIArstid: uppgifterIArstid, arstidPerioder: arstidPerioder, ARSTID_MANADER: ARSTID_MANADER,
     grupperaEfterPrioritet: grupperaEfterPrioritet, behoverPaminnelse: behoverPaminnelse,
     arForsenad: arForsenad, nastaTillfalle: nastaTillfalle,
     valideraVaxt: valideraVaxt, valideraUppgift: valideraUppgift,

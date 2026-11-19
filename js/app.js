@@ -338,9 +338,27 @@
     var alla = store.uppgifter();
     var statistik = [];
     for (var m = 0; m < 12; m++) statistik.push(L.manadsStatistik(alla, lage.ar, m, t));
-    var iManad = L.uppgifterIManad(alla, lage.ar, lage.manad);
+    // Vald årstid: sammanställning av årstidens tre månader. Annars: vald månad.
+    var arstid = lage.arstid || null;
+    var BESTAMD = { vinter: 'vintern', var: 'våren', sommar: 'sommaren', host: 'hösten' };
+    var iManad = arstid ? L.uppgifterIArstid(alla, lage.ar, arstid, t) : L.uppgifterIManad(alla, lage.ar, lage.manad);
     var grupper = L.grupperaEfterPrioritet(iManad);
     var manadNamn = L.MANADER[lage.manad];
+    // Antal per årstid (kommande förekomst) till hjulets mitt och knapparnas namn
+    var arstidStat = {};
+    ['vinter', 'var', 'sommar', 'host'].forEach(function (id) {
+      var u = L.uppgifterIArstid(alla, lage.ar, id, t);
+      var p = L.arstidPerioder(id, lage.ar, t);
+      arstidStat[id] = {
+        totalt: u.length,
+        klara: u.filter(function (x) { return x.status === 'klar'; }).length,
+        period: L.MANADER_KORT[p[0][1]] + (p[0][0] !== p[2][0] ? ' ' + p[0][0] : '') + '–' + L.MANADER_KORT[p[2][1]] + ' ' + p[2][0]
+      };
+    });
+    var rubrikText = arstid
+      ? 'Uppgifter under ' + BESTAMD[arstid] + ' (' + arstidStat[arstid].period + ')'
+      : 'Uppgifter i ' + manadNamn;
+    var tomText = arstid ? 'Inga uppgifter under ' + BESTAMD[arstid] + '.' : 'Inga uppgifter i ' + manadNamn + '.';
     var lista = grupper.length
       ? grupper.map(function (g) {
         return '<section class="prio-grupp" aria-labelledby="grupp-' + g.prioritet.id + '">' +
@@ -348,7 +366,7 @@
             '<span class="grupp-antal">' + esc(L.plural(g.uppgifter.length, 'uppgift', 'uppgifter')) + '</span></h3>' +
           uppgiftslista(g.uppgifter, { niva: 4 }) + '</section>';
       }).join('')
-      : '<p class="tom-text">Inga uppgifter i ' + esc(manadNamn) + '.</p>';
+      : '<p class="tom-text">' + esc(tomText) + '</p>';
 
     return {
       titel: 'Årshjul – GRO', flik: 'arshjul', gronRubrik: true,
@@ -357,10 +375,10 @@
           sidhuvud('Årshjul', null, lage.ar !== nu.getFullYear() ? String(lage.ar) : null) +
           '<p class="intro-text">Se vad som väntar kommande månader. Tryck på en månad eller årstid.</p>' +
         '</div>' +
-        Hjul.rita({ ar: lage.ar, vald: lage.manad, valdAvAnvandare: !!lage.klickad, arstid: lage.arstid || null, nuManad: lage.ar === nu.getFullYear() ? nu.getMonth() : -1, statistik: statistik }) +
-        manadskort(lage, 'kal') +
+        Hjul.rita({ ar: lage.ar, vald: lage.manad, valdAvAnvandare: !!lage.klickad, arstid: lage.arstid || null, arstidStat: arstidStat, nuManad: lage.ar === nu.getFullYear() ? nu.getMonth() : -1, statistik: statistik }) +
+        (arstid ? '' : manadskort(lage, 'kal')) +
         '<section class="sektion" aria-labelledby="manadens">' +
-          '<div class="sektionsrubrik"><h2 id="manadens">Uppgifter i ' + esc(manadNamn) + '</h2></div>' +
+          '<div class="sektionsrubrik"><h2 id="manadens">' + esc(rubrikText) + '</h2></div>' +
           lista +
           (store.vaxter().length ? '<a class="knapp knapp-sekundar" href="#/uppgift/ny">Ny uppgift' + ikon('plus', 20) + '</a>' : '') +
         '</section>',
@@ -371,7 +389,7 @@
           ui.kalender.klickad = true;
           rita({ fokus: '.segment[data-manad="' + m + '"]' });
         }, function (id) {
-          // Klick på en årstid visar dess antal i mitten; klick igen går tillbaka till månaden
+          // Klick på en årstid visar dess antal i mitten och alla årstidens uppgifter nedanför; klick igen går tillbaka till månaden
           ui.kalender.arstid = ui.kalender.arstid === id ? null : id;
           rita({ fokus: '.arstid-knapp[data-arstid="' + id + '"]' });
         });

@@ -174,3 +174,26 @@ test('store: import avvisar felaktiga filer och skadlig data', () => {
   assert.equal(s.vaxt('a').foto, null);
   assert.equal(s.uppgift('u1').status, 'ej');
 });
+
+test('arstidPerioder: kommande förekomst när innevarande år visas', () => {
+  // 18 nov 2026: hösten pågår, vintern är dec 2026–feb 2027, våren och sommaren 2027
+  assert.deepEqual(L.arstidPerioder('host', 2026, '2026-11-18'), [[2026, 8], [2026, 9], [2026, 10]]);
+  assert.deepEqual(L.arstidPerioder('vinter', 2026, '2026-11-18'), [[2026, 11], [2027, 0], [2027, 1]]);
+  assert.deepEqual(L.arstidPerioder('var', 2026, '2026-11-18'), [[2027, 2], [2027, 3], [2027, 4]]);
+  assert.deepEqual(L.arstidPerioder('sommar', 2026, '2026-11-18'), [[2027, 5], [2027, 6], [2027, 7]]);
+  // i januari pågår vintern som började i december året innan
+  assert.deepEqual(L.arstidPerioder('vinter', 2027, '2027-01-10'), [[2026, 11], [2027, 0], [2027, 1]]);
+  // annat år än innevarande: årstiden börjar det året
+  assert.deepEqual(L.arstidPerioder('vinter', 2028, '2026-11-18'), [[2028, 11], [2029, 0], [2029, 1]]);
+});
+
+test('uppgifterIArstid: samlar årstidens tre månader, även över årsskiftet', () => {
+  const lista = [
+    { id: 'a', deadline: '2026-12-05' }, { id: 'b', deadline: '2027-01-20' }, { id: 'c', deadline: '2027-02-01' },
+    { id: 'd', deadline: '2026-01-15' }, { id: 'e', deadline: '2026-11-30' }, { id: 'f', deadline: '2027-04-02' }
+  ];
+  assert.deepEqual(L.uppgifterIArstid(lista, 2026, 'vinter', '2026-11-18').map((u) => u.id), ['a', 'b', 'c']);
+  assert.deepEqual(L.uppgifterIArstid(lista, 2026, 'host', '2026-11-18').map((u) => u.id), ['e']);
+  assert.deepEqual(L.uppgifterIArstid(lista, 2026, 'var', '2026-11-18').map((u) => u.id), ['f']);
+  assert.deepEqual(L.uppgifterIArstid(lista, 2026, 'sommar', '2026-11-18'), []);
+});
