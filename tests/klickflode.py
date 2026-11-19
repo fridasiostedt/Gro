@@ -9,7 +9,7 @@ Kräver Playwright och Chrome. Fotot som laddas upp skapas i minnet (ingen rikti
 import asyncio, os, sys, json, tempfile, base64
 from playwright.async_api import async_playwright
 BAS = os.environ.get('GRO_URL', 'http://localhost:8765/')
-VISNING = 'visning' in BAS
+VISNING = '?visning' in BAS or BAS.split('?')[0].rstrip('/').split('/')[-1].startswith(('visning', 'gro-visning'))
 NYCKEL = 'gro:visning' if VISNING else 'gro:v1'
 OK, FEL = [], []
 def check(v, t): (OK if v else FEL).append(t); print(('✓ ' if v else '✗ ') + t)
