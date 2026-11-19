@@ -172,7 +172,8 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   Undantag på produktägarens begäran: rubrik → uppgiftskort och mellan uppgiftskort 12 px (även i grupperna på
   Årshjul och Prioritering). Knappen "Ny uppgift" och grupperna har kvar 32 px. På startsidan är det 12 px mellan de två
   knapparna och mellan knapparna och informationstexten. I växtkortet på växtens sida är det 12 px mellan
-  antalet ("3 st") och rubriken Skötsel.
+  antalet ("3 st") och rubriken Skötsel. På Mina växter är det 12 px mellan växtkorten (både
+  mellan kolumnerna och mellan raderna).
 - **Startsidan uppifrån:** innehållet ligger i överkant och börjar 124 px från skärmens topp i stället för att stå
   längst ner.
 - **Rullningslisten är dold** (`scrollbar-width: none`). Innehållet scrollar fortfarande med mus, pekskärm
