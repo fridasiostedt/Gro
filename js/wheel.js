@@ -128,8 +128,9 @@
 
     return '<div class="arshjul">' +
       '<svg viewBox="0 0 ' + STORLEK + ' ' + STORLEK + '" width="' + STORLEK + '" height="' + STORLEK + '" focusable="false">' +
-      arstidsring(opts) +
+      // Månaderna först i fokusordningen (huvudvalet), sedan årstiderna. Ringarna överlappar inte.
       '<g role="radiogroup" aria-label="Årshjul ' + opts.ar + '. Välj månad med piltangenterna.">' + delar.join('') + '</g>' +
+      arstidsring(opts) +
       mittText + '</svg></div>';
   }
 

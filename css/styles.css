@@ -290,7 +290,8 @@ body.utan-ram .huvud { padding: max(12px, env(safe-area-inset-top)) 24px max(24p
 /* Hela kortets textyta är tryckyta för att redigera (≥ 44 px) */
 .uppgiftskort .kort-titel a::after { content: ""; position: absolute; inset: -12px -16px -12px -4px; border-radius: 12px; }
 .uppgiftskort .kort-titel a:focus-visible { box-shadow: none; }
-.uppgiftskort .kort-titel a:focus-visible::after { box-shadow: var(--fokus); }
+/* Fokusringen följer hela kortet (inte bara länkens yta) */
+.uppgiftskort:has(.kort-titel a:focus-visible) { box-shadow: var(--fokus); }
 .uppgiftskort:has(.kort-titel a:hover) { background: #f8e8df; }
 .status-klar .kort-titel a { text-decoration: line-through; text-decoration-thickness: 1.5px; }
 .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
@@ -616,6 +617,7 @@ body.utan-ram .toast { bottom: 24px; }
 .knapp-primar, .knapp-fara { box-shadow: var(--hojdljus), var(--skugga-knapp); }
 .knapp-sekundar, .ikonknapp, .valchip { box-shadow: var(--skugga-liten); }
 .knapp-text-fara { box-shadow: none; }
+.knapp-text-fara:focus-visible { box-shadow: var(--fokus); border-radius: 8px; } /* synlig fokus även på textknappar */
 .knapp:active, .ikonknapp:active, .valchip:active { transform: translateY(1px) scale(.98); box-shadow: none; }
 .valchip.vald { box-shadow: inset 0 1px 3px rgba(31, 41, 33, .18); }
 .statusknapp .indikator { transition: transform .15s ease; box-shadow: var(--skugga-liten); }
@@ -651,7 +653,7 @@ body.utan-ram .toast { bottom: 24px; }
   /* Element vars fokus annars ritas med skugga eller via förälder */
   :focus-visible { outline: 3px solid Highlight; }
   .vaxtkort:focus-within, .fotovaljare:has(+ #f-foto:focus-visible) { outline: 3px solid Highlight; outline-offset: 2px; }
-  .uppgiftskort .kort-titel a:focus-visible::after { outline: 3px solid Highlight; }
+  .uppgiftskort:has(.kort-titel a:focus-visible) { outline: 3px solid Highlight; outline-offset: 2px; }
   .prio-val input:focus-visible + .prio { outline: 3px solid Highlight; }
 }
 
@@ -720,3 +722,6 @@ body.gron-sida .toppfalt .ikonknapp { color: var(--text); } /* pilen ska synas p
 :is(.manadskort, .uppgiftskort, .vaxtkort, .raknare, .prio-sektion, .installningskort, .detalj-innehall) :is(.prio-maste, .prio-vorebra, .knapp-primar, .knapp-fara) * {
   color: var(--text-pa-mork);
 }
+
+/* Fokus får aldrig döljas (WCAG 2.4.11): scrolla med marginal mot toppraden och menyn */
+.huvud { scroll-padding-top: 16px; scroll-padding-bottom: 24px; }

@@ -148,6 +148,16 @@ Kräver Node 18 eller senare. Inga beroenden.
 npm test
 ```
 
+### Tangentbordstest (valfritt)
+Går igenom hela flödet med bara tangentbordet (Tab, Enter, mellanslag, pilar, Esc): hopplänk, start,
+ny växt, ny uppgift med felhantering, status, årshjulet, dialogen och tillbaka-knappen.
+Kräver Python 3 och Playwright (`pip install playwright && playwright install chromium`).
+
+```bash
+python3 -m http.server 8765      # i ett terminalfönster
+python3 tests/tangentbord.py     # i ett annat
+```
+
 ## Publicera på GitHub Pages
 1. Skapa ett nytt repo på GitHub, t.ex. `gro`. Lägg inte till README eller .gitignore, de finns redan.
 2. Kör i projektmappen:

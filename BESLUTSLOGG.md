@@ -184,6 +184,15 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   skötselkortet och inställningskorten, med rubriker, metadata, taggar, länkar och knapptext. Undantag är piller och
   knappar med mörk bakgrund (Måste, Vore bra, primär- och farliga knappar). De behåller ljus text, eftersom
   #1F2A22 på mörkrött eller mörkgrönt skulle ge under 3:1 i kontrast. Kontrastgranskningen av alla vyer gick igenom.
+- **Tangentbordsgranskning 19 nov:** alla 11 vyer tabbades igenom. Fokusordningen följer läsordningen, varje
+  stopp har ett namn och en synlig fokusring, och fokus fastnar ingenstans. Flödet testades med bara tangentbordet
+  i `tests/tangentbord.py` (37 kontroller, alla godkända): start, ny växt, ny uppgift med felhantering (fokus till
+  fältet med fel), status, årshjulet (pilar, årstider), dialog (Esc och fokus tillbaka) och tillbaka-knappen.
+  Rättat:
+  - "Ta bort växt" och "Ta bort uppgift" saknade synlig fokusring.
+  - Ett uppgiftskort med fokus kunde delvis hamna utanför bild (WCAG 2.4.11). Hela kortet scrollas nu fram.
+  - Fokusringen på uppgiftskort var förskjuten. Nu följer den hela kortet.
+  - På Årshjul kommer månaderna nu före årstiderna i fokusordningen.
 - **Rullningslisten är dold** (`scrollbar-width: none`). Innehållet scrollar fortfarande med mus, pekskärm
   och tangentbord.
 
@@ -279,6 +288,11 @@ ihop med bildkanten gjordes genomskinliga. Bilden förminskades till 400 px bred
   som SVG efter designen (Lucide-stil, ISC-licens). Byt gärna mot exporter från Figma om något skiljer.
 
 ### AI-fel (upptäckta och åtgärdade under bygget)
+0. **Hopplänken bytte sida (19 nov):** "Hoppa till innehållet" pekade på `#huvud`. Appens router tolkade det som en
+   sida och hoppade till Översikt. *Upptäckt:* med tangentbordstestet. *Åtgärd:* länken flyttar nu fokus till
+   rubriken utan att ändra adressen.
+0. **Fokusring borttagen av misstag (19 nov):** när skuggan togs bort från de röda textknapparna försvann även
+   fokusringen. *Upptäckt:* med tangentbordsgranskningen. *Åtgärd:* egen `:focus-visible`-regel.
 0. **Element trycktes ihop (18 nov):** innehållsytan är en flexkolumn. När sidan blev längre än skärmen krympte
    elementen i stället för att scrolla, och filterknapparna på Mina växter klipptes av. *Upptäckt:* på skärmdump
    efter att introtexten lagts till. *Åtgärd:* `.huvud > * { flex-shrink: 0 }`.

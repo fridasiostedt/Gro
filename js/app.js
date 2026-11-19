@@ -862,6 +862,12 @@
   }
   huvud.addEventListener('scroll', uppdateraToppskugga, { passive: true });
 
+  // När ett kort får tangentbordsfokus visas hela kortet, inte bara länken (WCAG 2.4.11)
+  huvud.addEventListener('focusin', function (e) {
+    var kort = e.target.closest && e.target.closest('.uppgiftskort, .vaxtkort, .raknare');
+    if (kort && kort.scrollIntoView) kort.scrollIntoView({ block: 'nearest' });
+  });
+
   // Klockslaget i statusfältet (bara synligt i datorns telefonram)
   var statusTid = document.getElementById('status-tid');
   function uppdateraKlocka() {
@@ -993,6 +999,15 @@
 
   $$('[data-ikon]', bottennav).forEach(function (s) {
     s.innerHTML = ikon(s.getAttribute('data-ikon'), s.getAttribute('data-ikon') === 'vaxt' ? 31 : 24);
+  });
+
+  // Hopplänken: flytta fokus till innehållet utan att ändra adressen (#huvud är ingen sida i appen)
+  var hoppa = document.querySelector('.hoppa-lank');
+  if (hoppa) hoppa.addEventListener('click', function (e) {
+    e.preventDefault();
+    var mal = huvud.querySelector('h1') || huvud;
+    if (!mal.hasAttribute('tabindex')) mal.setAttribute('tabindex', '-1');
+    mal.focus();
   });
 
   // Håll reda på hur djupt in i appen vi är (via history.state) så att
