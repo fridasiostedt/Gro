@@ -389,7 +389,7 @@ a.valchip { text-decoration: none; }
 .grupp-antal { color: var(--text-dampad); }
 
 /* ---------- Växter ---------- */
-.filter { display: flex; gap: 8px; overflow-x: auto; padding: 4px; margin: -4px; scrollbar-width: none; }
+.filter { display: flex; gap: 8px; overflow-x: auto; padding: 4px; margin: -24px -4px -4px; /* 12 px från rubrikens underrad till filterknapparna */ scrollbar-width: none; }
 .valchip {
   position: relative; flex: none; display: inline-flex; align-items: center; gap: 6px; min-height: 38px; padding: 8px 12px;
   border-radius: 999px; border: 1.5px solid var(--primar); background: var(--bg-navigation); cursor: pointer;
