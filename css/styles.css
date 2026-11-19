@@ -540,10 +540,17 @@ input[type="date"].falt { padding-right: 8px; }
 body.utan-ram .toast { bottom: 24px; }
 
 /* Större skärmar: appen visas i en telefonram (iPhone 17, 402 × 874) mitt på sidan */
+/* Riktiga telefoner (smalare än 480 px): appen fyller hela skärmen, oavsett modell. */
+@media (max-width: 479.98px) {
+  .app { max-width: none; height: 100vh; height: 100dvh; }
+}
 @media (min-width: 480px) { /* från 480 px: telefoner är smalare, så ramen syns i t.ex. sidopaneler och på datorer */
   body { background: radial-gradient(120% 90% at 50% 20%, #f7eee4 0%, var(--bg-muted) 55%, #ddd5c6 100%); }
+  /* Ramen har alltid en iPhones proportioner (402 × 874). Får den inte plats skalas hela telefonen ned
+     (zoom sätts av app.js) – i stället för att bli lägre och få fel proportioner. */
   .app {
-    height: min(var(--iphone-hojd), calc(100vh - 48px)); height: min(var(--iphone-hojd), calc(100dvh - 48px));
+    flex: none; width: var(--sida); max-width: none; height: var(--iphone-hojd);
+    zoom: var(--ram-skala, 1);
     border-radius: 48px;
     box-shadow:
       0 0 0 1px rgba(255, 255, 255, .5) inset,

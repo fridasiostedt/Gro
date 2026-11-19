@@ -193,6 +193,11 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   - Ett uppgiftskort med fokus kunde delvis hamna utanför bild (WCAG 2.4.11). Hela kortet scrollas nu fram.
   - Fokusringen på uppgiftskort var förskjuten. Nu följer den hela kortet.
   - På Årshjul kommer månaderna nu före årstiderna i fokusordningen.
+- **Responsiv telefonram (19 nov):** under 480 px (riktiga telefoner) fyller appen hela skärmen, även på bredare
+  modeller som Pro Max. Från 480 px visas iPhone-ramen alltid i iPhonens proportioner, 402 × 874. Får den inte
+  plats i höjd eller bredd skalas hela ramen ned med CSS `zoom`, och skalan beräknas i `skalaRam()` i app.js.
+  Tidigare blev ramen bara lägre i låga fönster, så den fick fel proportioner. Kontrollerat i 8 storlekar, från
+  iPhone SE till en låg datorskärm: rätt kvot (2,17), inget horisontellt överflöd och klick i hjulet fungerar.
 - **Rullande årshjul (19 nov):** årshjulet visar alltid de kommande tolv månaderna, med start i innevarande månad
   (nu nov 2026–okt 2027). Varje månad i hjulet räknar uppgifter för rätt år, så en uppgift i juni 2027 syns i
   juni, under Sommar och i listan. Tidigare räknades alla månader som innevarande år, så juni 2027 syntes inte

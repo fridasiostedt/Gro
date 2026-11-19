@@ -1055,6 +1055,19 @@
     try { localStorage.setItem(nyckel, JSON.stringify(gjort)); } catch (e) { /* ignorera */ }
   }
 
+  // ---------- Telefonramen behåller iPhonens proportioner ----------
+  // Från 480 px visas appen i en iPhone-ram (402 × 874). Är fönstret för litet skalas hela ramen ned
+  // proportionerligt, med 24 px luft runt om.
+  function skalaRam() {
+    var rot = document.documentElement;
+    if (window.innerWidth < 480) { rot.style.removeProperty('--ram-skala'); return; }
+    var luft = 48;
+    var skala = Math.min(1, (window.innerHeight - luft) / 874, (window.innerWidth - luft) / 402);
+    rot.style.setProperty('--ram-skala', Math.max(0.3, skala).toFixed(4));
+  }
+  window.addEventListener('resize', skalaRam);
+  skalaRam();
+
   rita({ forsta: true });
   avisera();
 })();
