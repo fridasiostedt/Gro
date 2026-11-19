@@ -41,8 +41,8 @@
 
   function klaraText(n) { return n === 1 ? '1 klar' : n + ' klara'; }
 
-  function ariaText(m, st, arNuvarande) {
-    var t = L.stor(L.MANADER[m]) + ', ' + L.plural(st.totalt, 'uppgift', 'uppgifter') + ', ' + klaraText(st.klara);
+  function ariaText(m, st, arNuvarande, ar) {
+    var t = L.stor(L.MANADER[m]) + (ar ? ' ' + ar : '') + ', ' + L.plural(st.totalt, 'uppgift', 'uppgifter') + ', ' + klaraText(st.klara);
     if (arNuvarande) t += ', nuvarande månad';
     return t;
   }
@@ -97,7 +97,7 @@
       delar.push(
         '<g class="segment' + (arVald ? ' vald' : '') + '" role="radio" data-manad="' + m + '"' +
         ' aria-checked="' + (m === opts.vald) + '" tabindex="' + (m === opts.vald ? 0 : -1) + '"' +
-        ' aria-label="' + esc(ariaText(m, st, arNu)) + '">' +
+        ' aria-label="' + esc(ariaText(m, st, arNu, opts.manadsAr && opts.manadsAr[m])) + '">' +
           '<g transform="translate(' + dx + ' ' + dy + ')"><g class="seg-inre">' +
             '<path class="seg-kant" d="' + segmentVag(a0, a1) + '"/>' +
             '<path class="seg-form arstid-' + L.arstid(m) + '" d="' + segmentVag(a0, a1) + '"/>' +
@@ -121,7 +121,7 @@
       var v = opts.vald, vs = opts.statistik[v];
       mittText =
         '<g class="hjul-mitt" aria-hidden="true">' +
-          '<text class="mitt-arstid" x="' + C + '" y="' + (C - 30) + '">' + esc(L.ARSTID_NAMN[L.arstid(v)].toUpperCase()) + '</text>' +
+          '<text class="mitt-arstid" x="' + C + '" y="' + (C - 30) + '">' + esc(L.ARSTID_NAMN[L.arstid(v)].toUpperCase() + (opts.manadsAr ? ' ' + opts.manadsAr[v] : '')) + '</text>' +
           '<text class="mitt-manad" x="' + C + '" y="' + (C + 4) + '">' + esc(L.stor(L.MANADER[v])) + '</text>' +
           '<text class="mitt-antal" x="' + C + '" y="' + (C + 28) + '">' + esc(L.plural(vs.totalt, 'uppgift', 'uppgifter')) + '</text>' +
         '</g>';

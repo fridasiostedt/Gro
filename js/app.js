@@ -332,33 +332,41 @@
     };
   }
 
+  function tillDatumManad(t) { return Number(t.slice(5, 7)) - 1; }
+
   function vyArshjul() {
     var lage = ui.kalender;
     var t = idag();
     var alla = store.uppgifter();
+    // Rullande år: hjulet visar de kommande tolv månaderna (t.ex. nov 2026–okt 2027)
+    var manadsAr = [];
+    for (var mm = 0; mm < 12; mm++) manadsAr.push(L.rullandeAr(mm, t));
+    lage.ar = manadsAr[lage.manad];
+    var fonster = L.rullandeFonster(t);
+    var fonsterText = L.MANADER_KORT[fonster[0][1]] + ' ' + fonster[0][0] + '–' + L.MANADER_KORT[fonster[11][1]] + ' ' + fonster[11][0];
     var statistik = [];
-    for (var m = 0; m < 12; m++) statistik.push(L.manadsStatistik(alla, lage.ar, m, t));
+    for (var m = 0; m < 12; m++) statistik.push(L.manadsStatistik(alla, manadsAr[m], m, t));
     // Vald årstid: sammanställning av årstidens tre månader. Annars: vald månad.
     var arstid = lage.arstid || null;
     var BESTAMD = { vinter: 'vintern', var: 'våren', sommar: 'sommaren', host: 'hösten' };
-    var iManad = arstid ? L.uppgifterIArstid(alla, lage.ar, arstid, t) : L.uppgifterIManad(alla, lage.ar, lage.manad);
+    var iManad = arstid ? L.uppgifterIArstid(alla, arstid, t) : L.uppgifterIManad(alla, lage.ar, lage.manad);
     var grupper = L.grupperaEfterPrioritet(iManad);
     var manadNamn = L.MANADER[lage.manad];
     // Antal per årstid (kommande förekomst) till hjulets mitt och knapparnas namn
     var arstidStat = {};
     ['vinter', 'var', 'sommar', 'host'].forEach(function (id) {
-      var u = L.uppgifterIArstid(alla, lage.ar, id, t);
-      var p = L.arstidPerioder(id, lage.ar, t);
+      var u = L.uppgifterIArstid(alla, id, t);
+      var p = L.arstidPerioder(id, t);
       arstidStat[id] = {
         totalt: u.length,
         klara: u.filter(function (x) { return x.status === 'klar'; }).length,
-        period: L.MANADER_KORT[p[0][1]] + (p[0][0] !== p[2][0] ? ' ' + p[0][0] : '') + '–' + L.MANADER_KORT[p[2][1]] + ' ' + p[2][0]
+        period: p.slice().sort(function (a, b) { return (a[0] * 12 + a[1]) - (b[0] * 12 + b[1]); }).map(function (x) { return L.MANADER_KORT[x[1]] + ' ' + x[0]; }).join(', ')
       };
     });
     var rubrikText = arstid
       ? 'Uppgifter under ' + BESTAMD[arstid]
-      : 'Uppgifter i ' + manadNamn;
-    var tomText = arstid ? 'Inga uppgifter under ' + BESTAMD[arstid] + '.' : 'Inga uppgifter i ' + manadNamn + '.';
+      : 'Uppgifter i ' + manadNamn + (lage.ar !== Number(t.slice(0, 4)) ? ' ' + lage.ar : '');
+    var tomText = arstid ? 'Inga uppgifter under ' + BESTAMD[arstid] + '.' : 'Inga uppgifter i ' + manadNamn + (lage.ar !== Number(t.slice(0, 4)) ? ' ' + lage.ar : '') + '.';
     var lista = grupper.length
       ? grupper.map(function (g) {
         return '<section class="prio-grupp" aria-labelledby="grupp-' + g.prioritet.id + '">' +
@@ -372,10 +380,10 @@
       titel: 'Årshjul – GRO', flik: 'arshjul', gronRubrik: true,
       html:
         '<div class="gron-rubrik">' +
-          sidhuvud('Årshjul', null, lage.ar !== nu.getFullYear() ? String(lage.ar) : null) +
+          sidhuvud('Årshjul') +
           '<p class="intro-text">Se vad som väntar kommande månader. Tryck på en månad eller årstid.</p>' +
         '</div>' +
-        Hjul.rita({ ar: lage.ar, vald: lage.manad, valdAvAnvandare: !!lage.klickad, arstid: lage.arstid || null, arstidStat: arstidStat, nuManad: lage.ar === nu.getFullYear() ? nu.getMonth() : -1, statistik: statistik }) +
+        Hjul.rita({ ar: fonsterText, manadsAr: manadsAr, vald: lage.manad, valdAvAnvandare: !!lage.klickad, arstid: lage.arstid || null, arstidStat: arstidStat, nuManad: tillDatumManad(t), statistik: statistik }) +
         (arstid ? '' : manadskort(lage, 'kal')) +
         '<section class="sektion" aria-labelledby="manadens">' +
           '<div class="sektionsrubrik"><h2 id="manadens">' + esc(rubrikText) + '</h2></div>' +
@@ -906,6 +914,7 @@
       var m = lage.manad + Number(steg.getAttribute('data-manad-steg'));
       lage.ar += Math.floor(m / 12);
       lage.manad = ((m % 12) + 12) % 12;
+      if (lage === ui.kalender) lage.ar = L.rullandeAr(lage.manad, idag()); // Årshjul: alltid inom de kommande tolv månaderna
       if (lage === ui.kalender) { lage.klickad = true; lage.arstid = null; }
       rita({ fokus: '[data-manad-steg="' + steg.getAttribute('data-manad-steg') + '"][data-lage="' + steg.getAttribute('data-lage') + '"]' });
       return;

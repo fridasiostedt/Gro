@@ -193,10 +193,17 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   - Ett uppgiftskort med fokus kunde delvis hamna utanför bild (WCAG 2.4.11). Hela kortet scrollas nu fram.
   - Fokusringen på uppgiftskort var förskjuten. Nu följer den hela kortet.
   - På Årshjul kommer månaderna nu före årstiderna i fokusordningen.
+- **Rullande årshjul (19 nov):** årshjulet visar alltid de kommande tolv månaderna, med start i innevarande månad
+  (nu nov 2026–okt 2027). Varje månad i hjulet räknar uppgifter för rätt år, så en uppgift i juni 2027 syns i
+  juni, under Sommar och i listan. Tidigare räknades alla månader som innevarande år, så juni 2027 syntes inte
+  (fel som produktägaren hittade). Månadspilarna på Årshjul går runt inom de tolv månaderna. Årtalet visas i
+  månadskortet, i hjulets mitt och i listans rubrik när månaden ligger nästa år, och skärmläsare får året i varje
+  månads namn. Årstiderna följer samma månader (t.ex. hösten = nov 2026 + sep–okt 2027). Logiken finns i
+  `L.rullandeAr`, `L.rullandeFonster` och `L.arstidPerioder` och har enhetstester.
 - **Årstidernas uppgifter:** ett klick på en årstid i årshjulet visar alla uppgifter för årstidens tre månader under
   hjulet, grupperade efter prioritet. Rubriken är t.ex. "Uppgifter under vintern". Månadskortet
   döljs medan en årstid är vald. Eftersom sidan handlar om "kommande månader" visas årstidens pågående eller nästa
-  förekomst när innevarande år visas: i november 2026 är vintern dec 2026–feb 2027 och våren mar–maj 2027. Samma
+  förekomst (se rullande årshjul ovan): i november 2026 är vintern dec 2026–feb 2027 och våren mar–maj 2027. Samma
   period används för antalet i hjulets mitt. Själva perioden visas inte, men skärmläsare får den i knappens namn
   (t.ex. "Vinter (dec 2026–feb 2027): 2 uppgifter"). Logiken finns i `L.arstidPerioder` och
   `L.uppgifterIArstid` och har enhetstester.
