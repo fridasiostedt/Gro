@@ -193,6 +193,10 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   - Ett uppgiftskort med fokus kunde delvis hamna utanför bild (WCAG 2.4.11). Hela kortet scrollas nu fram.
   - Fokusringen på uppgiftskort var förskjuten. Nu följer den hela kortet.
   - På Årshjul kommer månaderna nu före årstiderna i fokusordningen.
+- **Prioritet som rubrik (19 nov):** där Måste, Vore bra och Bonus fungerar som rubrik utanför korten (grupperna
+  i Årshjulets lista och rubriken på prioriteringssidan) står nu bara texten i versaler, utan etikett. Det var
+  produktägarens beslut. Etiketterna i korten och räknarna är kvar. Versalerna kommer från CSS
+  (`text-transform`), så skärmläsare läser ordet normalt och inte bokstav för bokstav.
 - **Klicktest av hela appen (19 nov):** `tests/klickflode.py` klickar sig igenom alla vyer med mus och formulär
   och kontrollerar resultatet i lagringen. Den täcker start, månadspilar, status, filter, Ny/Redigera/Ta bort
   uppgift och växt (även foto och antal), årshjulets månader och årstider, säkerhetskopia (export och import),

@@ -374,7 +374,7 @@
     var lista = grupper.length
       ? grupper.map(function (g) {
         return '<section class="prio-grupp" aria-labelledby="grupp-' + g.prioritet.id + '">' +
-          '<h3 class="grupp-rubrik" id="grupp-' + g.prioritet.id + '">' + prioBricka(g.prioritet.id) +
+          '<h3 class="grupp-rubrik" id="grupp-' + g.prioritet.id + '"><span class="prio-text">' + esc(L.prioNamn(g.prioritet.id)) + '</span>' +
             '<span class="grupp-antal">' + esc(L.plural(g.uppgifter.length, 'uppgift', 'uppgifter')) + '</span></h3>' +
           uppgiftslista(g.uppgifter, { niva: 4 }) + '</section>';
       }).join('')
@@ -740,7 +740,7 @@
       html:
         '<div class="sidhuvud">' +
           '<p class="overrad">Prioritering</p>' +
-          '<h1 tabindex="-1" class="prio-rubrik">' + prioBricka(prio) + '</h1>' +
+          '<h1 tabindex="-1" class="prio-rubrik">' + esc(L.prioNamn(prio)) + '</h1>' +
           '<p class="underrad">' + (allaManader ? 'Alla månader' : esc(L.stor(manadNamn))) + ' · ' +
             kvar.length + ' av ' + lista.length + ' kvar</p>' +
         '</div>' +

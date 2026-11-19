@@ -330,7 +330,10 @@ a.raknare { height: 100%; text-decoration: none; color: inherit; cursor: pointer
 @media (hover: hover) { a.raknare:hover { transform: translateY(-2px); box-shadow: var(--skugga-lyft); } }
 a.raknare:active { transform: scale(.97); }
 a.raknare:focus-visible { border-radius: 16px; }
-.prio-rubrik { display: flex; }
+/* Prioritet som rubrik (utanför kort): bara text i versaler, ingen etikett. Texten är "Måste" i HTML:en
+   och versalerna kommer från CSS, så skärmläsare läser ordet normalt. */
+.prio-rubrik { text-transform: uppercase; letter-spacing: 0.5px; }
+.grupp-rubrik .prio-text { text-transform: uppercase; letter-spacing: 0.6px; font-weight: 600; }
 a.valchip { text-decoration: none; }
 .prio-rubrik .prio { font-family: var(--font-sans); font-weight: 500; letter-spacing: 0.4px; font-size: 16px; line-height: 20px; padding: 6px 14px; gap: 6px; }
 .prio-rubrik .prio .ikon { width: 20px; height: 20px; }
