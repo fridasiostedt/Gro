@@ -170,7 +170,8 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   under på Översikt och Årshjul. Detta är uppmätt i webbläsaren. Introtexten under en rubrik hör till rubriken
   (8 px). Små avstånd inne i komponenter (ikon–text, etikett–fält, taggar) är oförändrade.
   Undantag på produktägarens begäran: rubrik → uppgiftskort och mellan uppgiftskort 12 px (även i grupperna på
-  Årshjul och Prioritering). Knappen "Ny uppgift" och grupperna har kvar 32 px.
+  Årshjul och Prioritering). Knappen "Ny uppgift" och grupperna har kvar 32 px. På startsidan är det 12 px mellan de två
+  knapparna och mellan knapparna och informationstexten.
 - **Rullningslisten är dold** (`scrollbar-width: none`). Innehållet scrollar fortfarande med mus, pekskärm
   och tangentbord.
 

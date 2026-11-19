@@ -210,7 +210,8 @@ body.utan-ram .huvud { padding: max(12px, env(safe-area-inset-top)) 24px max(24p
 .blomma.saknas .blomma-bild { display: none; }
 .blomma.saknas .blomma-reserv { display: flex; position: absolute; inset: 0; align-items: center; justify-content: center; color: var(--primar); }
 .start-text { text-align: center; }
-.atgarder { display: flex; flex-direction: column; gap: 32px; width: 100%; padding-top: 12px; }
+.atgarder { display: flex; flex-direction: column; gap: 12px; width: 100%; padding-top: 12px; }
+.atgarder + .liten-text { margin-top: -20px; } /* 12 px från knapparna till informationstexten */
 .start .liten-text { color: var(--text-dampad); text-align: center; }
 
 /* ---------- Bottennavigation ---------- */
