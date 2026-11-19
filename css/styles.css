@@ -422,7 +422,7 @@ a.valchip { text-decoration: none; }
 .detalj-foto.foto-saknas { border: 1px solid var(--primar); }
 .huvud > .detalj-foto + .detalj-innehall { margin-top: -14px; }
 .detalj-innehall {
-  display: flex; flex-direction: column; gap: 32px; padding: 24px 16px 21px;
+  display: flex; flex-direction: column; gap: 12px; padding: 24px 16px 21px; /* "1 st" → Skötsel: 12 px */
   background: var(--tertiar); border: 1px solid var(--primar); border-radius: 16px;
 }
 .detalj-rubrik { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
