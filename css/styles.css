@@ -686,15 +686,16 @@ body.med-hero .statusfalt { background-color: var(--tertiar); }
   .knapp:has(+ #f-import:focus-visible) { outline: 3px solid Highlight; outline-offset: 2px; }
 }
 
-/* ---------- Grön rubrikyta (Årshjul): samma mörkgröna som gräsmattan, böljande nederkant ---------- */
-body.gron-sida .statusfalt, body.gron-sida .toppfalt { background-color: var(--primar); color: var(--text-pa-mork); }
+/* ---------- Rubrikyta på Årshjul: tertiär #E2DFCF med böljande nederkant ---------- */
+body.gron-sida .statusfalt, body.gron-sida .toppfalt { background-color: var(--tertiar); color: var(--text); }
 body.gron-sida .toppfalt.skuggad { box-shadow: none; }
 body.gron-sida .toppfalt .ikonknapp { color: var(--text); } /* pilen ska synas på den ljusa knappen */
 .gron-rubrik {
   position: relative; flex: none; margin: -11px -24px 8px; padding: 6px 24px 40px;
-  background: var(--primar); color: var(--text-pa-mork);
+  background: var(--tertiar); color: var(--text);
 }
-.gron-rubrik h1, .gron-rubrik .underrad, .gron-rubrik .intro-text { color: var(--text-pa-mork); }
+.gron-rubrik h1 { color: var(--primar); }
+.gron-rubrik .underrad, .gron-rubrik .intro-text { color: var(--text-dampad); }
 .gron-rubrik .intro-text { margin-top: 10px; }
 .gron-rubrik::after { /* mjukt böljande kant mot sidans bakgrund */
   content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 22px;

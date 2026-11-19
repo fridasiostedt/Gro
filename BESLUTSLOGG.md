@@ -158,8 +158,9 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   Allt annat (t.ex. `javascript:`) rensas fortfarande bort, och testerna kontrollerar det.
 - **Ifyllnadsfälten är helt släta:** den inre skuggan som gjorde #FEFAFA gråare är borttagen. Mätning i webbläsaren
   visar att alla fält på alla sidor har bakgrunden #FEFAFA.
-- **Grön rubrikyta på Årshjul (test):** rubriken och introtexten ligger på mörkgrönt #535D45 med en mjukt böljande
-  nederkant. Statusfältet och tillbaka-raden har samma gröna färg. Texten är ljus #FAF5F5, med 6,4:1 i kontrast.
+- **Rubrikyta på Årshjul:** rubriken och introtexten ligger på en egen yta med mjukt böljande nederkant. Ytan
+  provades först i mörkgrönt #535D45 och har nu tertiär #E2DFCF, liksom statusfältet och tillbaka-raden.
+  Rubriken är #535D45 och introtexten #3F4139.
 - **Rubriker i #535D45:** sidrubriker (h1), sektionsrubriker (h2) och månadsnamnet i månadskortet har nu primärfärgen.
   Kontrasten är minst 5:1 mot alla bakgrunder, och den automatiska kontrastgranskningen av alla vyer godkände
   ändringen. Namnen på uppgifter och växter i korten är kvar i mörk textfärg. Rubriken på den gröna ytan på
