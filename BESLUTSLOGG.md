@@ -165,10 +165,10 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   Kontrasten är minst 5:1 mot alla bakgrunder, och den automatiska kontrastgranskningen av alla vyer godkände
   ändringen. Namnen på uppgifter och växter i korten är kvar i mörk textfärg. Rubriken på den gröna ytan på
   Årshjul är fortfarande ljus.
-- **16 px mellan delelement:** alla block har 16 px mellanrum: sektioner, kort i listor, växtkort, formulärfält,
+- **32 px mellan delelement** (först provat med 16 px): alla block har 32 px mellanrum: sektioner, kort i listor, växtkort, formulärfält,
   knappar och dialogknappar, samt avståndet från headerns böljande nederkant (lägsta punkten) till innehållet
-  under på Översikt och Årshjul. Detta är uppmätt i webbläsaren. Små avstånd inne i komponenter (ikon–text,
-  etikett–fält, taggar) är oförändrade.
+  under på Översikt och Årshjul. Detta är uppmätt i webbläsaren. Introtexten under en rubrik hör till rubriken
+  (8 px). Små avstånd inne i komponenter (ikon–text, etikett–fält, taggar) är oförändrade.
 - **Rullningslisten är dold** (`scrollbar-width: none`). Innehållet scrollar fortfarande med mus, pekskärm
   och tangentbord.
 
