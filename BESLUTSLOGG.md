@@ -193,6 +193,18 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   - Ett uppgiftskort med fokus kunde delvis hamna utanför bild (WCAG 2.4.11). Hela kortet scrollas nu fram.
   - Fokusringen på uppgiftskort var förskjuten. Nu följer den hela kortet.
   - På Årshjul kommer månaderna nu före årstiderna i fokusordningen.
+- **Bättre flöde, UX-genomgång mot briefen (20 nov):** briefens mål är mindre mental belastning och bättre
+  överblick. Det här ändrades, utan nya designelement:
+  1. **Prioriteringssidan** (från Mina prioriteringar på Översikt) har samma panelstil som Årshjulet.
+     Försenade, Att göra och Klara ligger i paneler i prioritetens ton, och rubriken har den runda ikonen.
+  2. **Alla uppgifter** var en enda lång lista med "Kommande" (35 uppgifter i visningen). Den delas nu i
+     tidsgrupper: Den här veckan, Resten av november och sedan en grupp per månad med antal. Logiken finns i
+     `L.tidsgrupper` och har enhetstester.
+  3. **Ny uppgift från Årshjulet** får den valda månadens sista dag som förvald deadline (`L.forvaldDeadline`).
+     Man slipper bläddra i datumväljaren till exempelvis juni 2027 och kan ändra datumet. Ingen förval görs om
+     en årstid är vald eller om månaden redan har passerat.
+  Förslag som ändrar designen från Figma (färg på räknarna, ordning på Översikt, Ångra, förvald prioritet)
+  lades fram för produktägaren innan något ändrades.
 - **Prioritetsgrupper som paneler (20 nov):** produktägaren valde variant B av fyra förslag (A: färgad
   kortkant, B: tonade paneler, C: linje efter rubriken, D: våglinje). I Årshjulets lista ligger nu varje prioritet
   i en egen rundad panel. Måste är ljusröd (#f1d3cc), Vore bra E2DFCF och Bonus ljusgul (#f8e9c4), med samma kant

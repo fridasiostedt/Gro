@@ -371,6 +371,8 @@
       ? 'Uppgifter under ' + BESTAMD[arstid]
       : 'Uppgifter i ' + manadNamn + (lage.ar !== Number(t.slice(0, 4)) ? ' ' + lage.ar : '');
     var tomText = arstid ? 'Inga uppgifter under ' + BESTAMD[arstid] + '.' : 'Inga uppgifter i ' + manadNamn + (lage.ar !== Number(t.slice(0, 4)) ? ' ' + lage.ar : '') + '.';
+    // Ny uppgift härifrån får vald månads sista dag som deadline (går att ändra) – inte när en årstid är vald
+    var forvald = arstid ? '' : L.forvaldDeadline(lage.ar, lage.manad, t);
     var lista = grupper.length
       ? grupper.map(function (g) {
         return '<section class="prio-grupp prio-grupp-' + g.prioritet.id + '" aria-labelledby="grupp-' + g.prioritet.id + '">' +
@@ -394,7 +396,7 @@
         '<section class="sektion" aria-labelledby="manadens">' +
           '<div class="sektionsrubrik"><h2 id="manadens">' + esc(rubrikText) + '</h2></div>' +
           lista +
-          (store.vaxter().length ? '<a class="knapp knapp-sekundar" href="#/uppgift/ny">Ny uppgift' + ikon('plus', 20) + '</a>' : '') +
+          (store.vaxter().length ? '<a class="knapp knapp-sekundar" href="#/uppgift/ny' + (forvald ? '?deadline=' + forvald : '') + '">Ny uppgift' + ikon('plus', 20) + '</a>' : '') +
         '</section>',
       efter: function () {
         Hjul.koppla(huvud, function (m) {
@@ -647,7 +649,7 @@
           '<a class="knapp knapp-primar" href="#/vaxt/ny">Lägg till växt' + ikon('plus', 20) + '</a>'
       };
     }
-    var d = u || { titel: '', vaxtId: params.vaxt || (vaxter.length === 1 ? vaxter[0].id : ''), start: idag(), deadline: '', aterkommande: 'nej', paminnelse: true, prioritet: L.prioNamn(params.prioritet) ? params.prioritet : '', ansvarig: '' };
+    var d = u || { titel: '', vaxtId: params.vaxt || (vaxter.length === 1 ? vaxter[0].id : ''), start: idag(), deadline: (L.tillDatum(params.deadline) && params.deadline >= idag()) ? params.deadline : '', aterkommande: 'nej', paminnelse: true, prioritet: L.prioNamn(params.prioritet) ? params.prioritet : '', ansvarig: '' };
 
     var vaxtVal = '<select class="falt" id="f-vaxtId" name="vaxtId" required' + beskrivning('vaxtId') + '>' +
       '<option value="">Välj växt</option>' +
@@ -730,9 +732,12 @@
       return '<a class="valchip' + (vald ? ' vald' : '') + '" href="' + href + '"' + (vald ? ' aria-current="true"' : '') + '>' +
         (vald ? ikon('bock', 18) : '') + '<span>' + esc(text) + '</span></a>';
     }
+    // Varje del (Försenade, Att göra, Klara) ligger i en panel i prioritetens ton, som grupperna i Årshjulet
     function avsnitt(id, rubrik, uppg) {
-      return '<section class="sektion" aria-labelledby="' + id + '"><h2 class="sektion-h2" id="' + id + '">' + esc(rubrik) +
-        ' <span class="grupp-antal">(' + uppg.length + ')</span></h2>' + uppgiftslista(uppg) + '</section>';
+      return '<section class="prio-grupp prio-grupp-' + prio + '" aria-labelledby="' + id + '">' +
+        '<h2 class="grupp-rubrik" id="' + id + '"><span class="grupp-namn">' + esc(rubrik) + '</span>' +
+        '<span class="grupp-antal">' + esc(L.plural(uppg.length, 'uppgift', 'uppgifter')) + '</span></h2>' +
+        uppgiftslista(uppg, { niva: 3 }) + '</section>';
     }
     var forsenade = kvar.filter(function (u) { return L.arForsenad(u, t); });
     var kommande = kvar.filter(function (u) { return !L.arForsenad(u, t); });
@@ -742,7 +747,8 @@
       html:
         '<div class="sidhuvud">' +
           '<p class="overrad">Prioritering</p>' +
-          '<h1 tabindex="-1" class="prio-rubrik">' + esc(L.prioNamn(prio)) + '</h1>' +
+          '<h1 tabindex="-1" class="prio-rubrik"><span class="prio-ikon prio-ikon-stor prio-ikon-' + prio + '">' + ikon(PRIO_IKON[prio], 22) + '</span>' +
+            '<span>' + esc(L.prioNamn(prio)) + '</span></h1>' +
           '<p class="underrad">' + (allaManader ? 'Alla månader' : esc(L.stor(manadNamn))) + ' · ' +
             kvar.length + ' av ' + lista.length + ' kvar</p>' +
         '</div>' +
@@ -777,7 +783,11 @@
       var forsenade = kvar.filter(function (u) { return L.arForsenad(u, t); });
       var kommande = kvar.filter(function (u) { return !L.arForsenad(u, t); });
       innehall = (forsenade.length ? '<section class="sektion" aria-labelledby="forsenade"><h2 class="sektion-h2" id="forsenade">Försenade</h2>' + uppgiftslista(forsenade) + '</section>' : '') +
-        (kommande.length ? '<section class="sektion" aria-labelledby="kommande"><h2 class="sektion-h2" id="kommande">Kommande</h2>' + uppgiftslista(kommande) + '</section>' : '') +
+        // Kommande delas i tidsgrupper (den här veckan, resten av månaden, sedan per månad) – lättare att överblicka
+        L.tidsgrupper(kommande, t).map(function (g) {
+          return '<section class="sektion" aria-labelledby="tg-' + g.id + '"><h2 class="sektion-h2" id="tg-' + g.id + '">' + esc(g.rubrik) +
+            ' <span class="grupp-antal">(' + g.uppgifter.length + ')</span></h2>' + uppgiftslista(g.uppgifter) + '</section>';
+        }).join('') +
         (!kvar.length ? '<p class="tom-text">Inga uppgifter kvar.</p>' : '');
     }
     return {

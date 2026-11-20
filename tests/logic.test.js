@@ -221,3 +221,21 @@ test('årstider följer det rullande året', () => {
   assert.deepEqual(L.uppgifterIArstid(lista, 'sommar', '2026-11-18').map((u) => u.id), ['f']); // juni 2027 syns
   assert.deepEqual(L.uppgifterIArstid(lista, 'host', '2026-11-18').map((u) => u.id).sort(), ['e', 'g']);
 });
+
+test('tidsgrupper: den här veckan, resten av månaden och sedan per månad', () => {
+  // fredag 20 nov 2026 → veckan slutar söndag 22 nov
+  const lista = ['2026-11-21', '2026-11-22', '2026-11-23', '2026-11-30', '2026-12-05', '2027-01-10', '2027-06-01']
+    .map((d, i) => ({ id: String(i), deadline: d }));
+  const g = L.tidsgrupper(lista, '2026-11-20');
+  assert.deepEqual(g.map((x) => x.rubrik), ['Den här veckan', 'Resten av november', 'December', 'Januari 2027', 'Juni 2027']);
+  assert.deepEqual(g.map((x) => x.uppgifter.length), [2, 2, 1, 1, 1]);
+  // på en söndag är veckan bara i dag
+  assert.equal(L.tidsgrupper([{ deadline: '2026-11-23' }], '2026-11-22')[0].rubrik, 'Resten av november');
+});
+
+test('forvaldDeadline: månadens sista dag, aldrig i det förflutna', () => {
+  assert.equal(L.forvaldDeadline(2027, 5, '2026-11-20'), '2027-06-30');
+  assert.equal(L.forvaldDeadline(2027, 1, '2026-11-20'), '2027-02-28');
+  assert.equal(L.forvaldDeadline(2026, 10, '2026-11-20'), '2026-11-30');
+  assert.equal(L.forvaldDeadline(2026, 9, '2026-11-20'), '');
+});

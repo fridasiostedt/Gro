@@ -332,7 +332,9 @@ a.raknare:active { transform: scale(.97); }
 a.raknare:focus-visible { border-radius: 16px; }
 /* Prioritet som rubrik (utanför kort): bara text i versaler, ingen etikett. Texten är "Måste" i HTML:en
    och versalerna kommer från CSS, så skärmläsare läser ordet normalt. */
-.prio-rubrik { text-transform: uppercase; letter-spacing: 0.5px; }
+.prio-rubrik { text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 12px; }
+.prio-ikon-stor { width: 40px; height: 40px; }
+.grupp-rubrik .grupp-namn { font-weight: 600; }
 .grupp-rubrik .prio-text { text-transform: uppercase; letter-spacing: 0.6px; font-weight: 600; }
 a.valchip { text-decoration: none; }
 .prio-rubrik .prio { font-family: var(--font-sans); font-weight: 500; letter-spacing: 0.4px; font-size: 16px; line-height: 20px; padding: 6px 14px; gap: 6px; }

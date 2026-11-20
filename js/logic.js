@@ -150,6 +150,37 @@
   var ARSTID_MANADER = { vinter: [11, 0, 1], var: [2, 3, 4], sommar: [5, 6, 7], host: [8, 9, 10] };
 
   /**
+   * Delar kommande uppgifter i tidsgrupper så att en lång lista blir lätt att överblicka:
+   * "Den här veckan" (till och med söndag), "Resten av <månad>" och sedan en grupp per månad.
+   * Listan ska vara sorterad på deadline. Returnerar [{ id, rubrik, uppgifter }].
+   */
+  function tidsgrupper(lista, idagStr) {
+    var t = tillDatum(idagStr || idag());
+    var dagTillSondag = (7 - t.getDay()) % 7;
+    var veckansSlut = laggTillDagar(tillStrang(t), dagTillSondag);
+    var grupper = [], index = {};
+    lista.forEach(function (u) {
+      var id, rubrik;
+      var d = tillDatum(u.deadline);
+      if (u.deadline <= veckansSlut) { id = 'vecka'; rubrik = 'Den här veckan'; }
+      else if (d.getFullYear() === t.getFullYear() && d.getMonth() === t.getMonth()) { id = 'manad'; rubrik = 'Resten av ' + MANADER[t.getMonth()]; }
+      else {
+        id = d.getFullYear() + '-' + d.getMonth();
+        rubrik = stor(MANADER[d.getMonth()]) + (d.getFullYear() !== t.getFullYear() ? ' ' + d.getFullYear() : '');
+      }
+      if (!index[id]) { index[id] = { id: id, rubrik: rubrik, uppgifter: [] }; grupper.push(index[id]); }
+      index[id].uppgifter.push(u);
+    });
+    return grupper;
+  }
+
+  /** Förvald deadline när man skapar en uppgift från en månad i årshjulet: månadens sista dag. */
+  function forvaldDeadline(ar, manad, idagStr) {
+    var sista = tillStrang(new Date(ar, manad + 1, 0));
+    return sista < (idagStr || idag()) ? '' : sista;
+  }
+
+  /**
    * Rullande år: årshjulet visar alltid de kommande tolv månaderna, med start i innevarande månad.
    * I november 2026 är det nov 2026–okt 2027, så januari–oktober hör till 2027 och november–december till 2026.
    */
@@ -274,6 +305,7 @@
   function plural(n, en, flera) { return n + ' ' + (n === 1 ? en : flera); }
 
   return {
+    tidsgrupper: tidsgrupper, forvaldDeadline: forvaldDeadline,
     MANADER: MANADER, MANADER_KORT: MANADER_KORT, VECKODAGAR: VECKODAGAR,
     PRIORITETER: PRIORITETER, STATUSAR: STATUSAR, INTERVALL: INTERVALL,
     PAMINNELSE_DAGAR: PAMINNELSE_DAGAR, ARSTID_NAMN: ARSTID_NAMN,
