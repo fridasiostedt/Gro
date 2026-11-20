@@ -133,13 +133,16 @@ body {
 .utfyllnad { width: 44px; height: 44px; }
 .huvud {
   flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
-  display: flex; flex-direction: column; gap: 32px; padding: 11px 24px 32px; /* 32 px mellan alla delelement */
+  display: flex; flex-direction: column; gap: 32px; padding: 12px 24px 32px; /* 32 px mellan alla delelement */
   scrollbar-width: none; /* ingen synlig rullningslist – scrollning fungerar ändå */
 }
 .huvud::-webkit-scrollbar, .filter::-webkit-scrollbar { display: none; }
 .huvud > * { flex-shrink: 0; } /* innehållet ska scrolla, aldrig tryckas ihop */
 body.utan-ram .huvud { padding: max(12px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom)); }
 .huvud:focus { outline: none; }
+
+/* Läsbarhet: löptext har radavstånd 1,5 (WCAG 1.4.8 / 1.4.12) */
+.skotseltext, .start-text, .tom-text, .valkomst-text, .intro-text, .hjalptext { line-height: 1.5; }
 
 /* ---------- Knappar (Figma: Knapp) ---------- */
 .knapp {
@@ -174,7 +177,7 @@ body.utan-ram .huvud { padding: max(12px, env(safe-area-inset-top)) 24px max(24p
 .sidhuvud .overrad { color: var(--text-dampad); }
 .sidhuvud .underrad { color: var(--text-dampad); margin-top: -8px; }
 .intro-text { color: var(--text-dampad); font-size: 16px; line-height: 24px; margin-top: -24px; max-width: 38ch; } /* hör ihop med rubriken: 8 px */
-.valkomnande { gap: 6px; }
+.valkomnande { gap: 8px; }
 .valkomnande .overrad { font-size: 12px; line-height: 16px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
 .valkomst-text { /* mjuk, inspirerande rad som följer årstiden */
   font-size: 17px; line-height: 26px; color: var(--text-dampad); max-width: 34ch;
@@ -187,7 +190,7 @@ body.utan-ram .huvud { padding: max(12px, env(safe-area-inset-top)) 24px max(24p
   /* Allt uppe, 124 px från skärmens överkant (statusfältet är 54 px på dator) */
   padding: calc(124px - var(--statusfalt-h, 0px)) 0 0;
 }
-.start-topp { display: flex; flex-direction: column; align-items: center; gap: 25px; }
+.start-topp { display: flex; flex-direction: column; align-items: center; gap: 24px; }
 .start-rubriker { display: flex; flex-direction: column; align-items: center; gap: 32px; }
 .ordmarke { /* Stor rubrik */
   font-family: var(--font-serif); font-size: 92px; line-height: 36px; letter-spacing: 7px;
@@ -284,7 +287,7 @@ body.utan-ram .huvud { padding: max(12px, env(safe-area-inset-top)) 24px max(24p
 .ind-pagaende { background: var(--bg-navigation); border: 2px solid var(--status-pagaende); color: var(--status-pagaende); }
 .ind-klar { background: var(--status-klar); color: #fff; }
 .ind-klar .ikon { stroke-width: 2.5; }
-.kort-innehall { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; padding-top: 4px; }
+.kort-innehall { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; padding-top: 4px; }
 .kort-innehall { position: relative; }
 .kort-titel a { text-decoration: none; }
 /* Hela kortets textyta är tryckyta för att redigera (≥ 44 px) */
@@ -294,7 +297,7 @@ body.utan-ram .huvud { padding: max(12px, env(safe-area-inset-top)) 24px max(24p
 .uppgiftskort:has(.kort-titel a:focus-visible) { box-shadow: var(--fokus); }
 .uppgiftskort:has(.kort-titel a:hover) { background: #f8e8df; }
 .status-klar .kort-titel a { text-decoration: line-through; text-decoration-thickness: 1.5px; }
-.meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
+.meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
 .meta .prick { color: var(--text-secondary); font-size: 14px; }
 .taggar { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 2px; }
 .ansvarig, .tagg {
@@ -331,8 +334,6 @@ a.raknare { height: 100%; text-decoration: none; color: inherit; cursor: pointer
 a.raknare:active { transform: scale(.97); }
 a.raknare:focus-visible { border-radius: 16px; }
 a.valchip { text-decoration: none; }
-.prio-rubrik .prio { font-family: var(--font-sans); font-weight: 500; letter-spacing: 0.4px; font-size: 16px; line-height: 20px; padding: 6px 14px; gap: 6px; }
-.prio-rubrik .prio .ikon { width: 20px; height: 20px; }
 .raknare-tal { font-family: var(--font-serif); font-size: 30px; line-height: 36px; letter-spacing: -0.5px; }
 
 /* ---------- Påminnelse ---------- */
@@ -401,7 +402,7 @@ a.valchip { text-decoration: none; }
 .prio-grupp-vorebra, .prio-ton-vorebra { --ton: #4f5c4c; }
 .prio-grupp-bonus, .prio-ton-bonus { --ton: #6b4f10; }
 .prio-grupp > .grupp-rubrik {
-  display: flex; align-items: center; gap: 10px; padding: 0 4px 10px;
+  display: flex; align-items: center; gap: 8px; padding: 0 4px 12px;
   border-bottom: 1px solid color-mix(in srgb, var(--ton) 45%, transparent);
 }
 .prio-grupp > .grupp-rubrik .grupp-namn { font-family: var(--font-serif); font-size: 22px; line-height: 28px; font-weight: 400; color: var(--ton); }
@@ -412,7 +413,7 @@ a.valchip { text-decoration: none; }
 /* ---------- Växter ---------- */
 .filter { display: flex; gap: 8px; overflow-x: auto; padding: 4px; margin: -24px -4px -4px; /* 12 px från rubrikens underrad till filterknapparna */ scrollbar-width: none; }
 .valchip {
-  position: relative; flex: none; display: inline-flex; align-items: center; gap: 6px; min-height: 38px; padding: 8px 12px;
+  position: relative; flex: none; display: inline-flex; align-items: center; gap: 8px; min-height: 38px; padding: 8px 12px;
   border-radius: 999px; border: 1.5px solid var(--primar); background: var(--bg-navigation); cursor: pointer;
   font-weight: 500; font-size: 18px; line-height: 16px; letter-spacing: 0.2px; color: var(--text-primary); white-space: nowrap;
 }
@@ -429,7 +430,7 @@ a.valchip { text-decoration: none; }
 .vaxtkort:focus-within { box-shadow: var(--fokus); }
 .vaxtkort-foto { width: 100%; height: 140px; object-fit: cover; }
 .foto-saknas { display: flex; align-items: center; justify-content: center; background: var(--tertiar); color: var(--primar); }
-.vaxtkort-text { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px 12px; }
+.vaxtkort-text { display: flex; flex-direction: column; gap: 4px; padding: 12px; }
 .vaxtkort .kort-titel a::after { content: ""; position: absolute; inset: 0; } /* hela kortet klickbart */
 .vaxtkort .kort-titel a:focus-visible { box-shadow: none; }
 .fakta { padding-top: 8px; }
@@ -441,19 +442,19 @@ a.valchip { text-decoration: none; }
 /* ---------- Växtdetalj ---------- */
 .detalj-foto { width: 100%; height: 225px; object-fit: cover; border-radius: 16px; }
 .detalj-foto.foto-saknas { border: 1px solid var(--primar); }
-.huvud > .detalj-foto + .detalj-innehall { margin-top: -14px; }
+.huvud > .detalj-foto + .detalj-innehall { margin-top: -16px; }
 .detalj-innehall {
-  display: flex; flex-direction: column; gap: 12px; padding: 24px 16px 21px; /* "1 st" → Skötsel: 12 px */
+  display: flex; flex-direction: column; gap: 12px; padding: 24px 16px 20px; /* "1 st" → Skötsel: 12 px */
   background: var(--tertiar); border: 1px solid var(--primar); border-radius: 16px;
 }
 .detalj-rubrik { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
 .antal-bricka {
-  margin-top: 8px; padding: 5px 9px; border-radius: 999px; background: var(--bg-navigation); border: 1px solid var(--text-dampad);
+  margin-top: 8px; padding: 4px 8px; border-radius: 999px; background: var(--bg-navigation); border: 1px solid var(--text-dampad);
   font-weight: 500; font-size: 12px; line-height: 16px; letter-spacing: 0.2px;
 }
 .skotseltext { white-space: pre-line; margin-top: 4px; }
 .sektion-h2 { margin-bottom: 0; }
-.hantera { display: flex; flex-direction: column; gap: 4px; }
+.hantera { display: flex; flex-direction: column; gap: 8px; } /* minst 8 px mellan tryckytor */
 
 /* ---------- Formulär (Inmatningsfält, Fotoväljare, Stegväljare) ---------- */
 .formular { display: flex; flex-direction: column; gap: 32px; }
@@ -463,7 +464,7 @@ a.valchip { text-decoration: none; }
 .formular-tat { gap: 12px; }
 .formular-tat > .sidhuvud { margin-bottom: 20px; }
 .formular-tat > .knapp-primar { margin-top: 20px; }
-.falt-grupp, .val-grupp { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.falt-grupp, .val-grupp { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .val-grupp { border: 0; padding: 0; margin: 0; gap: 8px; }
 .val-grupp legend { padding: 0; margin-bottom: 8px; }
 .etikett { color: var(--text); }
@@ -472,7 +473,7 @@ a.valchip { text-decoration: none; }
   background: var(--bg-falt); border: 1.5px solid var(--primar); color: var(--text-primary);
   font-size: 16px; line-height: 24px;
 }
-textarea.falt { padding: 13px 16px; resize: vertical; min-height: 52px; }
+textarea.falt { padding: 12px 16px; resize: vertical; min-height: 52px; }
 select.falt {
   appearance: none; -webkit-appearance: none; padding-right: 44px; cursor: pointer;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%231d1f19' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
@@ -504,7 +505,7 @@ input[type="date"].falt { padding-right: 8px; }
 }
 .falt[aria-invalid="true"] { border-color: var(--prio-maste); border-width: 2px; }
 .hjalptext { color: var(--text-dampad); }
-.felmeddelande { display: flex; align-items: center; gap: 6px; color: var(--accent-text); font-size: 14px; line-height: 20px; font-weight: 500; }
+.felmeddelande { display: flex; align-items: center; gap: 8px; color: var(--accent-text); font-size: 14px; line-height: 20px; font-weight: 500; }
 .felmeddelande[hidden] { display: none; }
 .datumrad { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
@@ -698,7 +699,7 @@ body.med-hero .statusfalt { background-color: var(--tertiar); }
   background: linear-gradient(var(--tertiar), var(--tertiar)) top / 100% calc(env(safe-area-inset-top, 0px) + 1px) no-repeat;
 }
 .hero-bild { display: block; width: 100%; height: auto; }
-.hero-knappar { position: absolute; top: 10px; right: 12px; display: flex; gap: 4px; }
+.hero-knappar { position: absolute; top: 12px; right: 12px; display: flex; gap: 8px; } /* minst 8 px mellan tryckytor */
 .hero-knapp {
   position: relative; width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--text-dampad); padding: 0;
   display: inline-flex; align-items: center; justify-content: center; background: var(--bg-navigation); color: var(--text);
@@ -730,7 +731,7 @@ body.gron-sida .statusfalt, body.gron-sida .toppfalt { background-color: var(--t
 body.gron-sida .toppfalt.skuggad { box-shadow: none; }
 body.gron-sida .toppfalt .ikonknapp { color: var(--text); } /* pilen ska synas på den ljusa knappen */
 .gron-rubrik {
-  position: relative; flex: none; margin: -11px -24px -6px; padding: 6px 24px 40px; /* 32 px från vågens lägsta punkt till årshjulet */
+  position: relative; flex: none; margin: -12px -24px -8px; padding: 8px 24px 40px; /* 32 px från vågens lägsta punkt till årshjulet */
   background: var(--tertiar); color: var(--text);
 }
 .gron-rubrik h1 { color: var(--primar); }

@@ -193,6 +193,18 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   - Ett uppgiftskort med fokus kunde delvis hamna utanför bild (WCAG 2.4.11). Hela kortet scrollas nu fram.
   - Fokusringen på uppgiftskort var förskjuten. Nu följer den hela kortet.
   - På Årshjul kommer månaderna nu före årstiderna i fokusordningen.
+- **Avstånd enligt WCAG och appstandard (20 nov):** alla vyer mättes automatiskt (marginaler, utfyllnad och
+  luckor, tryckytor och textavstånd).
+  - **4-px-rutnät** (standard i iOS och Material): udda värden avrundades till närmaste steg om 4. Det gäller
+    sidans överkant 11→12, startsidans luckor 25→24, etikett→fält 6→8, kortens rader 6→8, växtkortens text
+    2/10→4/12, antal-brickan 5/9→4/8, textrutan 13→12 och felmeddelandet 6→8. Produktägarens egna avstånd
+    (12, 32 och 124 px) är oförändrade.
+  - **Minst 8 px mellan tryckytor** (Material): klockan↔kugghjulet 4→8 och Redigera växt↔Ta bort växt 4→8.
+  - **Tryckytor:** alla är minst 44 × 44 px, mer än kravet på 24 px i WCAG 2.5.8 AA och lika med briefen och
+    Apples riktlinjer. Valknapparna och kortlänkarna har osynligt förstorade tryckytor.
+  - **Radavstånd 1,5 i löptext** (skötseltext, startsidans text, tomma lägen och hjälptexter), tidigare 1,38.
+  - **WCAG 1.4.12 Textavstånd:** testat med radavstånd 1,5, bokstavsavstånd 0,12 em, ordavstånd 0,16 em och
+    styckeavstånd 2 em i alla vyer. Ingen synlig text klipps.
 - **Stilrenare prioritetsrubriker (20 nov):** produktägaren valde variant A av fyra förslag. Rubrikerna i
   prioritetspanelerna och den stora rubriken på prioriteringssidan står nu i serif med prioritetens mörka ton:
   Måste #8f3a3c, Vore bra #4f5c4c och Bonus #6b4f10. Före texten står en tunn konturikon, antalet står till
