@@ -330,12 +330,6 @@ a.raknare { height: 100%; text-decoration: none; color: inherit; cursor: pointer
 @media (hover: hover) { a.raknare:hover { transform: translateY(-2px); box-shadow: var(--skugga-lyft); } }
 a.raknare:active { transform: scale(.97); }
 a.raknare:focus-visible { border-radius: 16px; }
-/* Prioritet som rubrik (utanför kort): bara text i versaler, ingen etikett. Texten är "Måste" i HTML:en
-   och versalerna kommer från CSS, så skärmläsare läser ordet normalt. */
-.prio-rubrik { text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 12px; }
-.prio-ikon-stor { width: 40px; height: 40px; }
-.grupp-rubrik .grupp-namn { font-weight: 600; }
-.grupp-rubrik .prio-text { text-transform: uppercase; letter-spacing: 0.6px; font-weight: 600; }
 a.valchip { text-decoration: none; }
 .prio-rubrik .prio { font-family: var(--font-sans); font-weight: 500; letter-spacing: 0.4px; font-size: 16px; line-height: 20px; padding: 6px 14px; gap: 6px; }
 .prio-rubrik .prio .ikon { width: 20px; height: 20px; }
@@ -401,11 +395,19 @@ a.valchip { text-decoration: none; }
 .prio-grupp-maste { background: #f1d3cc; }
 .prio-grupp-vorebra { background: var(--tertiar); }
 .prio-grupp-bonus { background: #f8e9c4; }
-.prio-grupp > .grupp-rubrik { padding: 0 4px; }
-.prio-ikon { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 28px; height: 28px; border-radius: 50%; }
-.prio-ikon-maste { background: var(--prio-maste); color: var(--text-pa-mork); }
-.prio-ikon-vorebra { background: var(--prio-vorebra); color: var(--text-pa-mork); }
-.prio-ikon-bonus { background: var(--prio-bonus); color: var(--text); box-shadow: inset 0 0 0 1px #b8913a; }
+/* Rubriker för prioriteringar (variant A, vald 20 nov): serif i prioritetens mörka ton, tunn konturikon,
+   antal till höger och en fin linje under. Tonerna har minst 5:1 mot panelerna och sidans bakgrund. */
+.prio-grupp-maste, .prio-ton-maste { --ton: #8f3a3c; }
+.prio-grupp-vorebra, .prio-ton-vorebra { --ton: #4f5c4c; }
+.prio-grupp-bonus, .prio-ton-bonus { --ton: #6b4f10; }
+.prio-grupp > .grupp-rubrik {
+  display: flex; align-items: center; gap: 10px; padding: 0 4px 10px;
+  border-bottom: 1px solid color-mix(in srgb, var(--ton) 45%, transparent);
+}
+.prio-grupp > .grupp-rubrik .grupp-namn { font-family: var(--font-serif); font-size: 22px; line-height: 28px; font-weight: 400; color: var(--ton); }
+.prio-grupp > .grupp-rubrik .grupp-antal { margin-left: auto; font-size: 14px; font-weight: 400; color: #3f4139; }
+.prio-ikon { display: inline-flex; flex: none; color: var(--ton); }
+.prio-rubrik { display: flex; align-items: center; gap: 12px; color: var(--ton); }
 
 /* ---------- Växter ---------- */
 .filter { display: flex; gap: 8px; overflow-x: auto; padding: 4px; margin: -24px -4px -4px; /* 12 px från rubrikens underrad till filterknapparna */ scrollbar-width: none; }

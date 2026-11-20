@@ -377,8 +377,8 @@
       ? grupper.map(function (g) {
         return '<section class="prio-grupp prio-grupp-' + g.prioritet.id + '" aria-labelledby="grupp-' + g.prioritet.id + '">' +
           '<h3 class="grupp-rubrik" id="grupp-' + g.prioritet.id + '">' +
-            '<span class="prio-ikon prio-ikon-' + g.prioritet.id + '">' + ikon(PRIO_IKON[g.prioritet.id], 16) + '</span>' +
-            '<span class="prio-text">' + esc(L.prioNamn(g.prioritet.id)) + '</span>' +
+            '<span class="prio-ikon">' + ikon(PRIO_IKON[g.prioritet.id], 18) + '</span>' +
+            '<span class="grupp-namn">' + esc(L.prioNamn(g.prioritet.id)) + '</span>' +
             '<span class="grupp-antal">' + esc(L.plural(g.uppgifter.length, 'uppgift', 'uppgifter')) + '</span></h3>' +
           uppgiftslista(g.uppgifter, { niva: 4 }) + '</section>';
       }).join('')
@@ -747,7 +747,7 @@
       html:
         '<div class="sidhuvud">' +
           '<p class="overrad">Prioritering</p>' +
-          '<h1 tabindex="-1" class="prio-rubrik"><span class="prio-ikon prio-ikon-stor prio-ikon-' + prio + '">' + ikon(PRIO_IKON[prio], 22) + '</span>' +
+          '<h1 tabindex="-1" class="prio-rubrik prio-ton-' + prio + '"><span class="prio-ikon">' + ikon(PRIO_IKON[prio], 26) + '</span>' +
             '<span>' + esc(L.prioNamn(prio)) + '</span></h1>' +
           '<p class="underrad">' + (allaManader ? 'Alla månader' : esc(L.stor(manadNamn))) + ' · ' +
             kvar.length + ' av ' + lista.length + ' kvar</p>' +

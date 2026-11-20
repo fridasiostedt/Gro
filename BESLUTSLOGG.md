@@ -193,6 +193,12 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   - Ett uppgiftskort med fokus kunde delvis hamna utanför bild (WCAG 2.4.11). Hela kortet scrollas nu fram.
   - Fokusringen på uppgiftskort var förskjuten. Nu följer den hela kortet.
   - På Årshjul kommer månaderna nu före årstiderna i fokusordningen.
+- **Stilrenare prioritetsrubriker (20 nov):** produktägaren valde variant A av fyra förslag. Rubrikerna i
+  prioritetspanelerna och den stora rubriken på prioriteringssidan står nu i serif med prioritetens mörka ton:
+  Måste #8f3a3c, Vore bra #4f5c4c och Bonus #6b4f10. Före texten står en tunn konturikon, antalet står till
+  höger och en fin linje i samma ton går under rubriken. Tonerna håller minst 5:1 mot panelerna och sidans
+  bakgrund (WCAG 1.4.3). Rubriktexten anger prioriteten, så färgen är aldrig enda bäraren (WCAG 1.4.1).
+  Det ersätter versalerna och de fyllda ikonringarna från 19–20 nov. Etiketterna i korten är oförändrade.
 - **Bättre flöde, UX-genomgång mot briefen (20 nov):** briefens mål är mindre mental belastning och bättre
   överblick. Det här ändrades, utan nya designelement:
   1. **Prioriteringssidan** (från Mina prioriteringar på Översikt) har samma panelstil som Årshjulet.
