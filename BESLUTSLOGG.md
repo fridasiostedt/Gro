@@ -193,6 +193,12 @@ Nyaste överst. Format: datum · beslut/fel · varför · status.
   - Ett uppgiftskort med fokus kunde delvis hamna utanför bild (WCAG 2.4.11). Hela kortet scrollas nu fram.
   - Fokusringen på uppgiftskort var förskjuten. Nu följer den hela kortet.
   - På Årshjul kommer månaderna nu före årstiderna i fokusordningen.
+- **Prioritetsgrupper som paneler (20 nov):** produktägaren valde variant B av fyra förslag (A: färgad
+  kortkant, B: tonade paneler, C: linje efter rubriken, D: våglinje). I Årshjulets lista ligger nu varje prioritet
+  i en egen rundad panel. Måste är ljusröd (#f1d3cc), Vore bra E2DFCF och Bonus ljusgul (#f8e9c4), med samma kant
+  och skugga som övriga kort. Före rubriken står en rund ikon i prioritetens färg. Ikonen är dekor, eftersom
+  rubriktexten anger prioriteten. Kontrasten är kontrollerad: rubriktexten håller minst 7:1 mot alla tre
+  panelerna.
 - **Knappavstånd återställt (19 nov):** vi provade att ge alla stora knappar högst 12 px avstånd, men
   produktägaren ville ha tillbaka de tidigare avstånden (oftast 32 px), så ändringen är återställd.
 - **Prioritet som rubrik (19 nov):** där Måste, Vore bra och Bonus fungerar som rubrik utanför korten (grupperna

@@ -391,6 +391,19 @@ a.valchip { text-decoration: none; }
 .prio-grupp { display: flex; flex-direction: column; gap: 12px; } /* grupprubrik → kort: 12 px */
 .grupp-rubrik { display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 500; }
 .grupp-antal { color: var(--text-dampad); }
+/* Prioritetsgrupper som egna paneler (variant B, vald 20 nov): mjuk ton per prioritet, samma kant och skugga
+   som övriga kort, rund ikon i prioritetens färg framför rubriken. Ikonen är dekor – rubriken säger prioriteten. */
+.prio-grupp-maste, .prio-grupp-vorebra, .prio-grupp-bonus {
+  padding: 16px 12px 12px; border: 1px solid var(--primar); border-radius: 24px; box-shadow: var(--skugga-uppgift);
+}
+.prio-grupp-maste { background: #f1d3cc; }
+.prio-grupp-vorebra { background: var(--tertiar); }
+.prio-grupp-bonus { background: #f8e9c4; }
+.prio-grupp > .grupp-rubrik { padding: 0 4px; }
+.prio-ikon { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 28px; height: 28px; border-radius: 50%; }
+.prio-ikon-maste { background: var(--prio-maste); color: var(--text-pa-mork); }
+.prio-ikon-vorebra { background: var(--prio-vorebra); color: var(--text-pa-mork); }
+.prio-ikon-bonus { background: var(--prio-bonus); color: var(--text); box-shadow: inset 0 0 0 1px #b8913a; }
 
 /* ---------- Växter ---------- */
 .filter { display: flex; gap: 8px; overflow-x: auto; padding: 4px; margin: -24px -4px -4px; /* 12 px från rubrikens underrad till filterknapparna */ scrollbar-width: none; }

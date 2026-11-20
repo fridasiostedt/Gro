@@ -373,8 +373,10 @@
     var tomText = arstid ? 'Inga uppgifter under ' + BESTAMD[arstid] + '.' : 'Inga uppgifter i ' + manadNamn + (lage.ar !== Number(t.slice(0, 4)) ? ' ' + lage.ar : '') + '.';
     var lista = grupper.length
       ? grupper.map(function (g) {
-        return '<section class="prio-grupp" aria-labelledby="grupp-' + g.prioritet.id + '">' +
-          '<h3 class="grupp-rubrik" id="grupp-' + g.prioritet.id + '"><span class="prio-text">' + esc(L.prioNamn(g.prioritet.id)) + '</span>' +
+        return '<section class="prio-grupp prio-grupp-' + g.prioritet.id + '" aria-labelledby="grupp-' + g.prioritet.id + '">' +
+          '<h3 class="grupp-rubrik" id="grupp-' + g.prioritet.id + '">' +
+            '<span class="prio-ikon prio-ikon-' + g.prioritet.id + '">' + ikon(PRIO_IKON[g.prioritet.id], 16) + '</span>' +
+            '<span class="prio-text">' + esc(L.prioNamn(g.prioritet.id)) + '</span>' +
             '<span class="grupp-antal">' + esc(L.plural(g.uppgifter.length, 'uppgift', 'uppgifter')) + '</span></h3>' +
           uppgiftslista(g.uppgifter, { niva: 4 }) + '</section>';
       }).join('')
